@@ -6,9 +6,21 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
+    savedCities: [City]
+  }
+  type City{
+    _id:ID!
+    name:String!
+    healthcare: Float
+    taxation: Float
+    education: Float
+    housing: Float
+    cost-of-living: Float
+    safety: Float
+    environmental quality: Float
+    economy: Float
 
   }
-
 
   type Auth {
     token: ID!
