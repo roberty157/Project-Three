@@ -15,11 +15,11 @@ const typeDefs = gql`
     taxation: Float
     education: Float
     housing: Float
-    cost-of-living: Float
+    costOfLiving: Float
     safety: Float
-    environmental quality: Float
+    environmentalQuality: Float
     economy: Float
-
+    image: String!
   }
 
   type Auth {
