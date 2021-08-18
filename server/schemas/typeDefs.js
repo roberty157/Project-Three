@@ -19,7 +19,7 @@ const typeDefs = gql`
     safety: Float
     environmentalQuality: Float
     economy: Float
-    image: String!
+    image: String
   }
 
   type Auth {
