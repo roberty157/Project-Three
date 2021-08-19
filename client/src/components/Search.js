@@ -33,8 +33,14 @@ const Search = () => {
 
       // store the category data into an array
       const uaScores = cityData[0]._embedded["city:item"]._embedded["city:urban_area"]._embedded["ua:scores"].categories;
-      cityData[0].['uaScores'] = uaScores;
-      console.log('urban area scores:', uaScores);
+        cityData[0].housing = Math.round(uaScores[0].score_out_of_10);
+        cityData[0].costOfLiving = Math.round(uaScores[1].score_out_of_10);
+        cityData[0].safety = Math.round(uaScores[7].score_out_of_10);
+        cityData[0].healthcare = Math.round(uaScores[8].score_out_of_10);
+        cityData[0].education = Math.round(uaScores[9].score_out_of_10);
+        cityData[0].environmentalQuality = Math.round(uaScores[10].score_out_of_10);
+        cityData[0].economy = Math.round(uaScores[11].score_out_of_10);
+        cityData[0].taxation = Math.round(uaScores[12].score_out_of_10);
       // store the link for the image in a variable 
       const regionLink = cityData[0]._embedded["city:item"]._embedded["city:urban_area"]._links["ua:images"].href;
       // API call to retrieve the image link
@@ -81,13 +87,38 @@ const Search = () => {
           <div>
             <span className="bold">Location: </span>{city.matching_full_name}
             </div>
-          <div>
-           <span className="bold">Population: </span>{city.population}
+            <div>
+              <span className="bold">Population: </span>{city.population}
+            </div>
+           <div>
+             <span className="bold">Region: </span>{city.region}
            </div>
            <div>
-           <span className="bold">Region: </span>{city.region}
-           <img alt="city" src={city.image}></img>
+             <span className="bold">Healthcare: </span>{city.healthcare} of 10
            </div>
+           <div>
+             <span className="bold">Taxation: </span>{city.taxation} of 10
+           </div>
+           <div>
+             <span className="bold">Education: </span>{city.education} of 10
+           </div>
+           <div>
+             <span className="bold">Housing: </span>{city.housing} of 10
+           </div>
+           <div>
+             <span className="bold">Cost of Living: </span>{city.costOfLiving} of 10
+           </div>
+           <div>
+             <span className="bold">Safety: </span>{city.safety} of 10
+           </div>
+           <div>
+             <span className="bold">Environmental Quality: </span>{city.environmentalQuality} of 10
+           </div>
+           <div>
+             <span className="bold">Economy: </span>{city.economy} of 10
+           </div>
+           <img alt="city" src={city.image}></img>
+
           </div>)}
           
         </div>
