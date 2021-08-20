@@ -22,11 +22,13 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  home: {
-    type: Schema.Types.ObjectId,
-  },
   savedCities: [citySchema],
-}
+},
+  {
+    toJSON: {
+      virtuals: true,
+    },
+  }
 );
 
 userSchema.pre('save', async function (next) {
