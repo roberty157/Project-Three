@@ -1,27 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from '@apollo/client';
-import {setContext} from '@apollo/client/link/context';
+import React from 'react';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+
+import NavBar from './components/NavBar';
+import Search from './pages/Search';
+
+// create main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri:'/graphql',
+  uri: '/graphql',
 });
 
-const authLink = setContext((_,{headers}) =>{
+// create request middleware
+const authLink = setContext((_, { headers }) => {
+
+  // get the token from local storage 
   const token = localStorage.getItem('id_token');
-  return{
-    headers:{
+
+  // return the headers to the context
+  return {
+    headers: {
       ...headers,
       authorization: token ? `Bearer ${token}` : '',
-    }
-  }
-})
+    },
+  };
+});
 
+// create Apollo client
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
@@ -30,24 +36,19 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <>
+          <NavBar />
+          <Switch>
+            <Route exact path='/' component={Search} />
+
+            <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+          </Switch>
+        </>
+      </Router>
     </ApolloProvider>
   );
 }
 
 export default App;
+
