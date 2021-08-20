@@ -1,6 +1,9 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+// import schema from Book.js
+const citySchema = require('./City');
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -19,13 +22,12 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  savedCities: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'City',
-    },
-  ],
-});
+  home: {
+    type: Schema.Types.ObjectId,
+  },
+  savedCities: [citySchema],
+}
+);
 
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {

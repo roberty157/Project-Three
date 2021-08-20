@@ -117,7 +117,7 @@ const Search = () => {
            <div>
              <span className="bold">Economy: </span>{city.economy} of 10
            </div>
-           <img alt="city" src={city.image}></img>
+           <img alt="city" className="city-image" src={city.image}></img>
 
           </div>)}
           
