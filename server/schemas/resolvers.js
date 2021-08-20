@@ -10,7 +10,13 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username });
     },
-
+    me: async(parent,args,context)=>{
+      //console.log(args);
+      if(context.user){
+          return User.findOne({_id:context.user._id})
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
 
   },
 
@@ -36,6 +42,48 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    saveCity: async (parent,args,context)=>{
+      console.log('args',args);
+      const city = args.input;
+
+      if(context.user){
+        const user = await User.findOne({_id:context.user._id });
+          await User.findOneAndUpdate(
+              {_id:context.user._id},
+              {$addToSet:{savedCities:{...city}}}
+          );
+          
+          return user;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+
+    },
+    removeCity: async (parent,{cityName},context)=>{
+      if(context.user){
+          const updatedUser = await User.findOneAndUpdate(
+              { _id: context.user._id },
+              { $pull: { savedCities: { name: cityName } } },
+              { new: true }
+          )
+          return updatedUser;
+      }
+      throw new AuthenticationError('you need to be logged in!');
+      
+    },
+    saveHomeCity: async(parent, args,context)=>{
+      const city = args.input;
+
+      if(context.user){
+        const updatedUser = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            {homeCity:{...city} },
+            { new: true }
+        )
+        return updatedUser;
+      }
+    throw new AuthenticationError('you need to be logged in!');
     }
 
   },
