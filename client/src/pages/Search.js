@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { searchCityData, searchBlank } from '../utils/API';
+import { useMutation } from '@apollo/client';
+import { SAVE_CITY } from '../utils/mutations';
 import { numbersWithCommas } from '../utils/helpers'
+import { saveCityIds, getSavedCityIds } from '../utils/localStorage';
 import { Jumbotron, Container, Form, Button } from 'react-bootstrap';
 import Auth from '../utils/auth';
-
 import { Bar } from 'react-chartjs-2'
 
 const Search = () => {
@@ -12,9 +14,18 @@ const Search = () => {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
+  const [savedCityIds, setSavedCityIds] = useState(getSavedCityIds());
 
+  // set up useEffect hook to save `savedCityIds` list to localStorage on component unmount
 
-  // create method to search for books and set state on form submit
+  useEffect(() => {
+    return () => saveCityIds(savedCityIds);
+  });
+
+  // set mutation for saving City
+  const [saveCity] = useMutation(SAVE_CITY);
+
+  // create method to search for city and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -74,6 +85,35 @@ const Search = () => {
       setSearchInput('');
 
 
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+  const handleSaveCity = async (cityId) => {
+
+    // find the city in `searchedcities` state by the matching id
+    const cityToSave = searchedCities.find((city) => city.cityId === cityId);
+
+    // get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    // save city
+    try {
+      const response = await saveCity({
+        variables: { cityToSave },
+      });
+
+      if (!response.data) {
+        throw new Error('something went wrong!');
+      }
+
+      setSavedCityIds([...savedCityIds, cityToSave.cityId]);
     } catch (err) {
       console.error(err);
     }
@@ -145,46 +185,57 @@ const Search = () => {
           </div>
           </div>
           <Container className='p-5'>
-            <Bar
-              data={{
-                labels: ['Healthcare', 'Taxation', 'Education', 'Housing', 'Living', 'Safety', 'Environment', 'Economy'],
-                datasets: [
-                  {
-                    label: 'Score',
-                    data: [`${city.healthcare}`, `${city.taxation}`, `${city.education}`, `${city.housing}`, `${city.costOfLiving}`, `${city.safety}`, `${city.environmentalQuality}`, `${city.economy}`],
+            <div>
+              <Bar
+                data={{
+                  labels: ['Healthcare', 'Taxation', 'Education', 'Housing', 'Living', 'Safety', 'Environment', 'Economy'],
+                  datasets: [
+                    {
+                      label: 'Score',
+                      data: [`${city.healthcare}`, `${city.taxation}`, `${city.education}`, `${city.housing}`, `${city.costOfLiving}`, `${city.safety}`, `${city.environmentalQuality}`, `${city.economy}`],
 
-                    backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                  }]
+                      backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                      ],
+                      borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                      ],
+                      borderWidth: 1
+                    }]
 
-              }}
-              height={400}
-              width={500}
-              options={{
-                maintainAspectRatio: false,
-                scales: {
-                  y: {
-                    suggestedMin: 0,
-                    suggestedMax: 10
+                }}
+                height={400}
+                width={500}
+                options={{
+                  maintainAspectRatio: false,
+                  scales: {
+                    y: {
+                      suggestedMin: 0,
+                      suggestedMax: 10
+                    }
                   }
-                }
-              }}
-            />
+                }}
+              />
+            </div>
+            <Button
+              disabled={savedCityIds?.some((savedCityId) => savedCityId === city.cityId)}
+              className='btn-block btn-info'
+              onClick={() => handleSaveCity(city.cityId)}>
+              {savedCityIds?.some((savedCityId) => savedCityId === city.cityId)
+                ? 'This city has already been saved!'
+                : 'Save this City!'}
+            </Button>
+
           </Container>
         </div>)}
 
