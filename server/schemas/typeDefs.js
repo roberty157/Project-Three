@@ -12,6 +12,8 @@ const typeDefs = gql`
     environmentalQuality: Float
     economy: Float
     image: String
+    region: String
+    population: Float
   }
   type User {
     _id: ID
@@ -22,7 +24,7 @@ const typeDefs = gql`
     savedCities: [City]
   }
   type City{
-    _id:ID!
+    _id:ID
     name:String!
     healthcare: Float
     taxation: Float
@@ -33,6 +35,8 @@ const typeDefs = gql`
     environmentalQuality: Float
     economy: Float
     image: String
+    population: String
+    region: String
   }
 
   type Auth {
