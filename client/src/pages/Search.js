@@ -154,7 +154,7 @@ const Search = () => {
          <div className="city-container">
           <div>
             <h2>
-              {city.matching_full_name}
+              {city.matching_full_name} 
             </h2>
             <h3>
               <span className="bold">Population: </span><span>{city.population}</span>
