@@ -57,7 +57,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     saveHomeCity(input:cityInput):User
-    saveCity(input:cityInput):User
+    saveCity(city:cityInput):User
     removeCity(cityId:ID!):User
   }
 `;
