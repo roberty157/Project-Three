@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const citySchema = new Schema({
   name: {
@@ -8,43 +8,45 @@ const citySchema = new Schema({
     trim: true,
   },
     // saved book id from teleport
-  geocodeId: {
+  cityId: {
     type: String,
     required: true,
   },
   image: {
-    type: String
+    type: String,
   },
   healthcare: {
-    type: Number
+    type: Number,
   },
   taxation: {
-    type: Number
+    type: Number,
   },
   education: {
-    type: Number
+    type: Number,
   },
   housing: {
-    type: Number
+    type: Number,
   },
   costOfLiving: {
-    type: Number
+    type: Number,
   },
   safety: {
-    type: Number
+    type: Number,
   },
   environmentalQuality: {
-    type: Number
+    type: Number,
   },
   economy: {
-    type: Number
+    type: Number,
   },
   population: {
-    type: Number
+    type: Number,
   },
   region: {
-    type: String
+    type: String,
   },
 });
 
-module.exports = citySchema;
+const City = model('City', citySchema);
+
+module.exports = City;

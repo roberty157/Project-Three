@@ -20,9 +20,10 @@ const typeDefs = gql`
     password: String
     homeCity: City
     savedCities: [City]
+    bookCount: Int
   }
   type City{
-    _id:ID!
+    cityId: ID
     name:String!
     healthcare: Float
     taxation: Float
@@ -53,7 +54,7 @@ const typeDefs = gql`
     saveHomeCity(input:cityInput):User
 
     saveCity(input:cityInput):User
-    removeCity(cityName:String!):User
+    removeCity(cityId:ID!):User
   }
 `;
 

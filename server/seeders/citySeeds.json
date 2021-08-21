@@ -11,7 +11,8 @@
     "environmentalQuality": "8.574666666666667",
     "economy": "8.439666666666666",
     "region": "Houston",
-    "population": "950807"
+    "population": "950807",
+    "cityId": "4671654"
   },
     { 
     "name": "Los Angeles, CA",
@@ -25,7 +26,8 @@
     "environmentalQuality": "7.4666666666667",
     "economy": "6.66666666666",
     "region": "Los Angeles",
-    "population": "3967000"
+    "population": "3967000",
+    "cityId": "5368361"
   },
   { 
     "name": "New York City, NY",
@@ -38,7 +40,8 @@
     "safety": "1.85000000000004",
     "environmentalQuality": "3.4666666666667",
     "economy": "2.66666666666",
-     "region": "New York",
-    "population": "8419000"
-  }
+    "region": "New York",
+    "population": "8419000",
+    "cityId": "5128581"
+    }
 ]
