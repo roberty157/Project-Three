@@ -58,23 +58,22 @@ const resolvers = {
 
       return { token, user };
     },
-    saveCity: async (parent,args,context)=>{
+    saveCity: async (parent, { city }, context) => {
       console.log(context.user);
-      //console.log('args',args);
+      console.log('args', city);
       //console.log('contextID', context.user._id);
-      const city = args.input;
 
-      if(context.user){
+      if (context.user) {
         //const user = await User.findById(context.user._id);
-        try{
-        const user = await User.findOne({_id:context.user._id });
+        try {
+          const user = await User.findOne({ _id: context.user._id });
           await User.findOneAndUpdate(
-              {_id:context.user._id},
-              {$addToSet:{savedCities:{...city}}}
+            { _id: context.user._id },
+            { $addToSet: { savedCities: city._id } }
           );
-          
+
           return user;
-        }catch(err){
+        } catch (err) {
           console.log(err);
         }
       }
@@ -82,30 +81,30 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
 
     },
-    removeCity: async (parent,{cityId},context)=>{
-      if(context.user){
-          const updatedUser = await User.findOneAndUpdate(
-              { _id: context.user._id },
-              { $pull: { savedCities: {cityId} } },
-              { new: true }
-          )
-          return updatedUser;
-      }
-      throw new AuthenticationError('you need to be logged in!');
-      
-    },
-    saveHomeCity: async(parent, args,context)=>{
-      const city = args.input;
-
-      if(context.user){
+    removeCity: async (parent, { cityId }, context) => {
+      if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
-            { _id: context.user._id },
-            {homeCity:{...city} },
-            { new: true }
+          { _id: context.user._id },
+          { $pull: { savedCities: { cityId } } },
+          { new: true }
         )
         return updatedUser;
       }
-    throw new AuthenticationError('you need to be logged in!');
+      throw new AuthenticationError('you need to be logged in!');
+
+    },
+    saveHomeCity: async (parent, args, context) => {
+      const city = args.input;
+
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { homeCity: { ...city } },
+          { new: true }
+        )
+        return updatedUser;
+      }
+      throw new AuthenticationError('you need to be logged in!');
     }
 
   },
