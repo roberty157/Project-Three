@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   input cityInput{
-    name:String!
+    name: String
     healthcare: Float
     taxation: Float
     education: Float
@@ -12,6 +12,7 @@ const typeDefs = gql`
     environmentalQuality: Float
     economy: Float
     image: String
+    cityId: ID
   }
   type User {
     _id: ID
@@ -20,11 +21,12 @@ const typeDefs = gql`
     password: String
     homeCity: City
     savedCities: [City]
-    bookCount: Int
+    cityCount: Int
   }
   type City{
+    _id: ID
     cityId: ID
-    name:String!
+    name:String
     healthcare: Float
     taxation: Float
     education: Float
@@ -50,9 +52,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-
     saveHomeCity(input:cityInput):User
-
     saveCity(input:cityInput):User
     removeCity(cityId:ID!):User
   }

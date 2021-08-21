@@ -2,58 +2,51 @@
   {
     "username": "Brian Kernighan",
     "email": "bkernighan@techfriends.dev",
-    "password": "password01",
-    "cityCount": 2,
-    "savedCities": [    { 
-      "name": "Los Angeles, CA",
-      "image": "https://d13k13wj6adfdf.cloudfront.net/urban_areas/los-angeles_web-2eedb2a83e.jpg",
-      "healthcare": "5.145",
-      "taxation": "4.196",
-      "education": "7.415000000000005",
-      "housing": "5.274999999999999",
-      "costOfLiving": "5.6000000000001",
-      "safety": "5.85000000000004",
-      "environmentalQuality": "7.4666666666667",
-      "economy": "6.66666666666",
-      "region": "Los Angeles",
-      "population": "3967000",
-      "cityId": "5368361"
-    },
-    { 
-      "name": "New York City, NY",
-      "image": "https://d13k13wj6adfdf.cloudfront.net/urban_areas/new-york_web-99d9bb0809.jpg",
-      "healthcare": "7.5145",
-      "taxation": "6.777",
-      "education": "4.15000000000005",
-      "housing": "4.9999999999",
-      "costOfLiving": "9.6000000000001",
-      "safety": "1.85000000000004",
-      "environmentalQuality": "3.4666666666667",
-      "economy": "2.66666666666",
-      "region": "New York",
-      "population": "8419000",
-      "cityId": "5128581"
-    }]
+    "password": "password01"
   },
   {
     "username": "Max Kanat-Alexander",
     "email": "mkanatalexander@techfriends.dev",
-    "password": "password02",
-    "cityCount": 1,
-    "savedCities": [{ 
-      "name": "Austin, TX",
-      "image": "https://d13k13wj6adfdf.cloudfront.net/urban_areas/austin_web-e93a5e75a0.jpg",
-      "healthcare": "6.5145",
-      "taxation": "9.196",
-      "education": "4.7315000000000005",
-      "housing": "1.5274999999999999",
-      "costOfLiving": "4.556000000000001",
-      "safety": "3.9585000000000004",
-      "environmentalQuality": "8.574666666666667",
-      "economy": "8.439666666666666",
-      "region": "Houston",
-      "population": "950807",
-      "cityId": "4671654"
-    }]
+    "password": "password02"
+  },
+  {
+    "username": "Why The Lucky Stiff",
+    "email": "wtls@techfriends.dev",
+    "password": "password03"
+  },
+  {
+    "username": "Kent Beck",
+    "email": "kbeck@techfriends.dev",
+    "password": "password04"
+  },
+  {
+    "username": "Edward V. Berard",
+    "email": "evberard@techfriends.dev",
+    "password": "password05"
+  },
+  {
+    "username": "Alan Kay",
+    "email": "akay@techfriends.dev",
+    "password": "password06"
+  },
+  {
+    "username": "C.A.R. Hoare",
+    "email": "choare@techfriends.dev",
+    "password": "password07"
+  },
+  {
+    "username": "David Thomas",
+    "email": "dthomas@techfriends.dev",
+    "password": "password08"
+  },
+  {
+    "username": "Donald Knuth",
+    "email": "dknuth@techfriends.dev",
+    "password": "password09"
+  },
+  {
+    "username": "Lernantino",
+    "email": "lernantino@techfriends.dev",
+    "password": "password10"
   }
 ]

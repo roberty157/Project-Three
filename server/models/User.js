@@ -22,7 +22,16 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  savedCities: [],
+  savedCities: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "City"
+    }
+  ],
+  homeCity: {
+      type: Schema.Types.ObjectId,
+      ref: "City"
+    },
 },
   {
     toJSON: {

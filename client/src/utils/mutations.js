@@ -24,7 +24,7 @@ export const SAVE_HOME_CITY=gql`
         saveCity(input: $cityInput) {
             username
             savedCities{
-                name
+               _id
             }
             } 
     }
@@ -52,8 +52,8 @@ export const SAVE_CITY = gql`
     saveCity(cityToSave: $cityToSave) {
       _id
       username
-      cityCount
       savedCities {
+        cityId
         name
         image
         healthcare
@@ -77,8 +77,8 @@ export const REMOVE_CITY = gql`
     removeCity(cityId: $cityId) {
        _id
       username
-      cityCount
       savedCities {
+        cityId
         name
         image
         healthcare

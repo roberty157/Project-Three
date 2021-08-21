@@ -42,6 +42,36 @@
     "economy": "2.66666666666",
     "region": "New York",
     "population": "8419000",
-    "cityId": "5128581"
-    }
+    "cityId": "5128581" 
+  },
+   { 
+    "name": "Des Moines, IA",
+    "image": "https://d13k13wj6adfdf.cloudfront.net/urban_areas/des-moines_web-3ea5b6d3c3.jpg",
+    "healthcare": "8.841333333333331",
+    "taxation": "4.346",
+    "education": "3.6245",
+    "housing": "6.850999999999999",
+    "costOfLiving": "6.327",
+    "safety": "6.984",
+    "environmentalQuality": "8.68225",
+    "economy": "6.5145",
+    "region": "Des Moines",
+    "population": "210330",
+    "cityId": "4853828" 
+  },
+  { 
+    "name": "Seattle, WA",
+    "image": "https://d13k13wj6adfdf.cloudfront.net/urban_areas/seattle_web-e07e580eca.jpg",
+    "healthcare": "8.724333333333332",
+    "taxation": "4.772",
+    "education": "5.7145",
+    "housing": "2.291",
+    "costOfLiving": "3.79",
+    "safety": "5.6365",
+    "environmentalQuality": "7.560250000000001",
+    "economy": "6.5145",
+    "region": "Seattle",
+    "population": "684451",
+    "cityId": "5809844" 
+  }
 ]
