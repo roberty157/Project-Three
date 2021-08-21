@@ -19,7 +19,7 @@ export const LOGIN_USER = gql`
 
 
 
-export const SAVE_HOME_CITY=gql`
+export const SAVE_HOME_CITY = gql`
     mutation saveHomeCity($cityInput: cityInput!) {
         saveCity(input: $cityInput) {
             username
@@ -48,8 +48,8 @@ export const ADD_USER = gql`
 
 // define mutation for saving a city
 export const SAVE_CITY = gql`
-  mutation saveCity($cityInput: cityInput) {
-    saveCity(input: $cityInput) {
+  mutation saveCity($city: cityInput) {
+    saveCity(city: $city) {
       _id
       username
       savedCities {

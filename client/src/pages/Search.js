@@ -105,8 +105,15 @@ const Search = () => {
 
     // save city
     try {
+      console.log(cityToSave);
+      const cityData = {
+        name: cityToSave.matching_full_name,
+        healthcare: cityToSave.healthcare,
+        taxation: cityToSave.taxation,
+        education: cityToSave.education
+      }
       const response = await saveCity({
-        variables: { cityToSave },
+        variables: { city: cityData },
       });
 
       if (!response.data) {
