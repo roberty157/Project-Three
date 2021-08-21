@@ -26,6 +26,7 @@ code {
     position: relative;
     overflow: hidden;
     border-radius: 5%;
+    margin-left: 20px;
 }
 
 .city-pic {

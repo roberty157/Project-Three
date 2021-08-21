@@ -149,35 +149,35 @@ const Search = () => {
             <h2>
               {city.matching_full_name}
             </h2>
-            <div>
+            <h3>
               <span className="bold">Population: </span><span>{city.population}</span>
+            </h3>
+            <div>
+              <span className="bold">Region: </span><span>{city.region}</span>
             </div>
             <div>
-              <span className="bold">Region: </span>{city.region}
+              <span className="bold">Healthcare: </span><span>{city.healthcare} of 10</span>
             </div>
             <div>
-              <span className="bold">Healthcare: </span>{city.healthcare} of 10
+              <span className="bold">Taxation: </span><span>{city.taxation} of 10</span>
             </div>
             <div>
-              <span className="bold">Taxation: </span>{city.taxation} of 10
+              <span className="bold">Education: </span><span>{city.education} of 10</span>
             </div>
             <div>
-              <span className="bold">Education: </span>{city.education} of 10
+              <span className="bold">Housing: </span><span>{city.housing} of 10</span>
             </div>
             <div>
-              <span className="bold">Housing: </span>{city.housing} of 10
+              <span className="bold">Cost of Living: </span><span>{city.costOfLiving} of 10</span>
             </div>
             <div>
-              <span className="bold">Cost of Living: </span>{city.costOfLiving} of 10
+              <span className="bold">Safety: </span><span>{city.safety} of 10</span>
             </div>
             <div>
-              <span className="bold">Safety: </span>{city.safety} of 10
+              <span className="bold">Environmental Quality: </span><span>{city.environmentalQuality} of 10</span>
             </div>
             <div>
-              <span className="bold">Environmental Quality: </span> of 10
-            </div>
-            <div>
-              <span className="bold">Economy: </span>{city.economy} of 10
+              <span className="bold">Economy: </span><span>{city.economy} of 10</span>
             </div>
           </div>
           <div className="image-cropper">
