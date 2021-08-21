@@ -1,6 +1,9 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+// import schema from City.js
+const citySchema = require('./City');
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -22,14 +25,19 @@ const userSchema = new Schema({
   savedCities: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'City',
-    }],
+      ref: "City"
+    }
+  ],
+  homeCity: {
+      type: Schema.Types.ObjectId,
+      ref: "City"
+    },
 },
   {
     toJSON: {
       virtuals: true,
     },
-  }
+  },
 );
 
 userSchema.pre('save', async function (next) {
@@ -44,6 +52,12 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
+
+// when we query a user, we'll also get another field called `bookCount` with the number of saved books we have
+userSchema.virtual('cityCount').get(function () {
+  return this.savedCities.length;
+});
+
 
 const User = model('User', userSchema);
 
