@@ -24,7 +24,18 @@ export const SAVE_HOME_CITY=gql`
         saveCity(input: $cityInput) {
             username
             savedCities{
-                name
+              name
+              image
+              healthcare
+              taxation
+              education
+              housing
+              costOfLiving
+              safety
+              environmentalQuality
+              economy
+              population
+              region
             }
             } 
     }
@@ -48,8 +59,8 @@ export const ADD_USER = gql`
 
 // define mutation for saving a city
 export const SAVE_CITY = gql`
-  mutation saveCity($cityToSave: CityInput) {
-    saveCity(cityToSave: $cityToSave) {
+  mutation saveCity($cityInput: cityInput) {
+    saveCity(input: $cityInput) {
       _id
       username
       cityCount
@@ -77,7 +88,7 @@ export const REMOVE_CITY = gql`
     removeCity(cityId: $cityId) {
        _id
       username
-      cityCount
+     
       savedCities {
         name
         image
