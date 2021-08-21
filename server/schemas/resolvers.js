@@ -59,10 +59,14 @@ const resolvers = {
       return { token, user };
     },
     saveCity: async (parent,args,context)=>{
-      console.log('args',args);
+      console.log(context.user);
+      //console.log('args',args);
+      //console.log('contextID', context.user._id);
       const city = args.input;
 
       if(context.user){
+        //const user = await User.findById(context.user._id);
+        try{
         const user = await User.findOne({_id:context.user._id });
           await User.findOneAndUpdate(
               {_id:context.user._id},
@@ -70,6 +74,9 @@ const resolvers = {
           );
           
           return user;
+        }catch(err){
+          console.log(err);
+        }
       }
 
       throw new AuthenticationError('You need to be logged in!');

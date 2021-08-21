@@ -13,6 +13,8 @@ const typeDefs = gql`
     economy: Float
     image: String
     cityId: ID
+    region: String
+    population: Float
   }
   type User {
     _id: ID
@@ -36,6 +38,8 @@ const typeDefs = gql`
     environmentalQuality: Float
     economy: Float
     image: String
+    population: String
+    region: String
   }
 
   type Auth {
@@ -59,37 +63,3 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
-/*
-mutation loginMutation($email: String!, $password: String!) {
-  login(email: $email, password: $password) {
-     user{
-      _id
-      email
-    }
-    token
-  } 
-}
-
-{
-  "email":"roberty@gmail.com",
-  "password":"password10"
-}
-*/
-/*
-mutation addUserMutation($username:String!,$email: String!, $password: String!) {
-    addUser(username:$username,email: $email, password: $password) {
-       	user{
-          _id
-          email
-        }
-        token
-      } 
-    }
-
-
-{
-  "username": "roberty",
-      "email":"roberty@gmail.com",
-  	"password":"password10"
-}
-*/
