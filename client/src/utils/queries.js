@@ -7,7 +7,9 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      cityCount
       savedCities {
+        cityId
         name
         image
         healthcare

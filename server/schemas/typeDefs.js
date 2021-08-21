@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   input cityInput{
-    name:String!
+    name: String
     healthcare: Float
     taxation: Float
     education: Float
@@ -12,6 +12,7 @@ const typeDefs = gql`
     environmentalQuality: Float
     economy: Float
     image: String
+    cityId: ID
     region: String
     population: Float
   }
@@ -22,10 +23,12 @@ const typeDefs = gql`
     password: String
     homeCity: City
     savedCities: [City]
+    cityCount: Int
   }
   type City{
-    _id:ID
-    name:String!
+    _id: ID
+    cityId: ID
+    name:String
     healthcare: Float
     taxation: Float
     education: Float
@@ -53,46 +56,10 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-
     saveHomeCity(input:cityInput):User
-
     saveCity(input:cityInput):User
-    removeCity(cityName:String!):User
+    removeCity(cityId:ID!):User
   }
 `;
 
 module.exports = typeDefs;
-/*
-mutation loginMutation($email: String!, $password: String!) {
-  login(email: $email, password: $password) {
-     user{
-      _id
-      email
-    }
-    token
-  } 
-}
-
-{
-  "email":"roberty@gmail.com",
-  "password":"password10"
-}
-*/
-/*
-mutation addUserMutation($username:String!,$email: String!, $password: String!) {
-    addUser(username:$username,email: $email, password: $password) {
-       	user{
-          _id
-          email
-        }
-        token
-      } 
-    }
-
-
-{
-  "username": "roberty",
-      "email":"roberty@gmail.com",
-  	"password":"password10"
-}
-*/
