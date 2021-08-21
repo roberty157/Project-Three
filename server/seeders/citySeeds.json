@@ -73,5 +73,35 @@
     "region": "Seattle",
     "population": "684451",
     "cityId": "5809844" 
+  },
+  { 
+    "name": "Phoenix, AZ",
+    "image": "https://d13k13wj6adfdf.cloudfront.net/urban_areas/phoenix_web-92224752db.jpg",
+    "healthcare": "8.567333333333334",
+    "taxation": "4.772",
+    "education": "4.590999999999999",
+    "housing": "6.5329999999999995",
+    "costOfLiving": "6.208",
+    "safety": "2.5829999999999997",
+    "environmentalQuality": "4.625249999999999",
+    "economy": "6.5145",
+    "region": "Phoenix",
+    "population": "1563025",
+    "cityId": "5308655" 
+  },
+    { 
+    "name": "Boulder, CO",
+    "image": "https://d13k13wj6adfdf.cloudfront.net/urban_areas/boulder_web-3765374a2b.jpg",
+    "healthcare": "8.567333333333334",
+    "taxation": "4.772",
+    "education": "4.590999999999999",
+    "housing": "3.704",
+    "costOfLiving": "4.531",
+    "safety": "7.0735",
+    "environmentalQuality": "9.84375",
+    "economy": "6.5145",
+    "region": "Boulder",
+    "population": "107349",
+    "cityId": "5574991" 
   }
 ]

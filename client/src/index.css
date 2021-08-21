@@ -16,7 +16,22 @@ code {
   font-weight: bold;
 }
 
-.city-image {
-  max-width: 100%;
+.city-container {
+  display: flex;
 }
 
+.image-cropper {
+    max-width: 500px;
+    max-height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5%;
+}
+
+.city-pic {
+  display: inline;
+  margin: 0 auto;
+  margin-left: -25%; 
+  height: 100%;
+  width: auto;
+}
