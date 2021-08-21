@@ -110,7 +110,7 @@ const Search = () => {
               {city.matching_full_name}
             </h2>
             <div>
-              <span className="bold">Population: </span>{city.population}
+              <span className="bold">Population: </span><span>{city.population}</span>
             </div>
             <div>
               <span className="bold">Region: </span>{city.region}
