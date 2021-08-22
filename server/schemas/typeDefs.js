@@ -14,7 +14,7 @@ const typeDefs = gql`
     image: String
     cityId: ID
     region: String
-    population: Float
+    population: String
   }
   type User {
     _id: ID
