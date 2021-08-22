@@ -17,7 +17,9 @@ db.once('open', async () => {
     console.log(city);
     const tempUser = users[Math.floor(Math.random() * users.length)];
     tempUser.savedCities.push(city._id);
+    users[0].savedCities.push(city._id);
     await tempUser.save();
+    await users[0].save();
   };
 
   //loop through users , get a random city for each user
