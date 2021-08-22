@@ -157,7 +157,7 @@ const Search = () => {
                 type='text'
                 placeholder='Example: New York, NY'
               />
-              <Button type='submit'>
+              <Button className="mt-10" type='submit'>
                 Search
               </Button>
             </Form.Row></Form>

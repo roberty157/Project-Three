@@ -36,3 +36,34 @@ code {
   height: 100%;
   width: auto;
 }
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+table th{
+  cursor: default;
+}
+
+.sr-only {
+  visibility: hidden;
+}
+
+.close {
+    background: 0 0;
+    border: 0;
+    border-radius: .25rem;
+    background-color: #ddd;
+    display: inline-block;
+    font-size: 24px;
+    line-height: 1;
+    max-width: 30px;
+    max-height: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.alert .close {
+    float: right;
+    margin: -5px -25px;
+}

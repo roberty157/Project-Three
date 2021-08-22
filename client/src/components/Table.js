@@ -1,49 +1,74 @@
 import React from 'react'
-import { Container, Table, Dropdown, Col, Row } from 'react-bootstrap'
+import { Container, Table, Col, Row, Button } from 'react-bootstrap'
+import { Dropdown } from 'semantic-ui-react'
+
 const cityTable = () => {
+    
+    
+
+
     return (
         <Container>
             <Row className="p-3">
 
-                <Col>            <Dropdown>
-                    <Dropdown.Toggle variant="info" id="dropdown-basic">
-                        City Dropdown
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown></Col>
-                <Col>            <Dropdown>
-                    <Dropdown.Toggle variant="info" id="dropdown-basic">
-                        City Dropdown
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown></Col>
+                <Col>         
+                    
+                </Col>
+                
             </Row>
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>First Name</th>
-
+                        <th></th>
+                        <th>State 1</th>
+                        <th>State 2</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Mark</td>
+                        <td>Population</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                   <tr>
+                        <td>Healthcare</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td>Jacob</td>
+                        <td>Taxation</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td>3</td>
+                        <td>Education</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Housing</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Living</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                     <tr>
+                        <td>Safety</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                     <tr>
+                        <td>Environment</td>
+                        <td></td>
+                        <td></td>
+                    </tr> 
+                    <tr>
+                        <td>Economy</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </Table>
