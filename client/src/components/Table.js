@@ -1,11 +1,13 @@
 import React from 'react'
 import { Container, Table, Col, Row, Button } from 'react-bootstrap'
 import { Dropdown } from 'semantic-ui-react';
-
+import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 
 const CityTable = () => {
+
+    const [cityValue, setCityValue] = useState();
 
     const { loading, data } = useQuery(QUERY_ME);
     const userData = data?.me || [];
@@ -40,6 +42,19 @@ const CityTable = () => {
                     <h2 key={city._id}>{city._id}</h2>
                 );
              })}   
+{/* 
+            <Dropdown onChange={async (e, { name , value }) => {setCityValue(value)}}
+            options={userData.savedCities.map((currentValue, index) => {
+            return {
+                key: `${currentValue.name}`,
+                value: `${currentValue.name}`,
+                text: `${currentValue.name}`,
+                disabled: cityValue.length > 2 ? true : false
+
+            }
+            /> */}
+            
+            
 
             <Table striped bordered hover>
                 <thead>
