@@ -157,7 +157,7 @@ const Search = () => {
                 type='text'
                 placeholder='Example: New York, NY'
               />
-              <Button type='submit'>
+              <Button className="mt-10" type='submit'>
                 Search
               </Button>
             </Form.Row></Form>
@@ -165,41 +165,46 @@ const Search = () => {
       </Jumbotron>
       <Container className='p-5'>
         {searchedCities.map(city => <div key={city.matching_full_name}>
+         <div className="city-container">
           <div>
-            <span className="bold">Location: </span>{city.matching_full_name}
+            <h2>
+              {city.matching_full_name} 
+            </h2>
+            <h3>
+              <span className="bold">Population: </span><span>{city.population}</span>
+            </h3>
+            <div>
+              <span className="bold">Region: </span><span>{city.region}</span>
+            </div>
+            <div>
+              <span className="bold">Healthcare: </span><span>{city.healthcare} of 10</span>
+            </div>
+            <div>
+              <span className="bold">Taxation: </span><span>{city.taxation} of 10</span>
+            </div>
+            <div>
+              <span className="bold">Education: </span><span>{city.education} of 10</span>
+            </div>
+            <div>
+              <span className="bold">Housing: </span><span>{city.housing} of 10</span>
+            </div>
+            <div>
+              <span className="bold">Cost of Living: </span><span>{city.costOfLiving} of 10</span>
+            </div>
+            <div>
+              <span className="bold">Safety: </span><span>{city.safety} of 10</span>
+            </div>
+            <div>
+              <span className="bold">Environmental Quality: </span><span>{city.environmentalQuality} of 10</span>
+            </div>
+            <div>
+              <span className="bold">Economy: </span><span>{city.economy} of 10</span>
+            </div>
           </div>
-          <div>
-            <span className="bold">Population: </span>{city.population}
+          <div className="image-cropper">
+            <img alt="city" className="city-pic" src={city.image}></img>
           </div>
-          <div>
-            <span className="bold">Region: </span>{city.region}
           </div>
-          <div>
-            <span className="bold">Healthcare: </span>{city.healthcare} of 10
-          </div>
-          <div>
-            <span className="bold">Taxation: </span>{city.taxation} of 10
-          </div>
-          <div>
-            <span className="bold">Education: </span>{city.education} of 10
-          </div>
-          <div>
-            <span className="bold">Housing: </span>{city.housing} of 10
-          </div>
-          <div>
-            <span className="bold">Cost of Living: </span>{city.costOfLiving} of 10
-          </div>
-          <div>
-            <span className="bold">Safety: </span>{city.safety} of 10
-          </div>
-          <div>
-            <span className="bold">Environmental Quality: </span> of 10
-          </div>
-          <div>
-            <span className="bold">Economy: </span>{city.economy} of 10
-          </div>
-          <img alt="city" src={city.image}></img>
-
           <Container className='p-5'>
             <div>
               <Bar

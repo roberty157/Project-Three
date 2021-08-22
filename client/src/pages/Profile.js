@@ -7,6 +7,8 @@ import { removeCityId } from '../utils/localStorage';
 import Auth from '../utils/auth';
 import BarChart from '../components/BarChart';
 import CityTable from '../components/Table';
+import 'semantic-ui-css/semantic.min.css';
+
 
 
 

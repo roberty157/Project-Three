@@ -10,7 +10,7 @@ const resolvers = {
       if (context.user) {
         try {
           // find a user matching logged in user id and return user
-          const user = await User.findOne({ _id: context.user._id });
+          const user = await User.findOne({ _id: context.user._id }).populate('savedCities');
           return user;
         } catch (err) {
           console.log('Unable to find user data', err);

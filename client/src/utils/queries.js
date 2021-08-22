@@ -9,6 +9,7 @@ export const QUERY_ME = gql`
       email
       cityCount
       savedCities {
+        _id
         cityId
         name
         image
