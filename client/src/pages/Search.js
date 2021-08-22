@@ -110,7 +110,21 @@ const Search = () => {
         name: cityToSave.matching_full_name,
         healthcare: cityToSave.healthcare,
         taxation: cityToSave.taxation,
-        education: cityToSave.education
+        education: cityToSave.education,
+        housing: cityToSave.housing,
+        costOfLiving: cityToSave.costOfLiving,
+        housing: cityToSave.housing,
+        safety: cityToSave.safety,
+        environmentalQuality:
+          cityToSave.environmentalQuality,
+        economy: cityToSave.economy,
+        image: cityToSave.image,
+        region: cityToSave.region,
+        population: cityToSave.population
+
+
+
+
       }
       const response = await saveCity({
         variables: { city: cityData },
