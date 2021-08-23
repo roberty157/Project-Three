@@ -137,6 +137,7 @@ table.table tr td:nth-child(n+2) {
   text-align: right;
 }
 
-table.table-striped>tbody>tr:nth-of-type(odd) {
+table.table-striped>tbody>tr:nth-of-type(odd), 
+table.table-striped>tbody>tr:nth-of-type(even):hover {
     --bs-table-accent-bg: #0d6efd14;
 }
