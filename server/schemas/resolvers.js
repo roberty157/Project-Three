@@ -70,7 +70,7 @@ const resolvers = {
           await User.findOneAndUpdate(
             { _id: context.user._id },
             //changed to accept city object
-            { $addToSet: { savedCities:{...city} } }
+            { $addToSet: { savedCities: { ...city } } }
           );
           console.log(user);
           return user;
@@ -84,12 +84,18 @@ const resolvers = {
     },
     removeCity: async (parent, { cityId }, context) => {
       if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { savedCities: { cityId } } },
-          { new: true }
-        )
-        return updatedUser;
+        try {
+          // find and update user matching logged in user id
+          const user = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $pull: { savedCities: { cityId } } },
+            { new: true }
+          );
+
+          return user;
+        } catch (err) {
+          console.log('Remove city error', err);
+        }
       }
       throw new AuthenticationError('you need to be logged in!');
 
