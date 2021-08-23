@@ -28,12 +28,12 @@ const CityTable = () => {
         <Container>
           
              <p>
-                {userData.savedCities?.length
-                ? `Choose 2 cities to compare. You have ${userData.savedCities.length} ${userData.savedCities.length === 1 ? 'city' : 'cities'} saved.`
-                : 'You have no saved cities.'}
+                {userData.savedCities?.length > 1
+                ? `Select 2 cities to compare. You have ${userData.savedCities.length} ${userData.savedCities.length === 1 ? 'city' : 'cities'} saved.`
+                : 'You need at least 2 saved cities to compare. Search for more cities'}
             </p>
 
-            <Dropdown className="mb-10" placeholder='City' onChange={handleChange} fluid multiple selection options={
+            <Dropdown className="mb-10" placeholder='Saved City' onChange={handleChange} fluid multiple selection options={
                 userData.savedCities?.map((city) => {  
                     return {
                         key: city._id,
@@ -135,62 +135,62 @@ const CityTable = () => {
                     city2.economy = Math.round(city2[0].economy);
                     if (index == 1) {
                         return (
-                     <Table key={city1[0]._id} striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>City</th>
-                                <th>{city1[0].name}</th>
-                                <th>{city2[0].name}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Population</td>
-                                <td>{city1.population}</td>
-                                <td>{city2.population}</td>
-                            </tr>
-                            <tr>
-                                <td>Healthcare</td>
-                                <td>{city1.healthcare}</td>
-                                <td>{city2.healthcare}</td>
-                            </tr>
-                            <tr>
-                                <td>Taxation</td>
-                                <td>{city1.taxation}</td>
-                                <td>{city2.taxation}</td>
-                            </tr>
-                            <tr>
-                                <td>Education</td>
-                                <td>{city1.education}</td>
-                                <td>{city2.education}</td>
-                            </tr>
-                            <tr>
-                                <td>Housing</td>
-                                <td>{city1.housing}</td>
-                                <td>{city2.housing}</td>
-                            </tr>
-                            <tr>
-                                <td>Living</td>
-                                <td>{city1.costOfLiving}</td>
-                                <td>{city2.costOfLiving}</td>
-                            </tr>
-                            <tr>
-                                <td>Safety</td>
-                                <td>{city1.safety}</td>
-                                <td>{city2.safety}</td>
-                            </tr>
-                            <tr>
-                                <td>Environment</td>
-                                <td>{city1.environmentalQuality}</td>
-                                <td>{city2.environmentalQuality}</td>
-                            </tr> 
-                            <tr>
-                                <td>Economy</td>
-                                <td>{city1.economy}</td>
-                                <td>{city2.economy}</td>
-                            </tr>
-                        </tbody>
-                    </Table>
+                        <Table key={city1[0]._id} striped bordered hover>
+                            <thead>
+                                <tr>
+                                    <th>City</th>
+                                    <th>{city1[0].name}</th>
+                                    <th>{city2[0].name}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Population</td>
+                                    <td>{city1.population}</td>
+                                    <td>{city2.population}</td>
+                                </tr>
+                                <tr>
+                                    <td>Healthcare</td>
+                                    <td>{city1.healthcare}</td>
+                                    <td>{city2.healthcare}</td>
+                                </tr>
+                                <tr>
+                                    <td>Taxation</td>
+                                    <td>{city1.taxation}</td>
+                                    <td>{city2.taxation}</td>
+                                </tr>
+                                <tr>
+                                    <td>Education</td>
+                                    <td>{city1.education}</td>
+                                    <td>{city2.education}</td>
+                                </tr>
+                                <tr>
+                                    <td>Housing</td>
+                                    <td>{city1.housing}</td>
+                                    <td>{city2.housing}</td>
+                                </tr>
+                                <tr>
+                                    <td>Living</td>
+                                    <td>{city1.costOfLiving}</td>
+                                    <td>{city2.costOfLiving}</td>
+                                </tr>
+                                <tr>
+                                    <td>Safety</td>
+                                    <td>{city1.safety}</td>
+                                    <td>{city2.safety}</td>
+                                </tr>
+                                <tr>
+                                    <td>Environment</td>
+                                    <td>{city1.environmentalQuality}</td>
+                                    <td>{city2.environmentalQuality}</td>
+                                </tr> 
+                                <tr>
+                                    <td>Economy</td>
+                                    <td>{city1.economy}</td>
+                                    <td>{city2.economy}</td>
+                                </tr>
+                            </tbody>
+                        </Table>
                      )
                     }
                     
