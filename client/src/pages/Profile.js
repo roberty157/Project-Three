@@ -61,7 +61,7 @@ const Profile = () => {
 
                     <Col className="mb-2 " xs={5}>
                         <Card border="info royal" >
-                            <Card.Header><h2>{`Welcome ${userData.username}!`}</h2></Card.Header>
+                            <Card.Header><h2>{`The cover for ${userData.username}`}</h2></Card.Header>
                             <Card.Body className="m-3">
                                 <Card.Text className="mb-2" >{`Homecity: ${userData.homeCity}`}</Card.Text >
                                 <Card.Text className="mb-2">{`Email: ${userData.email}`}</Card.Text >
@@ -177,7 +177,14 @@ const Profile = () => {
                     </Col>
                 </Row>
 
+                <Container className="g-2">
+                    <Col md>
 
+
+
+                    </Col>
+
+                </Container>
             </Jumbotron>
 
 
