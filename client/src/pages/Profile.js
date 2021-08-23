@@ -1,14 +1,16 @@
 import React from 'react';
-import { Jumbotron, Container, Button, Col, Row, Card, ListGroup, Nav, Sonnet, Tab } from 'react-bootstrap';
+import { Jumbotron, Container, Button, Col, Row, Card, ListGroup, Nav, Image, Tab, Fade } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { REMOVE_CITY } from '../utils/mutations';
 import { removeCityId } from '../utils/localStorage';
 import Auth from '../utils/auth';
-import BarChart from '../components/BarChart';
+import { Bar } from 'react-chartjs-2'
 import CityTable from '../components/Table';
 import 'semantic-ui-css/semantic.min.css';
 
+
+import city from "../assets/images/city.jpg";
 
 
 
@@ -58,28 +60,30 @@ const Profile = () => {
         <>
             <Jumbotron fluid className="m-3">
                 <Row>
-                    <Col className="mh-100" xs={5}>
-                        <Card className="p-4 ">
 
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+                    <Col className="mb-2 " xs={5}>
+                        <Card border="info royal" >
+                            <Card.Header><h2>{`The cover for ${userData.username}`}</h2></Card.Header>
+                            <Card.Body className="m-3">
+                                <Card.Text className="mb-2" >{`Homecity: ${userData.homeCity}`}</Card.Text >
+                                <Card.Text className="mb-2">{`Email: ${userData.email}`}</Card.Text >
                                 <Card.Text>
-                                    Some quick example text to build on the card title and make up the bulk of
-                                    the card's content.
+                                    Some quick example text to build on the card title and make up the bulk
+                                    of the card's content.
                                 </Card.Text>
                                 <Card.Link href="#">Card Link</Card.Link>
                                 <Card.Link href="#">Another Link</Card.Link>
-                                <ListGroup variant="flush">
+                                {/* <Card.Image src="holder.js/100px180" height="250" width="250" /> */}
+                                <ListGroup variant="flush" className="m-3 ">
                                     <ListGroup.Item>Cras justo odio</ListGroup.Item>
                                     <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
                                     <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
                                 </ListGroup>
                             </Card.Body>
                         </Card>
-                        <Card className="bg-dark text-white" style={{ height: '18rem' }}>
-                            <Card.Img src="holder.js/100px270" alt="Card image" />
-                            <Card.ImgOverlay>
+                        <Card className="overlay  text-white" height="250" width="250">
+                            <Card.Img src={city} alt="Card image" height="250" width="250" />
+                            <Card.ImgOverlay className="p-5">
                                 <Card.Title>Card title</Card.Title>
                                 <Card.Text>
                                     This is a wider card with supporting text below as a natural lead-in to
@@ -94,56 +98,95 @@ const Profile = () => {
                         <Col className="d-flex" >
 
                             <Container>
+                                {userData.savedCities.length
+                                    ? `Viewing ${userData.savedCities.length} saved ${userData.savedCities.length === 1 ? 'city' : 'cities'}:`
+                                    : 'You have no saved cities!'}
+                                <h3> You have {userData.cityCount} cities saved!</h3>
 
-                                <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+
+
+                                <Tab.Container id="left-tabs-example" >
                                     <Row>
                                         <Col sm={3}>
-                                            <Nav variant="pills" className="flex-column" >
-                                                <Nav.Item >
-                                                    <Nav.Link className="pt-2 pb-2" eventKey="first"> Saved City 1</Nav.Link>
-                                                </Nav.Item>
-                                                <Nav.Item>
-                                                    <Nav.Link className="pt-2 pb-2" eventKey="second">Saved City 2</Nav.Link>
-                                                </Nav.Item>
-                                                <Nav.Item>
-                                                    <Nav.Link className="pt-2 pb-2" eventKey="third">Saved City 3</Nav.Link>
-                                                </Nav.Item>
-                                            </Nav>
+                                            {userData.savedCities.map((city) => {
+                                                return (
+                                                    <Nav defaultActiveKey={city.cityId} variant="pills" className="flex-column" >
+                                                        <Nav.Item >
+                                                            <Nav.Link className="p-2 pb-2" eventKey={city.cityId}> {city.name}</Nav.Link>
+                                                        </Nav.Item>
+                                                    </Nav>)
+                                            })}
                                         </Col>
                                         <Col sm={9}>
                                             <Tab.Content>
-                                                <Tab.Pane eventKey="first">
-                                                    <BarChart />
-                                                </Tab.Pane>
-                                                <Tab.Pane eventKey="second">
-                                                    <BarChart />
-                                                </Tab.Pane>
-                                                <Tab.Pane eventKey="third">
-                                                    <BarChart />
-                                                </Tab.Pane>
+                                                {userData.savedCities.map((city) => {
+                                                    return (
+                                                        <Tab.Pane eventKey={city.cityId} transition={Fade}>
+                                                            <h3> Viewing {city.name}</h3>
+                                                            <Bar
+                                                                data={{
+                                                                    labels: ['Healthcare', 'Taxation', 'Education', 'Housing', 'Living', 'Safety', 'Environment', 'Economy'],
+                                                                    datasets: [
+                                                                        {
+                                                                            label: 'Score',
+                                                                            data: [`${city.healthcare}`, `${city.taxation}`, `${city.education}`, `${city.housing}`, `${city.costOfLiving}`, `${city.safety}`, `${city.environmentalQuality}`, `${city.economy}`],
+
+                                                                            backgroundColor: [
+                                                                                'rgba(255, 99, 132, 0.2)',
+                                                                                'rgba(54, 162, 235, 0.2)',
+                                                                                'rgba(255, 206, 86, 0.2)',
+                                                                                'rgba(75, 192, 192, 0.2)',
+                                                                                'rgba(153, 102, 255, 0.2)',
+                                                                                'rgba(255, 159, 64, 0.2)'
+                                                                            ],
+                                                                            borderColor: [
+                                                                                'rgba(255, 99, 132, 1)',
+                                                                                'rgba(54, 162, 235, 1)',
+                                                                                'rgba(255, 206, 86, 1)',
+                                                                                'rgba(75, 192, 192, 1)',
+                                                                                'rgba(153, 102, 255, 1)',
+                                                                                'rgba(255, 159, 64, 1)'
+                                                                            ],
+                                                                            borderWidth: 1
+                                                                        }]
+                                                                }}
+                                                                height={100}
+                                                                width={250}
+                                                                options={{
+                                                                    responsive: true,
+                                                                    maintainAspectRatio: true,
+                                                                    scales: {
+                                                                        y: {
+                                                                            suggestedMin: 0,
+                                                                            suggestedMax: 10
+                                                                        }
+                                                                    }
+                                                                }}
+                                                            />
+                                                        </Tab.Pane>)
+
+                                                })}
                                             </Tab.Content>
                                         </Col>
                                     </Row>
                                 </Tab.Container>
-                                <h4> Compare City Costs </h4>
+                                <h4> Compare Cities</h4>
                                 <CityTable />
 
 
                             </Container>
                         </Col>
-                        {/* <Col className="d-flex"> <BarChart /></Col> */}
-
-                        <Row className="g-2">
-                            <Col md>
-
-
-
-                            </Col>
-
-                        </Row>
                     </Col>
                 </Row>
 
+                <Container className="g-2">
+                    <Col md>
+
+
+
+                    </Col>
+
+                </Container>
             </Jumbotron>
 
 

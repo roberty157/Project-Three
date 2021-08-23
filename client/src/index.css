@@ -1,14 +1,15 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 25px;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -18,6 +19,71 @@ code {
 
 .city-container {
   display: flex;
+}
+
+.navi,
+.jumboGrad {
+  background-image: linear-gradient(
+    to right,
+    #43cea2 0%,
+    #185a9d 51%,
+    #43cea2 100%
+  );
+}
+
+.jumbotron {
+  position: relative;
+  overflow: hidden;
+}
+
+.jumbotron {
+  position: relative;
+  z-index: 2;
+  object-fit: cover;
+
+  padding: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.card {
+  font-size: 20px;
+  color: white;
+}
+.card-text {
+  line-height: 3rem;
+}
+
+.royal {
+  background: #141e30;
+  background: -webkit-linear-gradient(to top, #243b55, #141e30);
+  background: linear-gradient(to top, #243b55, #141e30);
+}
+
+.royal .card-header {
+  color: #97b1ce;
+}
+
+.list-group-item {
+  background-color: transparent;
+  color: white;
+}
+
+.navi,
+.jumboGrad {
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  display: block;
+}
+
+.navi:hover {
+  background-position: top center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 0 10px #eee;
 }
 
 .image-cropper {
@@ -37,11 +103,15 @@ code {
   width: auto;
 }
 
-.mt-10 {
+.mt-10, .ui.button.mt-10  {
   margin-top: 10px;
 }
 
-table th{
+.mb-10{
+  margin-bottom: 10px;
+}
+
+table:hover{
   cursor: default;
 }
 
@@ -56,14 +126,34 @@ table th{
     background-color: #ddd;
     display: inline-block;
     font-size: 24px;
-    line-height: 1;
     max-width: 30px;
     max-height: 30px;
-    text-align: center;
-    vertical-align: middle;
 }
 
 .alert .close {
     float: right;
     margin: -5px -25px;
+}
+
+.container .ui.label, table.table thead th:nth-child(n+2){
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+table.table {
+  font-size: 1.1rem;
+}
+
+table.table thead th:nth-child(n+2){
+  text-align: center;
+}
+
+table.table tr td:nth-child(n+2) {
+  font-weight: bold;
+  text-align: right;
+}
+
+table.table-striped>tbody>tr:nth-of-type(odd), 
+table.table-striped>tbody>tr:nth-of-type(even):hover {
+    --bs-table-accent-bg: #0d6efd14;
 }
