@@ -1,5 +1,5 @@
-import React from 'react'
-import { Container, Table, Col, Row, Button } from 'react-bootstrap'
+import React from 'react';
+import { Container, Table, Col, Row, Button } from 'react-bootstrap';
 import { Dropdown } from 'semantic-ui-react';
 import { useState} from 'react';
 import { useQuery } from '@apollo/client';
@@ -12,11 +12,10 @@ const CityTable = () => {
 
     const handleChange = (e, {value}) => {
         setCityValue(value);
-        console.log(value);
     }
 
-    const { loading, data } = useQuery(QUERY_ME);
 
+    const { loading, data } = useQuery(QUERY_ME);
     const userData = data?.me || [];
 
       // if data isn't here yet, say so
@@ -29,9 +28,9 @@ const CityTable = () => {
         <Container>
           
              <p>
-            {userData.savedCities?.length
-            ? `Choose 2 cities to compare. You have ${userData.savedCities.length} ${userData.savedCities.length === 1 ? 'city' : 'cities'} saved.`
-            : 'You have no saved cities.'}
+                {userData.savedCities?.length
+                ? `Choose 2 cities to compare. You have ${userData.savedCities.length} ${userData.savedCities.length === 1 ? 'city' : 'cities'} saved.`
+                : 'You have no saved cities.'}
             </p>
 
             <Dropdown className="mb-10" placeholder='City' onChange={handleChange} fluid multiple selection options={
@@ -46,7 +45,7 @@ const CityTable = () => {
             } />
 
             {cityValue?.map((cityInfo)=> {
-               if (cityValue.length === 1) {
+            if (cityValue.length === 1) {
                  const city1 = getCityById(cityValue[0]);
                 
                 city1.population = numbersWithCommas(city1[0].population);
@@ -109,6 +108,7 @@ const CityTable = () => {
                      )
                  
                } else if (cityValue.length === 2) {
+
                    const city1 = getCityById(cityValue[0]);
                    const city2 = getCityById(cityValue[1]);
 
@@ -195,7 +195,6 @@ const CityTable = () => {
                      )
                 } else {
                     return;
-
                 }
 
                function getCityById(cityInfo) {
@@ -204,7 +203,6 @@ const CityTable = () => {
                     }))
                 };
                 
-
             })}
 
         </Container>
