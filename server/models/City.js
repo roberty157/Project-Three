@@ -10,7 +10,7 @@ const citySchema = new Schema({
     // saved book id from teleport
   cityId: {
     type: String,
-    required: true,
+    //required: true,
   },
   image: {
     type: String,
