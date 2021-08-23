@@ -1,5 +1,5 @@
 const Footer = () => {
-    return <h3>&copy 2021 Trading Places</h3>
+    return <footer>&copy; 2021 Trading Places</footer>
 }
 
 export default Footer;

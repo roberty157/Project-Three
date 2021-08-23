@@ -187,3 +187,7 @@ table.table-striped > tbody > tr:nth-of-type(even):hover {
 .delete {
   margin-left: 1rem;
 }
+
+footer {
+  text-align: center;
+}
