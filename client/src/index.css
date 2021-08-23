@@ -30,20 +30,13 @@ code {
     #43cea2 100%
   );
 }
-
-.jumbotron {
-  position: relative;
-  overflow: hidden;
+.jumboGrad {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .jumbotron {
-  position: relative;
-  z-index: 2;
   object-fit: cover;
-
   padding: 2rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
 }
 
 .card {
@@ -87,31 +80,32 @@ code {
 }
 
 .image-cropper {
-    max-width: 500px;
-    max-height: 300px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 5%;
-    margin-left: 20px;
+  max-width: 500px;
+  max-height: 300px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5%;
+  margin-left: 20px;
 }
 
 .city-pic {
   display: inline;
   margin: 0 auto;
-  margin-left: -25%; 
+  margin-left: -25%;
   height: 100%;
   width: auto;
 }
 
-.mt-10, .ui.button.mt-10  {
+.mt-10,
+.ui.button.mt-10 {
   margin-top: 10px;
 }
 
-.mb-10{
+.mb-10 {
   margin-bottom: 10px;
 }
 
-table:hover{
+table:hover {
   cursor: default;
 }
 
@@ -120,22 +114,23 @@ table:hover{
 }
 
 .close {
-    background: 0 0;
-    border: 0;
-    border-radius: .25rem;
-    background-color: #ddd;
-    display: inline-block;
-    font-size: 24px;
-    max-width: 30px;
-    max-height: 30px;
+  background: 0 0;
+  border: 0;
+  border-radius: 0.25rem;
+  background-color: #ddd;
+  display: inline-block;
+  font-size: 24px;
+  max-width: 30px;
+  max-height: 30px;
 }
 
 .alert .close {
-    float: right;
-    margin: -5px -25px;
+  float: right;
+  margin: -5px -25px;
 }
 
-.container .ui.label, table.table thead th:nth-child(n+2){
+.container .ui.label,
+table.table thead th:nth-child(n + 2) {
   background-color: #0d6efd;
   color: #fff;
 }
@@ -144,16 +139,51 @@ table.table {
   font-size: 1.1rem;
 }
 
-table.table thead th:nth-child(n+2){
+table.table thead th:nth-child(n + 2) {
   text-align: center;
 }
 
-table.table tr td:nth-child(n+2) {
+table.table tr td:nth-child(n + 2) {
   font-weight: bold;
   text-align: right;
 }
 
-table.table-striped>tbody>tr:nth-of-type(odd), 
-table.table-striped>tbody>tr:nth-of-type(even):hover {
-    --bs-table-accent-bg: #0d6efd14;
+table.table-striped > tbody > tr:nth-of-type(odd),
+table.table-striped > tbody > tr:nth-of-type(even):hover {
+  --bs-table-accent-bg: #0d6efd14;
+}
+.scores {
+  box-shadow: 0px 1px 7px 7px rgba(61, 109, 99, 0.2);
+  transition: 0.3s;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.data {
+  border: 4px solid;
+  border-image: linear-gradient(45deg, #43cea28e, #185b9d94) 10;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.navbar .nav-link {
+  text-align: left;
+  font-size: 20px;
+  padding-left: 1em !important;
+}
+.nav-link {
+  font-size: 18px;
+}
+
+.CityChartName {
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.delete {
+  margin-left: 1rem;
 }
