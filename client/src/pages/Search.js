@@ -76,9 +76,6 @@ const Search = () => {
       cityData[0].economy = Math.round(uaScores[11].score_out_of_10);
       cityData[0].taxation = Math.round(uaScores[12].score_out_of_10);
 
-      console.log(uaScores);
-
-
       // store the link for the image in a variable 
       const regionLink = cityData[0]._embedded["city:item"]._embedded["city:urban_area"]._links["ua:images"].href;
       // API call to retrieve the image link
@@ -200,7 +197,7 @@ const Search = () => {
            <Grid.Column>
            <div >
             <h2>
-              {city.matching_full_name} 
+              City: {city.matching_full_name} 
             </h2>
             <h3>
               <span className="bold">Population: </span><span>{city.population}</span>

@@ -14,10 +14,8 @@ const CityTable = () => {
         setCityValue(value);
     }
 
-
     const { loading, data } = useQuery(QUERY_ME);
     const userData = data?.me || [];
-
       // if data isn't here yet, say so
     if (loading) {
         return <h2>LOADING...</h2>;
