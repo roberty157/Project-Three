@@ -132,8 +132,11 @@ const Search = () => {
         economy: cityToSave.economy,
         image: cityToSave.image,
         region: cityToSave.region,
+
         //change population(which has commas) into an integer
         population: parseInt(cityToSave.population.replace(/\,/g,''),10)
+
+
 
 
 

@@ -12,7 +12,7 @@ const AppNavbar = () => {
 
     return (
         <React.Fragment>
-            <Navbar className='navi p-3' bg='dark' variant='dark' expand='lg'>
+            <Navbar className='navi p-4' bg='dark' variant='dark' expand='lg'>
                 <Container fluid>
                     <Navbar.Brand as={Link} to='/'>
                         Trading Places
