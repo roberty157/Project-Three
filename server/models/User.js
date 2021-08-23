@@ -22,12 +22,15 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  savedCities: [
+  //changed savedCities type to an array of citySchema
+  savedCities: [citySchema]
+  /*[
     {
       type: Schema.Types.ObjectId,
       ref: "City"
     }
   ],
+  */,
   homeCity: {
       type: Schema.Types.ObjectId,
       ref: "City"
