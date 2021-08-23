@@ -7,6 +7,8 @@ import { removeCityId } from '../utils/localStorage';
 import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2'
 import CityTable from '../components/Table';
+import 'semantic-ui-css/semantic.min.css';
+
 
 import city from "../assets/images/city.jpg";
 
@@ -168,8 +170,8 @@ const Profile = () => {
                                         </Col>
                                     </Row>
                                 </Tab.Container>
-                                {/* <h4> Compare City Costs </h4>
-                                            <CityTable /> */}
+                                <h4> Compare Cities</h4>
+                                <CityTable />
 
 
                             </Container>
