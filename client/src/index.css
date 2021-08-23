@@ -30,20 +30,13 @@ code {
     #43cea2 100%
   );
 }
-
-.jumbotron {
-  position: relative;
-  overflow: hidden;
+.jumboGrad {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .jumbotron {
-  position: relative;
-  z-index: 2;
   object-fit: cover;
-
   padding: 2rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
 }
 
 .card {
@@ -177,8 +170,13 @@ table.table-striped > tbody > tr:nth-of-type(even):hover {
   text-align: center;
 }
 
-.nav.link {
+.navbar .nav-link {
   text-align: left;
+  font-size: 20px;
+  padding-left: 1em !important;
+}
+.nav-link {
+  font-size: 18px;
 }
 
 .CityChartName {
