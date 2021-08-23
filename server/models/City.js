@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, /*model*/ } = require('mongoose');
 
 const citySchema = new Schema({
   name: {
@@ -47,6 +47,7 @@ const citySchema = new Schema({
   },
 });
 
-const City = model('City', citySchema);
+//keep citySchema as a schema and don't convert to model
+//const City = model('City', citySchema);
 
-module.exports = City;
+module.exports = citySchema;

@@ -10,7 +10,7 @@ const resolvers = {
       if (context.user) {
         try {
           // find a user matching logged in user id and return user
-          const user = await User.findOne({ _id: context.user._id }).populate('savedCities');
+          const user = await User.findOne({ _id: context.user._id })//.populate('savedCities');
           return user;
         } catch (err) {
           console.log('Unable to find user data', err);
@@ -59,8 +59,8 @@ const resolvers = {
       return { token, user };
     },
     saveCity: async (parent, { city }, context) => {
-      console.log(context.user);
-      console.log('args', city);
+      //console.log(context.user);
+      //console.log('args', city);
       //console.log('contextID', context.user._id);
 
       if (context.user) {
@@ -69,9 +69,10 @@ const resolvers = {
           const user = await User.findOne({ _id: context.user._id });
           await User.findOneAndUpdate(
             { _id: context.user._id },
-            { $addToSet: { savedCities: city._id } }
+            //changed to accept city object
+            { $addToSet: { savedCities:{...city} } }
           );
-
+          console.log(user);
           return user;
         } catch (err) {
           console.log(err);
