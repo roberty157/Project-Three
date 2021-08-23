@@ -11,7 +11,7 @@
     "environmentalQuality": 8.574666666666667,
     "economy": 8.439666666666666,
     "region": "Houston",
-    "population": "950807",
+    "population": 950807,
     "cityId": "4671654"
   },
     { 
@@ -26,7 +26,7 @@
     "environmentalQuality": 7.4666666666667,
     "economy": 6.66666666666,
     "region": "Los Angeles",
-    "population": "3967000",
+    "population": 3967000,
     "cityId": "5368361"
   },
   { 
@@ -41,7 +41,7 @@
     "environmentalQuality": 3.4666666666667,
     "economy": 2.66666666666,
     "region": "New York",
-    "population": "8419000",
+    "population": 8419000,
     "cityId": "5128581" 
   },
    { 
@@ -56,7 +56,7 @@
     "environmentalQuality": 8.68225,
     "economy": 6.5145,
     "region": "Des Moines",
-    "population": "210330",
+    "population": 210330,
     "cityId": "4853828" 
   },
   { 
@@ -71,7 +71,7 @@
     "environmentalQuality": 7.560250000000001,
     "economy": 6.5145,
     "region": "Seattle",
-    "population": "684451",
+    "population": 684451,
     "cityId": "5809844" 
   },
   { 
@@ -86,7 +86,7 @@
     "environmentalQuality": 4.625249999999999,
     "economy": 6.5145,
     "region": "Phoenix",
-    "population": "1563025",
+    "population": 1563025,
     "cityId": "5308655" 
   },
     { 
@@ -101,7 +101,7 @@
     "environmentalQuality": 9.84375,
     "economy": 6.5145,
     "region": "Boulder",
-    "population": "107349",
+    "population": 107349,
     "cityId": "5574991" 
   }
 ]
