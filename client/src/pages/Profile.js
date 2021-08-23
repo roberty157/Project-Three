@@ -7,6 +7,8 @@ import { removeCityId } from '../utils/localStorage';
 import Auth from '../utils/auth';
 import BarChart from '../components/BarChart';
 import CityTable from '../components/Table';
+import 'semantic-ui-css/semantic.min.css';
+
 
 
 
@@ -123,7 +125,7 @@ const Profile = () => {
                                         </Col>
                                     </Row>
                                 </Tab.Container>
-                                <h4> Compare City Costs </h4>
+                                <h4> Compare Cities</h4>
                                 <CityTable />
 
 

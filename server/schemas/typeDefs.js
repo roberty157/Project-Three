@@ -12,7 +12,7 @@ const typeDefs = gql`
     environmentalQuality: Float
     economy: Float
     image: String
-    cityId: ID
+    cityId: String
     region: String
     population: String
   }
@@ -26,9 +26,9 @@ const typeDefs = gql`
     cityCount: Int
   }
   type City{
-    _id: ID
-    cityId: ID
-    name:String
+     _id: ID
+    cityId: String
+    name: String
     healthcare: Float
     taxation: Float
     education: Float
@@ -50,7 +50,7 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
-    me:User
+    me: User
   }
 
   type Mutation {
