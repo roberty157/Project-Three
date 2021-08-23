@@ -8,6 +8,8 @@ import { Jumbotron, Container, Form, Button } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2'
 
+
+
 const Search = () => {
   const [searchedCities, setSearchedCities] = useState([]);
   const [searchedChart, setSearchedChart] = useState([]);
@@ -75,6 +77,7 @@ const Search = () => {
       // get the image link and store the string value in the cityData object 
       const imageLink = regionImage.photos[0].image.web;
       cityData[0].['image'] = imageLink;
+      console.log(imageLink);
 
       const regionName = cityData[0]._embedded["city:item"]._embedded["city:urban_area"].full_name;
       cityData[0].['region'] = regionName;
@@ -107,6 +110,7 @@ const Search = () => {
     try {
       console.log(cityToSave);
       const cityData = {
+        cityId: cityToSave._embedded["city:item"].geoname_id,
         name: cityToSave.matching_full_name,
         healthcare: cityToSave.healthcare,
         taxation: cityToSave.taxation,
@@ -120,21 +124,25 @@ const Search = () => {
         economy: cityToSave.economy,
         image: cityToSave.image,
         region: cityToSave.region,
-        population: cityToSave.population
+        population: cityToSave.population,
 
 
 
 
       }
+
       const response = await saveCity({
         variables: { city: cityData },
       });
+      console.log(saveCity);
+
 
       if (!response.data) {
         throw new Error('something went wrong!');
       }
 
       setSavedCityIds([...savedCityIds, cityToSave.cityId]);
+
     } catch (err) {
       console.error(err);
     }
@@ -144,13 +152,20 @@ const Search = () => {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-info p-5 search'>
-        <Container className='p-5'>
-          <h1>Search for your future home city</h1>
-          <Form onSubmit={handleFormSubmit}>
+      <Jumbotron fluid className='text-light jumboGrad '>
+
+
+
+
+
+        <Container style={{ width: '70rem' }} className='p-5 jumbo'>
+
+          <Form className='p-5' onSubmit={handleFormSubmit}>
+            <h1 style={{ textAlign: 'center' }}>Search for your future home city</h1>
             <Form.Row>
               <Form.Label>City, State </Form.Label>
               <Form.Control
+                size="lg"
                 name='searchInput'
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
@@ -162,8 +177,14 @@ const Search = () => {
               </Button>
             </Form.Row></Form>
         </Container>
+
       </Jumbotron>
       <Container className='p-5'>
+        <div className=" city-pic">
+          {searchedCities.map(city => <div key={city.matching_full_name}>
+            <img src={city.image} className="blur " />
+          </div>)}
+        </div>
         {searchedCities.map(city => <div key={city.matching_full_name}>
           <div>
             <span className="bold">Location: </span>{city.matching_full_name}
@@ -198,7 +219,7 @@ const Search = () => {
           <div>
             <span className="bold">Economy: </span>{city.economy} of 10
           </div>
-          <img alt="city" src={city.image}></img>
+          {/* <img alt="city" src={city.image}></img> */}
 
           <Container className='p-5'>
             <div>
