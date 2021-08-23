@@ -6,9 +6,9 @@ const citySchema = new Schema({
     required: true,
     trim: true,
   },
-    // saved book id from teleport
+  // saved book id from teleport
   cityId: {
-    type: String,
+    type: Number,
     required: true,
   },
   image: {

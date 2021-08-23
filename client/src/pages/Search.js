@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { searchCityData, searchBlank } from '../utils/API';
 import { useMutation ,useQuery} from '@apollo/client';
-import { SAVE_CITY } from '../utils/mutations';
+import { SAVE_CITY,SAVE_HOME_CITY } from '../utils/mutations';
 import {QUERY_ME} from '../utils/queries';
 import { numbersWithCommas } from '../utils/helpers'
 import { saveCityIds, getSavedCityIds } from '../utils/localStorage';
@@ -128,8 +128,7 @@ const Search = () => {
         costOfLiving: cityToSave.costOfLiving,
         housing: cityToSave.housing,
         safety: cityToSave.safety,
-        environmentalQuality:
-          cityToSave.environmentalQuality,
+        environmentalQuality: cityToSave.environmentalQuality,
         economy: cityToSave.economy,
         image: cityToSave.image,
         region: cityToSave.region,
