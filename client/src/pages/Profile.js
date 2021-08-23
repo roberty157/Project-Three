@@ -58,10 +58,12 @@ const Profile = () => {
 
     return (
         <>
-            <Jumbotron fluid className="m-3">
-                <Row>
 
-                    <Col className="mb-2 " xs={5}>
+
+            <Jumbotron fluid >
+                {/* Stack the columns on mobile by making one full-width and the other half-width */}
+                <Row sm={1} md={2}>
+                    <Col sm={12} md={5} className="mt-3">
                         <Card border="info royal" >
                             <Card.Header><h2>{`The cover for ${userData.username}`}</h2></Card.Header>
                             <Card.Body className="m-3">
@@ -94,99 +96,90 @@ const Profile = () => {
                         </Card>
 
                     </Col>
-                    <Col className="d-flex">
-                        <Col className="d-flex" >
-
-                            <Container>
-                                {userData.savedCities.length
-                                    ? `Viewing ${userData.savedCities.length} saved ${userData.savedCities.length === 1 ? 'city' : 'cities'}:`
-                                    : 'You have no saved cities!'}
-                                <h3> You have {userData.cityCount} cities saved!</h3>
+                    <Col sm={12} md={7} className="mt-3">
 
 
 
-                                <Tab.Container id="left-tabs-example" >
-                                    <Row>
-                                        <Col sm={3}>
-                                            {userData.savedCities.map((city) => {
-                                                return (
-                                                    <Nav defaultActiveKey={city.cityId} variant="pills" className="flex-column" >
-                                                        <Nav.Item >
-                                                            <Nav.Link className="p-2 pb-2" eventKey={city.cityId}> {city.name}</Nav.Link>
-                                                        </Nav.Item>
-                                                    </Nav>)
-                                            })}
-                                        </Col>
-                                        <Col sm={9}>
-                                            <Tab.Content>
-                                                {userData.savedCities.map((city) => {
-                                                    return (
-                                                        <Tab.Pane eventKey={city.cityId} transition={Fade}>
-                                                            <h3> Viewing {city.name}</h3>
-                                                            <Bar
-                                                                data={{
-                                                                    labels: ['Healthcare', 'Taxation', 'Education', 'Housing', 'Living', 'Safety', 'Environment', 'Economy'],
-                                                                    datasets: [
-                                                                        {
-                                                                            label: 'Score',
-                                                                            data: [`${city.healthcare}`, `${city.taxation}`, `${city.education}`, `${city.housing}`, `${city.costOfLiving}`, `${city.safety}`, `${city.environmentalQuality}`, `${city.economy}`],
-
-                                                                            backgroundColor: [
-                                                                                'rgba(255, 99, 132, 0.2)',
-                                                                                'rgba(54, 162, 235, 0.2)',
-                                                                                'rgba(255, 206, 86, 0.2)',
-                                                                                'rgba(75, 192, 192, 0.2)',
-                                                                                'rgba(153, 102, 255, 0.2)',
-                                                                                'rgba(255, 159, 64, 0.2)'
-                                                                            ],
-                                                                            borderColor: [
-                                                                                'rgba(255, 99, 132, 1)',
-                                                                                'rgba(54, 162, 235, 1)',
-                                                                                'rgba(255, 206, 86, 1)',
-                                                                                'rgba(75, 192, 192, 1)',
-                                                                                'rgba(153, 102, 255, 1)',
-                                                                                'rgba(255, 159, 64, 1)'
-                                                                            ],
-                                                                            borderWidth: 1
-                                                                        }]
-                                                                }}
-                                                                height={100}
-                                                                width={250}
-                                                                options={{
-                                                                    responsive: true,
-                                                                    maintainAspectRatio: true,
-                                                                    scales: {
-                                                                        y: {
-                                                                            suggestedMin: 0,
-                                                                            suggestedMax: 10
-                                                                        }
-                                                                    }
-                                                                }}
-                                                            />
-                                                        </Tab.Pane>)
-
-                                                })}
-                                            </Tab.Content>
-                                        </Col>
-                                    </Row>
-                                </Tab.Container>
-                                <h4> Compare Cities</h4>
-                                <CityTable />
+                        {userData.savedCities.length
+                            ? `Viewing ${userData.savedCities.length} saved ${userData.savedCities.length === 1 ? 'city' : 'cities'}:`
+                            : 'You have no saved cities!'}
+                        <h3> You have {userData.cityCount} cities saved!</h3>
 
 
-                            </Container>
-                        </Col>
+
+                        <Tab.Container sm={12} id="left-tabs-example" >
+                            <Row>
+                                <Col md={3} sm={12}>
+                                    {userData.savedCities.map((city) => {
+                                        return (
+                                            <Nav defaultActiveKey={city.cityId} variant="pills" className="flex-column" >
+                                                <Nav.Item >
+                                                    <Nav.Link className="p-2 pb-2" eventKey={city.cityId}> {city.name}</Nav.Link>
+                                                </Nav.Item>
+                                            </Nav>)
+                                    })}
+                                </Col>
+                                <Col md={9} sm={12}>
+                                    <Tab.Content>
+                                        {userData.savedCities.map((city) => {
+                                            return (
+                                                <Tab.Pane eventKey={city.cityId} transition={Fade}>
+                                                    <h3> Viewing {city.name}</h3>
+                                                    <Bar
+                                                        data={{
+                                                            labels: ['Healthcare', 'Taxation', 'Education', 'Housing', 'Living', 'Safety', 'Environment', 'Economy'],
+                                                            datasets: [
+                                                                {
+                                                                    label: 'Score',
+                                                                    data: [`${city.healthcare}`, `${city.taxation}`, `${city.education}`, `${city.housing}`, `${city.costOfLiving}`, `${city.safety}`, `${city.environmentalQuality}`, `${city.economy}`],
+
+                                                                    backgroundColor: [
+                                                                        'rgba(255, 99, 132, 0.2)',
+                                                                        'rgba(54, 162, 235, 0.2)',
+                                                                        'rgba(255, 206, 86, 0.2)',
+                                                                        'rgba(75, 192, 192, 0.2)',
+                                                                        'rgba(153, 102, 255, 0.2)',
+                                                                        'rgba(255, 159, 64, 0.2)'
+                                                                    ],
+                                                                    borderColor: [
+                                                                        'rgba(255, 99, 132, 1)',
+                                                                        'rgba(54, 162, 235, 1)',
+                                                                        'rgba(255, 206, 86, 1)',
+                                                                        'rgba(75, 192, 192, 1)',
+                                                                        'rgba(153, 102, 255, 1)',
+                                                                        'rgba(255, 159, 64, 1)'
+                                                                    ],
+                                                                    borderWidth: 1
+                                                                }]
+                                                        }}
+                                                        height={100}
+                                                        width={250}
+                                                        options={{
+                                                            responsive: true,
+                                                            maintainAspectRatio: true,
+                                                            scales: {
+                                                                y: {
+                                                                    suggestedMin: 0,
+                                                                    suggestedMax: 10
+                                                                }
+                                                            }
+                                                        }}
+                                                    />
+                                                </Tab.Pane>)
+
+                                        })}
+                                    </Tab.Content>
+                                </Col>
+                            </Row>
+                        </Tab.Container>
+                        <h4> Compare Cities</h4>
+                        <CityTable />
+
+
                     </Col>
+
+
                 </Row>
-
-                <Container className="g-2">
-                    <Col md>
-
-
-
-                    </Col>
-
-                </Container>
             </Jumbotron>
 
 
