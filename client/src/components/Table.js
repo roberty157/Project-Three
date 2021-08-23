@@ -44,8 +44,8 @@ const CityTable = () => {
                 })
             } />
 
-            {cityValue?.map((cityInfo)=> {
-            if (cityValue.length === 1) {
+            {cityValue?.map((cityInfo, index)=> {
+               if (cityValue.length === 1) {
                  const city1 = getCityById(cityValue[0]);
                 
                 city1.population = numbersWithCommas(city1[0].population);
@@ -108,7 +108,6 @@ const CityTable = () => {
                      )
                  
                } else if (cityValue.length === 2) {
-
                    const city1 = getCityById(cityValue[0]);
                    const city2 = getCityById(cityValue[1]);
 
@@ -134,8 +133,8 @@ const CityTable = () => {
                     city2.safety = Math.round(city2[0].safety);
                     city2.environmentalQuality = Math.round(city2[0].environmentalQuality);
                     city2.economy = Math.round(city2[0].economy);
-
-                    return (
+                    if (index == 1) {
+                        return (
                      <Table key={city1[0]._id} striped bordered hover>
                         <thead>
                             <tr>
@@ -193,6 +192,8 @@ const CityTable = () => {
                         </tbody>
                     </Table>
                      )
+                    }
+                    
                 } else {
                     return;
                 }
