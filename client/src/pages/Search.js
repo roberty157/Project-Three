@@ -121,10 +121,6 @@ const Search = () => {
         image: cityToSave.image,
         region: cityToSave.region,
         population: cityToSave.population
-
-
-
-
       }
       const response = await saveCity({
         variables: { city: cityData },

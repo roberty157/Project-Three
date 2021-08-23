@@ -41,7 +41,11 @@ code {
   margin-top: 10px;
 }
 
-table th{
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+table:hover{
   cursor: default;
 }
 
@@ -66,4 +70,26 @@ table th{
 .alert .close {
     float: right;
     margin: -5px -25px;
+}
+
+.container .ui.label, table.table thead th:nth-child(n+2){
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+table.table {
+  font-size: 1.1rem;
+}
+
+table.table thead th:nth-child(n+2){
+  text-align: center;
+}
+
+table.table tr td:nth-child(n+2) {
+  font-weight: bold;
+  text-align: right;
+}
+
+table.table-striped>tbody>tr:nth-of-type(odd) {
+    --bs-table-accent-bg: #0d6efd14;
 }

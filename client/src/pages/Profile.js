@@ -125,7 +125,7 @@ const Profile = () => {
                                         </Col>
                                     </Row>
                                 </Tab.Container>
-                                <h4> Compare City Costs </h4>
+                                <h4> Compare Cities</h4>
                                 <CityTable />
 
 
