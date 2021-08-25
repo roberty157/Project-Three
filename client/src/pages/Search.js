@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { searchCityData, searchBlank } from '../utils/API';
-import { useMutation ,useQuery} from '@apollo/client';
-import { SAVE_CITY,SAVE_HOME_CITY } from '../utils/mutations';
-import {QUERY_ME} from '../utils/queries';
+import { useMutation, useQuery } from '@apollo/client';
+import { SAVE_CITY, SAVE_HOME_CITY } from '../utils/mutations';
+import { QUERY_ME } from '../utils/queries';
 import { numbersWithCommas } from '../utils/helpers'
 import { saveCityIds, getSavedCityIds } from '../utils/localStorage';
-import { Jumbotron,/* Container, */Form, /*Button*/} from 'react-bootstrap';
+import { Jumbotron,/* Container, */Form, /*Button*/ } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2'
 
-import { Container,Button,Grid,/*Image*/ } from 'semantic-ui-react';
+import { Container, Button, Grid,/*Image*/ } from 'semantic-ui-react';
 /*
 const cityResultStyle={
   position:'relative'
@@ -20,10 +20,10 @@ const cityResultOverlayStyle={
 */
 
 const Search = () => {
-  const {loading, error,data} = useQuery(QUERY_ME,{});
-  console.log('loading',loading);
-  console.log('error',error);
-  console.log('data',data);
+  const { loading, error, data } = useQuery(QUERY_ME, {});
+  console.log('loading', loading);
+  console.log('error', error);
+  console.log('data', data);
   const [searchedCities, setSearchedCities] = useState([]);
   const [searchedChart, setSearchedChart] = useState([]);
   // create state for holding our search field data
@@ -134,7 +134,7 @@ const Search = () => {
         region: cityToSave.region,
 
         //change population(which has commas) into an integer
-        population: parseInt(cityToSave.population.replace(/\,/g,''),10)
+        population: parseInt(cityToSave.population.replace(/\,/g, ''), 10)
 
 
 
@@ -182,62 +182,62 @@ const Search = () => {
                 type='text'
                 placeholder='Example: New York, NY'
               />
-              <Button primary className="mt-10" type='submit'>
+              <Button className="mt-10 btn-search" type='submit'>
                 Search
               </Button>
             </Form.Row></Form>
         </Container>
 
       </Jumbotron>
-      
+
       <Container className='p-5'>
         {searchedCities.map(city => <div key={city.matching_full_name}>
-         <Grid stackable columns={2}>
-           <Grid.Column>
-           <div >
-            <h2>
-              City: {city.matching_full_name} 
-            </h2>
-            <h3>
-              <span className="bold">Population: </span><span>{city.population}</span>
-            </h3>
-            <div>
-              <span className="bold">Region: </span><span>{city.region}</span>
-            </div>
-            <div>
-              <span className="bold">Healthcare: </span><span>{city.healthcare} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Taxation: </span><span>{city.taxation} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Education: </span><span>{city.education} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Housing: </span><span>{city.housing} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Cost of Living: </span><span>{city.costOfLiving} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Safety: </span><span>{city.safety} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Environmental Quality: </span><span>{city.environmentalQuality} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Economy: </span><span>{city.economy} of 10</span>
-            </div>
-          </div>
-           </Grid.Column>
-           <Grid.Column className = "image-cropper">
-             <img src={city.image} className="city-pic" alt="img not found"></img>
+          <Grid stackable columns={2}>
+            <Grid.Column>
+              <div >
+                <h2>
+                  City: {city.matching_full_name}
+                </h2>
+                <h3>
+                  <span className="bold">Population: </span><span>{city.population}</span>
+                </h3>
+                <div>
+                  <span className="bold">Region: </span><span>{city.region}</span>
+                </div>
+                <div>
+                  <span className="bold">Healthcare: </span><span>{city.healthcare} of 10</span>
+                </div>
+                <div>
+                  <span className="bold">Taxation: </span><span>{city.taxation} of 10</span>
+                </div>
+                <div>
+                  <span className="bold">Education: </span><span>{city.education} of 10</span>
+                </div>
+                <div>
+                  <span className="bold">Housing: </span><span>{city.housing} of 10</span>
+                </div>
+                <div>
+                  <span className="bold">Cost of Living: </span><span>{city.costOfLiving} of 10</span>
+                </div>
+                <div>
+                  <span className="bold">Safety: </span><span>{city.safety} of 10</span>
+                </div>
+                <div>
+                  <span className="bold">Environmental Quality: </span><span>{city.environmentalQuality} of 10</span>
+                </div>
+                <div>
+                  <span className="bold">Economy: </span><span>{city.economy} of 10</span>
+                </div>
+              </div>
+            </Grid.Column>
+            <Grid.Column className="image-cropper">
+              <img src={city.image} className="city-pic" alt="img not found"></img>
 
-            
-           
-           </Grid.Column>
-         </Grid>
-           
+
+
+            </Grid.Column>
+          </Grid>
+
 
           <Container className='p-5'>
             <div>
@@ -284,22 +284,22 @@ const Search = () => {
             </div>
             {
               Auth.loggedIn() &&
-                  <Button primary
+              <Button primary
                 disabled={savedCityIds?.some((savedCityId) => savedCityId === city.cityId)}
                 className='btn-block btn-info'
                 onClick={() => handleSaveCity(city.cityId)}>
                 {savedCityIds?.some((savedCityId) => savedCityId === city.cityId)
                   ? 'This city has already been saved!'
                   : 'Save this City!'}
-                </Button>
+              </Button>
             }
-            
+
 
           </Container>
         </div>)}
 
       </Container>
-      
+
 
     </>
   );
@@ -312,7 +312,7 @@ export default Search;
 <div className="city-container" >
           <div >
             <h2>
-              {city.matching_full_name} 
+              {city.matching_full_name}
             </h2>
             <h3>
               <span className="bold">Population: </span><span>{city.population}</span>

@@ -61,6 +61,12 @@ code {
   background-color: transparent;
   color: white;
 }
+.navbar .nav-link {
+  text-align: left;
+  font-size: 20px;
+  padding: 1em !important;
+  transition: 0.5s;
+}
 
 .navi,
 .jumboGrad {
@@ -72,11 +78,11 @@ code {
   display: block;
 }
 
-.navi:hover {
-  background-position: top center; /* change the direction of the change here */
-  color: #fff;
-  text-decoration: none;
+.navbar .nav-link:hover {
+  background-position: right center;
   box-shadow: 0 0 10px #eee;
+
+  font-weight: bold;
 }
 
 .image-cropper {
@@ -170,15 +176,6 @@ table.table-striped > tbody > tr:nth-of-type(even):hover {
   text-align: center;
 }
 
-.navbar .nav-link {
-  text-align: left;
-  font-size: 20px;
-  padding-left: 1em !important;
-}
-.nav-link {
-  font-size: 18px;
-}
-
 .CityChartName {
   flex-direction: column;
   padding: 1rem;
@@ -187,3 +184,30 @@ table.table-striped > tbody > tr:nth-of-type(even):hover {
 .delete {
   margin-left: 1rem;
 }
+
+/* .btn-search {
+  background-image: linear-gradient(
+    to right,
+    #1a2980 0%,
+    #26d0ce 51%,
+    #1a2980 100%
+  ) !important;
+}
+.btn-search {
+  margin: 10px !important;
+  padding: 15px 45px !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  transition: 0.5s !important;
+  background-size: 200% auto !important;
+  color: white !important;
+  box-shadow: 0 0 20px #eee !important;
+  border-radius: 10px !important;
+  display: block !important;
+}
+
+.btn-search:hover {
+  background-position: right center !important; /* change the direction of the change here */
+/* color: #fff !important;
+  text-decoration: none !important;
+} */
