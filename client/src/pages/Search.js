@@ -141,7 +141,7 @@ const Search = () => {
     }
     try{
       const cityData = {
-        cityId: cityToSave._embedded["city:item"].geoname_id.toString(),
+        cityId: cityToSave._embedded["city:item"].geoname_id,
         name: cityToSave.matching_full_name,
         healthcare: cityToSave.healthcare,
         taxation: cityToSave.taxation,
@@ -187,7 +187,7 @@ const Search = () => {
     try {
       console.log(cityToSave);
       const cityData = {
-        cityId: cityToSave._embedded["city:item"].geoname_id.toString(),
+        cityId: cityToSave._embedded["city:item"].geoname_id,
         name: cityToSave.matching_full_name,
         healthcare: cityToSave.healthcare,
         taxation: cityToSave.taxation,
