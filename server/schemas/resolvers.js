@@ -60,7 +60,7 @@ const resolvers = {
     },
     saveCity: async (parent, { city }, context) => {
       //console.log(context.user);
-      //console.log('args', city);
+      console.log('args', city);
       //console.log('contextID', context.user._id);
 
       if (context.user) {
@@ -100,13 +100,13 @@ const resolvers = {
       throw new AuthenticationError('you need to be logged in!');
 
     },
-    saveHomeCity: async (parent, args, context) => {
-      const city = args.input;
-
+    saveHomeCity: async (parent, {homeCity}, context) => {
+      //const city = args.input;
+      
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { homeCity: { ...city } },
+          { homeCity: { ...homeCity } },
           { new: true }
         )
         return updatedUser;

@@ -10,14 +10,7 @@ import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2'
 
 import { Container,Button,Grid,/*Image*/ } from 'semantic-ui-react';
-/*
-const cityResultStyle={
-  position:'relative'
-}
-const cityResultOverlayStyle={
-  position:'absolute'
-}
-*/
+
 
 const Search = () => {
   const {loading, error,data} = useQuery(QUERY_ME,{});
@@ -41,6 +34,10 @@ const Search = () => {
   }, [loading]);
 
   // set mutation for saving City
+
+ 
+  const [saveHomeCity,{saveHomeError}] = useMutation(SAVE_HOME_CITY);
+
   const [saveCity] = useMutation(SAVE_CITY
   //   {
   //   update(cache, {data: {saveCity: {_id, savedCities}}}){
@@ -56,6 +53,7 @@ const Search = () => {
   //   }
   // }
   );
+
 
   // create method to search for city and set state on form submit
   const handleFormSubmit = async (event) => {
@@ -119,7 +117,57 @@ const Search = () => {
       console.error(err);
     }
   };
-
+  const homeCityEqualsCurrent=(homeCity,city)=>{
+    //checks if current search result is saved as the users home city
+    if(homeCity ===null){
+      return false;
+    }
+    else{
+      if(homeCity.name === city.me){
+        return true;
+      }else{
+        return false;
+      }
+    }
+  }
+  const handleSaveHomeCity= async(cityId) =>{
+    const cityToSave = searchedCities.find((city) => city.cityId === cityId);
+    //console.log('setting as home city', cityToSave);
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return false;
+    }
+    try{
+      const cityData = {
+        cityId: cityToSave._embedded["city:item"].geoname_id.toString(),
+        name: cityToSave.matching_full_name,
+        healthcare: cityToSave.healthcare,
+        taxation: cityToSave.taxation,
+        education: cityToSave.education,
+        costOfLiving: cityToSave.costOfLiving,
+        housing: cityToSave.housing,
+        safety: cityToSave.safety,
+        environmentalQuality: cityToSave.environmentalQuality,
+        economy: cityToSave.economy,
+        image: cityToSave.image,
+        region: cityToSave.region,
+        population: parseInt(cityToSave.population.replace(/\,/g,''),10)
+      }
+      console.log(cityData);
+      const response = await saveHomeCity({
+        variables: { homeCity:cityData },
+      });
+      console.log('save home error',saveHomeError);
+      if (!response.data) {
+        throw new Error('something went wrong!');
+      }
+      const btn = document.getElementById('saveHomeCityBtn')
+      btn.innerHTML = 'this city is currently your home city';
+      btn.setAttribute('disabled', true);
+    }catch (err) {
+      console.error(err);
+    }
+  }
 
   const handleSaveCity = async (cityId) => {
 
@@ -137,7 +185,7 @@ const Search = () => {
     try {
       console.log(cityToSave);
       const cityData = {
-        cityId: cityToSave.cityId,
+        cityId: cityToSave._embedded["city:item"].geoname_id.toString(),
         name: cityToSave.matching_full_name,
         healthcare: cityToSave.healthcare,
         taxation: cityToSave.taxation,
@@ -152,12 +200,6 @@ const Search = () => {
 
         //change population(which has commas) into an integer
         population: parseInt(cityToSave.population.replace(/\,/g,''),10)
-
-
-
-
-
-
       }
 
       const response = await saveCity({
@@ -171,7 +213,7 @@ const Search = () => {
       }
 
       setSavedCityIds([...savedCityIds, cityData.cityId]);
-      const btn = document.getElementById('saveBtn')
+      const btn = document.getElementById('saveCityBtn')
       btn.innerHTML = 'This city has already been saved!';
       btn.setAttribute('disabled', true);
     } catch (err) {
@@ -308,7 +350,7 @@ const Search = () => {
                   <Button primary
                 disabled={savedCityIds.includes(city.cityId + '')}
                 className='btn-block btn-info'
-                id="saveBtn"
+                id="saveCityBtn"
                 onClick={() => handleSaveCity(city.cityId)}>
                 {savedCityIds.includes(city.cityId + '')
                   ? 'This city has already been saved!'
@@ -316,6 +358,22 @@ const Search = () => {
                 </Button>
                 
             }
+
+            {           
+                (Auth.loggedIn() && !loading && error===undefined) &&
+                <Button disabled={homeCityEqualsCurrent(data.me.homeCity, city)} 
+                id="saveHomeCityBtn"
+                primary onClick={()=>handleSaveHomeCity(city.cityId)}>
+                  {homeCityEqualsCurrent(data.me.homeCity, city)
+                  ?'this city is currently your home city'
+                    :'Set this city as home'
+                  }
+                  
+                  </Button>
+                
+              }
+
+
           </Container>
         </div>})}
         
@@ -329,45 +387,3 @@ const Search = () => {
 export default Search;
 
 
-/*
-<div className="city-container" >
-          <div >
-            <h2>
-              {city.matching_full_name} 
-            </h2>
-            <h3>
-              <span className="bold">Population: </span><span>{city.population}</span>
-            </h3>
-            <div>
-              <span className="bold">Region: </span><span>{city.region}</span>
-            </div>
-            <div>
-              <span className="bold">Healthcare: </span><span>{city.healthcare} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Taxation: </span><span>{city.taxation} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Education: </span><span>{city.education} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Housing: </span><span>{city.housing} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Cost of Living: </span><span>{city.costOfLiving} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Safety: </span><span>{city.safety} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Environmental Quality: </span><span>{city.environmentalQuality} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Economy: </span><span>{city.economy} of 10</span>
-            </div>
-          </div>
-          <div className="image-cropper">
-            <img alt="city" className="city-pic" src={city.image}></img>
-          </div>
-          </div>
-*/
