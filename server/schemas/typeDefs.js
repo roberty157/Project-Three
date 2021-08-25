@@ -12,7 +12,7 @@ const typeDefs = gql`
     environmentalQuality: Float
     economy: Float
     image: String
-    cityId: String
+    cityId: Int
     region: String
     population: Float
   }

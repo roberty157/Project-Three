@@ -12,7 +12,7 @@
     "economy": 8.439666666666666,
     "region": "Houston",
     "population": 950807,
-    "cityId": "4671654"
+    "cityId": 4671654
   },
     { 
     "name": "Los Angeles, CA",
@@ -27,7 +27,7 @@
     "economy": 6.66666666666,
     "region": "Los Angeles",
     "population": 3967000,
-    "cityId": "5368361"
+    "cityId": 5368361
   },
   { 
     "name": "New York City, NY",
@@ -42,7 +42,7 @@
     "economy": 2.66666666666,
     "region": "New York",
     "population": 8419000,
-    "cityId": "5128581" 
+    "cityId": 5128581 
   },
    { 
     "name": "Des Moines, IA",
@@ -57,7 +57,7 @@
     "economy": 6.5145,
     "region": "Des Moines",
     "population": 210330,
-    "cityId": "4853828" 
+    "cityId": 4853828 
   },
   { 
     "name": "Seattle, WA",
@@ -72,7 +72,7 @@
     "economy": 6.5145,
     "region": "Seattle",
     "population": 684451,
-    "cityId": "5809844" 
+    "cityId": 5809844 
   },
   { 
     "name": "Phoenix, AZ",
@@ -87,7 +87,7 @@
     "economy": 6.5145,
     "region": "Phoenix",
     "population": 1563025,
-    "cityId": "5308655" 
+    "cityId": 5308655 
   },
     { 
     "name": "Boulder, CO",
@@ -102,6 +102,6 @@
     "economy": 6.5145,
     "region": "Boulder",
     "population": 107349,
-    "cityId": "5574991" 
+    "cityId": 5574991 
   }
 ]

@@ -14,25 +14,47 @@ import { Container,Button,Grid,/*Image*/ } from 'semantic-ui-react';
 
 const Search = () => {
   const {loading, error,data} = useQuery(QUERY_ME,{});
-  console.log('loading',loading);
-  console.log('error',error);
-  console.log('data',data);
+  // console.log('loading',loading);
+  // console.log('error',error);
+  // console.log('data',data);
   const [searchedCities, setSearchedCities] = useState([]);
   const [searchedChart, setSearchedChart] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
-  const [savedCityIds, setSavedCityIds] = useState(getSavedCityIds());
+  const [savedCityIds, setSavedCityIds] = useState([]);
 
   // set up useEffect hook to save `savedCityIds` list to localStorage on component unmount
 
   useEffect(() => {
-    return () => saveCityIds(savedCityIds);
-  });
+      if(!loading && data?.me?.savedCities) {
+        const cityIds = data.me.savedCities.map(({cityId})=> cityId)
+        console.log("saved city ids from db --- ", cityIds)
+        setSavedCityIds(cityIds)}
+  }, [loading]);
 
   // set mutation for saving City
-  const [saveCity] = useMutation(SAVE_CITY);
+
+ 
   const [saveHomeCity,{saveHomeError}] = useMutation(SAVE_HOME_CITY);
+
+  const [saveCity] = useMutation(SAVE_CITY
+  //   {
+  //   update(cache, {data: {saveCity: {_id, savedCities}}}){
+  //     cache.modify({
+  //       id: cache.identify(`User:${_id}`),
+  //       fields: {
+  //         savedCities(cities){
+  //           console.log("current user data --- ", cities)
+  //           return []
+  //         }
+  //       }
+  //     })
+  //   }
+  // }
+  );
+
+
   // create method to search for city and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -53,7 +75,7 @@ const Search = () => {
       // get returned data store to variable to pass into the useState hook
       const cityList = await response.json();
       const cityData = cityList._embedded['city:search-results'];
-
+   
       // storing the population data as it also lives in an embedded directory
       const pop = cityData[0]._embedded["city:item"].population;
       cityData[0]['population'] = numbersWithCommas(pop);
@@ -68,7 +90,7 @@ const Search = () => {
       cityData[0].environmentalQuality = Math.round(uaScores[10].score_out_of_10);
       cityData[0].economy = Math.round(uaScores[11].score_out_of_10);
       cityData[0].taxation = Math.round(uaScores[12].score_out_of_10);
-
+      cityData[0].cityId = cityData[0]._embedded["city:item"].geoname_id;
       // store the link for the image in a variable 
       const regionLink = cityData[0]._embedded["city:item"]._embedded["city:urban_area"]._links["ua:images"].href;
       // API call to retrieve the image link
@@ -139,6 +161,9 @@ const Search = () => {
       if (!response.data) {
         throw new Error('something went wrong!');
       }
+      const btn = document.getElementById('saveHomeCityBtn')
+      btn.innerHTML = 'this city is currently your home city';
+      btn.setAttribute('disabled', true);
     }catch (err) {
       console.error(err);
     }
@@ -187,8 +212,10 @@ const Search = () => {
         throw new Error('something went wrong!');
       }
 
-      setSavedCityIds([...savedCityIds, cityToSave.cityId]);
-
+      setSavedCityIds([...savedCityIds, cityData.cityId]);
+      const btn = document.getElementById('saveCityBtn')
+      btn.innerHTML = 'This city has already been saved!';
+      btn.setAttribute('disabled', true);
     } catch (err) {
       console.error(err);
     }
@@ -225,7 +252,9 @@ const Search = () => {
       </Jumbotron>
       
       <Container className='p-5'>
-        {searchedCities.map(city => <div key={city.matching_full_name}>
+        {searchedCities.map(city => {
+          console.log(city);
+        return <div key={city.matching_full_name}>
          <Grid stackable columns={2}>
            <Grid.Column>
            <div >
@@ -319,17 +348,21 @@ const Search = () => {
             {
               Auth.loggedIn() &&
                   <Button primary
-                disabled={savedCityIds?.some((savedCityId) => savedCityId === city.cityId)}
+                disabled={savedCityIds.includes(city.cityId + '')}
                 className='btn-block btn-info'
+                id="saveCityBtn"
                 onClick={() => handleSaveCity(city.cityId)}>
-                {savedCityIds?.some((savedCityId) => savedCityId === city.cityId)
+                {savedCityIds.includes(city.cityId + '')
                   ? 'This city has already been saved!'
                   : 'Save this City!'}
                 </Button>
+                
             }
+
             {           
                 (Auth.loggedIn() && !loading && error===undefined) &&
                 <Button disabled={homeCityEqualsCurrent(data.me.homeCity, city)} 
+                id="saveHomeCityBtn"
                 primary onClick={()=>handleSaveHomeCity(city.cityId)}>
                   {homeCityEqualsCurrent(data.me.homeCity, city)
                   ?'this city is currently your home city'
@@ -340,14 +373,15 @@ const Search = () => {
                 
               }
 
-          </Container>
-        </div>)}
 
+          </Container>
+        </div>})}
+        
       </Container>
       
 
     </>
-  );
+        );
 };
 
 export default Search;

@@ -60,6 +60,7 @@ const Profile = () => {
 
     return (
         <>
+
             <Jumbotron fluid className="m-3">
                 <Row>
 
@@ -90,7 +91,7 @@ const Profile = () => {
                                     </a>
                                 </Card.Content>
                             }
-                        
+
                         </Card>
                         {
                             data.me.homeCity
@@ -109,103 +110,90 @@ const Profile = () => {
                         }
 
                     </Col>
-                    <Col className="d-flex">
-                        <Col className="d-flex" >
+                    <Col sm={12} md={7} className="mt-3">
+                        <Container className="data"> <h2> Your {userData.cityCount} Saved Cities!</h2> </Container>
 
-                            <Container>
-                                {userData.savedCities.length
-                                    ? `Viewing ${userData.savedCities.length} saved ${userData.savedCities.length === 1 ? 'city' : 'cities'}:`
-                                    : 'You have no saved cities!'}
-                                <h3> You have {userData.cityCount} cities saved!</h3>
-
-
-
-                                <Tab.Container id="left-tabs-example" >
-                                    <Row>
-                                        <Col sm={3}>
+                        <Container className="scores">
+                            <Tab.Container className="" sm={12} id="left-tabs-example" >
+                                <Row >
+                                    <Col md={3} sm={12}>
+                                        {userData.savedCities.map((city) => {
+                                            return (
+                                                <Nav defaultActiveKey={city.cityId} variant="pills" className="flex-column" >
+                                                    <Nav.Item >
+                                                        <Nav.Link className="p-2 pb-2" eventKey={city.cityId}> {city.name}</Nav.Link>
+                                                    </Nav.Item>
+                                                </Nav>)
+                                        })}
+                                    </Col>
+                                    <Col md={9} sm={12}>
+                                        <Tab.Content>
                                             {userData.savedCities.map((city) => {
                                                 return (
-                                                    <Nav defaultActiveKey={city.cityId} variant="pills" className="flex-column" >
-                                                        <Nav.Item >
-                                                            <Nav.Link className="p-2 pb-2" eventKey={city.cityId}> {city.name}</Nav.Link>
-                                                        </Nav.Item>
-                                                    </Nav>)
-                                            })}
-                                        </Col>
-                                        <Col sm={9}>
-                                            <Tab.Content>
-                                                {userData.savedCities.map((city) => {
-                                                    return (
-                                                        <Tab.Pane eventKey={city.cityId} transition={Fade}>
-                                                            <h3> Viewing {city.name}</h3>
-                                                            <Bar
-                                                                data={{
-                                                                    labels: ['Healthcare', 'Taxation', 'Education', 'Housing', 'Living', 'Safety', 'Environment', 'Economy'],
-                                                                    datasets: [
-                                                                        {
-                                                                            label: 'Score',
-                                                                            data: [`${city.healthcare}`, `${city.taxation}`, `${city.education}`, `${city.housing}`, `${city.costOfLiving}`, `${city.safety}`, `${city.environmentalQuality}`, `${city.economy}`],
+                                                    <Tab.Pane eventKey={city.cityId} transition={Fade}>
+                                                        <Row className="CityChartName">
+                                                            <h3> Viewing {city.name}                                 <Button variant="outline-danger delete" size="sm" onClick={() => handleDeleteCity(city.cityId)}>
+                                                                Delete this City!
+                                                            </Button></h3>
 
-                                                                            backgroundColor: [
-                                                                                'rgba(255, 99, 132, 0.2)',
-                                                                                'rgba(54, 162, 235, 0.2)',
-                                                                                'rgba(255, 206, 86, 0.2)',
-                                                                                'rgba(75, 192, 192, 0.2)',
-                                                                                'rgba(153, 102, 255, 0.2)',
-                                                                                'rgba(255, 159, 64, 0.2)'
-                                                                            ],
-                                                                            borderColor: [
-                                                                                'rgba(255, 99, 132, 1)',
-                                                                                'rgba(54, 162, 235, 1)',
-                                                                                'rgba(255, 206, 86, 1)',
-                                                                                'rgba(75, 192, 192, 1)',
-                                                                                'rgba(153, 102, 255, 1)',
-                                                                                'rgba(255, 159, 64, 1)'
-                                                                            ],
-                                                                            borderWidth: 1
-                                                                        }]
-                                                                }}
-                                                                height={100}
-                                                                width={250}
-                                                                options={{
-                                                                    responsive: true,
-                                                                    maintainAspectRatio: true,
-                                                                    scales: {
-                                                                        y: {
-                                                                            suggestedMin: 0,
-                                                                            suggestedMax: 10
-                                                                        }
+                                                        </Row>
+                                                        <Bar className="mb-3"
+                                                            data={{
+                                                                labels: ['Healthcare', 'Taxation', 'Education', 'Housing', 'Living', 'Safety', 'Environment', 'Economy'],
+                                                                datasets: [
+                                                                    {
+                                                                        label: 'Score',
+                                                                        data: [`${city.healthcare}`, `${city.taxation}`, `${city.education}`, `${city.housing}`, `${city.costOfLiving}`, `${city.safety}`, `${city.environmentalQuality}`, `${city.economy}`],
+
+                                                                        backgroundColor: [
+                                                                            'rgba(255, 99, 132, 0.2)',
+                                                                            'rgba(54, 162, 235, 0.2)',
+                                                                            'rgba(255, 206, 86, 0.2)',
+                                                                            'rgba(75, 192, 192, 0.2)',
+                                                                            'rgba(153, 102, 255, 0.2)',
+                                                                            'rgba(255, 159, 64, 0.2)'
+                                                                        ],
+                                                                        borderColor: [
+                                                                            'rgba(255, 99, 132, 1)',
+                                                                            'rgba(54, 162, 235, 1)',
+                                                                            'rgba(255, 206, 86, 1)',
+                                                                            'rgba(75, 192, 192, 1)',
+                                                                            'rgba(153, 102, 255, 1)',
+                                                                            'rgba(255, 159, 64, 1)'
+                                                                        ],
+                                                                        borderWidth: 1
+                                                                    }]
+                                                            }}
+                                                            height={100}
+                                                            width={250}
+                                                            options={{
+                                                                responsive: true,
+                                                                maintainAspectRatio: true,
+                                                                scales: {
+                                                                    y: {
+                                                                        suggestedMin: 0,
+                                                                        suggestedMax: 10
                                                                     }
-                                                                }}
-                                                            />
-                                                        </Tab.Pane>)
+                                                                }
+                                                            }}
+                                                        />
 
-                                                })}
-                                            </Tab.Content>
-                                        </Col>
-                                    </Row>
-                                </Tab.Container>
-                                <h4> Compare Cities</h4>
-                                <CityTable />
+                                                    </Tab.Pane>)
+                                            })}
+                                        </Tab.Content>
 
-
-                            </Container>
-                        </Col>
+                                    </Col>
+                                </Row>
+                            </Tab.Container>
+                        </Container>
+                        <Container className="scores">
+                            <h3> Compare Cities</h3>
+                            <CityTable />
+                        </Container>
                     </Col>
+
                 </Row>
-
-                <Container className="g-2">
-                    <Col md>
-
-
-
-                    </Col>
-
-                </Container>
             </Jumbotron>
-
-
-
         </>
     );
 };
