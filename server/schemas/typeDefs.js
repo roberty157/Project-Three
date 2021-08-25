@@ -27,7 +27,7 @@ const typeDefs = gql`
   }
   type City{
      _id: ID
-    cityId: String
+    cityId: Int
     name: String
     healthcare: Float
     taxation: Float
