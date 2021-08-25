@@ -1,38 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { searchCityData, searchBlank } from '../utils/API';
 import { useMutation ,useQuery} from '@apollo/client';
-import { SAVE_CITY,SAVE_HOME_CITY } from '../utils/mutations';
-import {QUERY_ME} from '../utils/queries';
+import { SAVE_CITY, SAVE_HOME_CITY } from '../utils/mutations';
+import { QUERY_ME } from '../utils/queries';
 import { numbersWithCommas } from '../utils/helpers'
-import { saveCityIds, getSavedCityIds } from '../utils/localStorage';
-import { Jumbotron,/* Container, */Form, /*Button*/} from 'react-bootstrap';
+import { Jumbotron, Form} from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2'
 
-import { Container,Button,Grid,/*Image*/ } from 'semantic-ui-react';
-/*
-const cityResultStyle={
-  position:'relative'
-}
-const cityResultOverlayStyle={
-  position:'absolute'
-}
-*/
+import { Container,Button,Grid} from 'semantic-ui-react';
 
 const Search = () => {
-  const {loading, error,data} = useQuery(QUERY_ME,{});
-  // console.log('loading',loading);
-  // console.log('error',error);
-  // console.log('data',data);
+  const {loading, error, data} = useQuery(QUERY_ME,{});
+  console.log(error);
   const [searchedCities, setSearchedCities] = useState([]);
-  const [searchedChart, setSearchedChart] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
   const [savedCityIds, setSavedCityIds] = useState([]);
 
   // set up useEffect hook to save `savedCityIds` list to localStorage on component unmount
-
   useEffect(() => {
       if(!loading && data?.me?.savedCities) {
         const cityIds = data.me.savedCities.map(({cityId})=> cityId)
@@ -42,19 +29,6 @@ const Search = () => {
 
   // set mutation for saving City
   const [saveCity] = useMutation(SAVE_CITY
-  //   {
-  //   update(cache, {data: {saveCity: {_id, savedCities}}}){
-  //     cache.modify({
-  //       id: cache.identify(`User:${_id}`),
-  //       fields: {
-  //         savedCities(cities){
-  //           console.log("current user data --- ", cities)
-  //           return []
-  //         }
-  //       }
-  //     })
-  //   }
-  // }
   );
 
   // create method to search for city and set state on form submit
@@ -111,7 +85,7 @@ const Search = () => {
 
       // Update the hook and empty the search field
       setSearchedCities(cityData);
-      setSearchedChart(cityData);
+      // setSearchedChart(cityData);
       setSearchInput('');
 
 
@@ -151,7 +125,7 @@ const Search = () => {
         region: cityToSave.region,
 
         //change population(which has commas) into an integer
-        population: parseInt(cityToSave.population.replace(/\,/g,''),10)
+        population: parseInt(cityToSave.population.replace(/,/g,''),10)
 
 
 
@@ -327,47 +301,3 @@ const Search = () => {
 };
 
 export default Search;
-
-
-/*
-<div className="city-container" >
-          <div >
-            <h2>
-              {city.matching_full_name} 
-            </h2>
-            <h3>
-              <span className="bold">Population: </span><span>{city.population}</span>
-            </h3>
-            <div>
-              <span className="bold">Region: </span><span>{city.region}</span>
-            </div>
-            <div>
-              <span className="bold">Healthcare: </span><span>{city.healthcare} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Taxation: </span><span>{city.taxation} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Education: </span><span>{city.education} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Housing: </span><span>{city.housing} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Cost of Living: </span><span>{city.costOfLiving} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Safety: </span><span>{city.safety} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Environmental Quality: </span><span>{city.environmentalQuality} of 10</span>
-            </div>
-            <div>
-              <span className="bold">Economy: </span><span>{city.economy} of 10</span>
-            </div>
-          </div>
-          <div className="image-cropper">
-            <img alt="city" className="city-pic" src={city.image}></img>
-          </div>
-          </div>
-*/

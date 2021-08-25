@@ -13,6 +13,17 @@ code {
     monospace;
 }
 
+footer {
+  text-align: right;
+  font-size: 1rem;
+  padding: 1%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -22,7 +33,7 @@ code {
 }
 
 .navi,
-.jumboGrad {
+.jumboGrad, footer {
   background-image: linear-gradient(
     to right,
     #43cea2 0%,

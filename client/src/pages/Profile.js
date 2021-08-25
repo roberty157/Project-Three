@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Container, Button, Col, Row, Card, ListGroup, Nav, Image, Tab, Fade } from 'react-bootstrap';
+import { Jumbotron, Container, Button, Col, Row, Card, ListGroup, Nav, Tab, Fade } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { REMOVE_CITY } from '../utils/mutations';
