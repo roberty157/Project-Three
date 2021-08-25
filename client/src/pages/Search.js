@@ -135,7 +135,7 @@ const Search = () => {
         economy: cityToSave.economy,
         image: cityToSave.image,
         region: cityToSave.region,
-        population: parseInt(cityToSave.population.replace(/\,/g, ''), 10)
+        population: parseInt(cityToSave.population.replace(/,/g, ''), 10)
       }
       console.log(cityData);
       const response = await saveHomeCity({
