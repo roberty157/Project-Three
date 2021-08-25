@@ -20,11 +20,16 @@ export const LOGIN_USER = gql`
 
 
 export const SAVE_HOME_CITY = gql`
-    mutation saveHomeCity($cityInput: cityInput!) {
-        saveCity(input: $cityInput) {
+    mutation saveHomeCity($homeCity: cityInput!) {
+        saveHomeCity(homeCity: $homeCity) {
             username
+            homeCity{
+              name
+              region
+              population
+            }
             savedCities{
-               _id
+              name
             }
             } 
     }
