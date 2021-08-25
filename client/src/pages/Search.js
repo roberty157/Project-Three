@@ -123,7 +123,9 @@ const Search = () => {
       return false;
     }
     else{
-      if(homeCity.name === city.me){
+      //console.log('home city', homeCity);
+      //console.log('city',city);
+      if(homeCity.name === city.matching_full_name){
         return true;
       }else{
         return false;
