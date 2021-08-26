@@ -159,22 +159,22 @@ const AutoSearch = () => {
                     <Container className="autoComplete">
                         <h1>React Autocomplete</h1>
                         <Form className='p-5' onSubmit={handleFormSubmit}>
-                            <Form.Control
+        <Form.Control
 
-                                size="lg"
-                                className="user-input form-control-large"
-                                type="text"
-                                onChange={onChange}
-                                value={searchInput}
-                                placeholder='Input City Here'
-                            />
-                            <SuggestionsList
-                                searchInput={searchInput}
-                                selectedSuggestion={selectedSuggestion}
-                                onSelectSuggestion={onSelectSuggestion}
-                                displaySuggestions={displaySuggestions}
-                                suggestions={filteredSuggestions}
-                            />
+            size="lg"
+            className="user-input form-control-large"
+            type="text"
+            onChange={onChange}
+            value={searchInput}
+            placeholder='Input City Here'
+        />
+        <SuggestionsList
+            searchInput={searchInput}
+            selectedSuggestion={selectedSuggestion}
+            onSelectSuggestion={onSelectSuggestion}
+            displaySuggestions={displaySuggestions}
+            suggestions={filteredSuggestions}
+        />
                             <Button primary className="mt-10" type='submit'>
                                 Search
                             </Button>

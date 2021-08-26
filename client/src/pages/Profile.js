@@ -64,31 +64,32 @@ const Profile = () => {
             <Jumbotron fluid className="m-3">
                 <Row>
 
-                    <Col className="mb-2 " xs={5}>
+                    <Col className="mb-2 mt-3" sm={12} md={5}>
+                    <Container>
                         <Card fluid>
-                            <Card.Content>
+                            <Card.Content className="text-left">
                                 <Card.Header><h1>{data.me.username}</h1></Card.Header>
                                 <Card.Meta>{data.me.email}</Card.Meta>
                                 <Card.Description>
                                     {data.me.homeCity &&
-                                        <h3>{data.me.username} is currently living in {data.me.homeCity.name.split(',')[0]}</h3>}
+                                        <h3>{data.me.username} is currently living in {data.me.homeCity.name.split(',')[0]}.</h3>}
 
                                 </Card.Description>
 
                             </Card.Content>
                             <Card.Content extra>
-                                <a>
+                                <div>
                                     <Icon disabled name='building' size='large' />
                                     {data.me.savedCities.length} saved cities
-                                </a>
+                                </div>
                             </Card.Content>
                             {
                                 data.me.homeCity &&
                                 <Card.Content extra>
-                                    <a>
-                                        <Icon name='home' size='large' />
+                                    <div className="display-flex">
+                                        <Icon disabled name='home' size='large' />
                                         {data.me.homeCity.name}
-                                    </a>
+                                    </div>
                                 </Card.Content>
                             }
 
@@ -108,32 +109,28 @@ const Profile = () => {
                                 </Card>
                                 : <Link to="/"><Button variant="danger" ><h1>find your home city</h1></Button></Link>
                         }
+                          
+                        </Container>
 
                     </Col>
                     <Col sm={12} md={7} className="mt-3">
+                        <Container className="scores">
+                                <h3> City Compare</h3>
+                                <CityTable />
+                            </Container>
                         <Container className="data"> <h2> Your {userData.cityCount} Saved Cities!</h2> </Container>
 
                         <Container className="scores">
                             <Tab.Container className="" sm={12} id="left-tabs-example" >
                                 <Row >
-                                    <Col md={3} sm={12}>
-                                        {userData.savedCities.map((city) => {
-                                            return (
-                                                <Nav defaultActiveKey={city.cityId} variant="pills" className="flex-column" >
-                                                    <Nav.Item >
-                                                        <Nav.Link className="p-2 pb-2" eventKey={city.cityId}> {city.name}</Nav.Link>
-                                                    </Nav.Item>
-                                                </Nav>)
-                                        })}
-                                    </Col>
-                                    <Col md={9} sm={12}>
+                                <Col sm={12}>
                                         <Tab.Content>
                                             {userData.savedCities.map((city) => {
                                                 return (
                                                     <Tab.Pane eventKey={city.cityId} transition={Fade}>
                                                         <Row className="CityChartName">
                                                             <h3> Viewing {city.name}                                 <Button variant="outline-danger delete" size="sm" onClick={() => handleDeleteCity(city.cityId)}>
-                                                                Delete this City!
+                                                                Delete city
                                                             </Button></h3>
 
                                                         </Row>
@@ -183,13 +180,22 @@ const Profile = () => {
                                         </Tab.Content>
 
                                     </Col>
+                                    <Col sm={12} className="display-flex flex-wrap">
+                                        {userData.savedCities.map((city) => {
+                                            return (
+                                                <Nav key={city.cityId} defaultActiveKey={city.cityId} variant="pills"  >
+                                                    <Nav.Item >
+                                                        <Nav.Link className="p-2 pb-2" eventKey={city.cityId}> {city.name}</Nav.Link>
+                                                    </Nav.Item>
+                                                </Nav>)
+                                        })}
+                                    </Col>
+                                     
                                 </Row>
                             </Tab.Container>
+                            
                         </Container>
-                        <Container className="scores">
-                            <h3> Compare Cities</h3>
-                            <CityTable />
-                        </Container>
+                           
                     </Col>
 
                 </Row>

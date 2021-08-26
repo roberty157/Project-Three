@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 25px;
+  cursor: default;
 }
 
 code {
@@ -21,19 +22,32 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
-  color: #fff;
+  color: #000;
 }
 
 .bold {
   font-weight: bold;
 }
 
-.city-container {
+.city-container, .display-flex {
   display: flex;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.modal .modal-header, footer {
+  background-color: #185a9d;
+  color: #fff;
+}
+
+.modal .mobal-body {
+  padding: 2rem;
+}
+
 .navi,
-.jumboGrad, footer {
+.jumboGrad {
   background-image: linear-gradient(
     to right,
     #43cea2 0%,
@@ -54,6 +68,7 @@ footer {
   font-size: 20px;
   color: white;
 }
+
 .card-text {
   line-height: 3rem;
 }
@@ -72,11 +87,18 @@ footer {
   background-color: transparent;
   color: white;
 }
+
 .navbar .nav-link {
   text-align: left;
   font-size: 20px;
   padding: 1em !important;
   transition: 0.5s;
+  border-radius: .28571429rem;
+  border: 1px solid transparent;
+}
+
+.navbar-collapse {
+  justify-content: flex-end;
 }
 
 .navi,
@@ -89,11 +111,11 @@ footer {
   display: block;
 }
 
-.navbar .nav-link:hover {
+.navbar .nav-link:hover, .navbar-dark .navbar-nav .nav-link:hover {
   background-position: right center;
   box-shadow: 0 0 10px #eee;
-
-  font-weight: bold;
+  border-color: #fff;
+  color: #fff;
 }
 
 .image-cropper {
@@ -134,16 +156,30 @@ table:hover {
   background: 0 0;
   border: 0;
   border-radius: 0.25rem;
-  background-color: #ddd;
   display: inline-block;
   font-size: 24px;
   max-width: 30px;
   max-height: 30px;
 }
 
+.close span {
+    background: transparent;
+    color: white;
+}
+
 .alert .close {
   float: right;
   margin: -5px -25px;
+}
+
+.modal .form-group {
+  margin-bottom: 1.7rem;
+  font-size: 1.1rem;
+}
+
+.modal .form-control {
+    padding: 10px 15px;
+    font-size: 1.1rem;
 }
 
 .container .ui.label,
@@ -169,12 +205,14 @@ table.table-striped > tbody > tr:nth-of-type(odd),
 table.table-striped > tbody > tr:nth-of-type(even):hover {
   --bs-table-accent-bg: #0d6efd14;
 }
-.scores {
+.scores, .ui.fluid.card {
   box-shadow: 0px 1px 7px 7px rgba(61, 109, 99, 0.2);
   transition: 0.3s;
   padding: 1rem;
   text-align: center;
   margin-bottom: 1.5rem;
+  border-radius: .28571429rem;
+  line-height: 1.2;
 }
 
 .data {
@@ -185,10 +223,10 @@ table.table-striped > tbody > tr:nth-of-type(even):hover {
   padding: 1.5rem;
   margin-bottom: 1rem;
   text-align: center;
+  border-radius: .28571429rem;
 }
 
 .CityChartName {
-  flex-direction: column;
   padding: 1rem;
 }
 
@@ -205,7 +243,7 @@ table.table-striped > tbody > tr:nth-of-type(even):hover {
 }
 
 .user-input {
-  padding: 5px 3px;
+  padding: 5px 15px;
   width: 100%;
 }
 .suggestions-list {
@@ -232,29 +270,30 @@ table.table-striped > tbody > tr:nth-of-type(even):hover {
   box-shadow: 0 0 10px #eee;
 }
 
-/* .btn-search {
-  background-image: linear-gradient(
-    to right,
-    #1a2980 0%,
-    #26d0ce 51%,
-    #1a2980 100%
-  ) !important;
-}
-.btn-search {
-  margin: 10px !important;
-  padding: 15px 45px !important;
-  text-align: center !important;
-  text-transform: uppercase !important;
-  transition: 0.5s !important;
-  background-size: 200% auto !important;
-  color: white !important;
-  box-shadow: 0 0 20px #eee !important;
-  border-radius: 10px !important;
-  display: block !important;
+.jumbotron .ui.card>.extra, .jumbotron .ui.card .meta {
+  color: rgba(0,0,0,.68); 
 }
 
-.btn-search:hover {
-  background-position: right center !important; /* change the direction of the change here */
-/* color: #fff !important;
-  text-decoration: none !important;
-} */
+.extra.content, .text-left{
+  text-align: left;
+}
+
+.autoComplete form {
+  position: relative;
+}
+
+ul.suggestions-list{
+  position: absolute;
+  width: calc(100% - 6rem);
+}
+
+.nav.nav-pills {
+    border-radius: .28571429rem;
+    line-height: 1.2;
+    background-color: #43cea2;
+    margin: 1px 3px;
+}
+
+.nav.nav-pills .nav-link {
+      color: #fff;
+}
