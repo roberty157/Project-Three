@@ -23,7 +23,7 @@ const BannerIntro = () => {
   ];
     return (
         <div className="row my-5 justify-content-between p-5">
-          {bannerCards.map(bannerCard => <BannerCard {...bannerCard} />)}
+          {bannerCards.map((bannerCard, i) => <BannerCard key={i} {...bannerCard} />)}
         </div>
     )
 }
