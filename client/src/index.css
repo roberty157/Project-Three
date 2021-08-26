@@ -196,6 +196,42 @@ table.table-striped > tbody > tr:nth-of-type(even):hover {
   margin-left: 1rem;
 }
 
+.autoComplete {
+  padding: 50px 20px;
+}
+
+.dropdown-menu {
+  max-height: 75px !important;
+}
+
+.user-input {
+  padding: 5px 3px;
+  width: 100%;
+}
+.suggestions-list {
+  list-style: none;
+  padding: 0;
+  max-height: 160px;
+  overflow-y: auto;
+  font-size: 18px;
+}
+.suggestion {
+  background-color: rgba(20, 49, 82, 0.452);
+  padding: 10px;
+  color: rgb(185, 184, 184);
+  cursor: pointer;
+}
+.suggestion:hover {
+  background-color: rgba(238, 238, 238, 0.1);
+  color: rgb(224, 224, 224);
+}
+.selected {
+  background-color: rgba(238, 238, 238, 0.1);
+  color: rgb(238, 223, 223);
+  border: solid rgba(255, 255, 255, 0.397) 2px;
+  box-shadow: 0 0 10px #eee;
+}
+
 /* .btn-search {
   background-image: linear-gradient(
     to right,
