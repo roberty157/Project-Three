@@ -8,9 +8,9 @@ import { saveCityIds, getSavedCityIds } from '../utils/localStorage';
 import { Jumbotron,/* Container, */Form, /*Button*/ } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2'
-
 import { Container, Button, Grid,/*Image*/ } from 'semantic-ui-react';
 import AutoSearch from '../components/AutoSearch';
+
 // import Typeahead from '../components/Autocomplete';
 
 
@@ -58,6 +58,102 @@ const Search = () => {
     //   }
     // }
   );
+
+  const SuggestionsList = props => {
+    const {
+      suggestions,
+      searchInput,
+      onSelectSuggestion,
+      displaySuggestions,
+      selectedSuggestion
+    } = props;
+    const onKeyDown = index => {
+      const { selectedSuggestion, filteredSuggestions } = this.state;
+      if (index.keyCode === 13) {
+        this.setState({
+          selectedSuggestion: 0,
+          displaySuggestions: false,
+          searchInput: filteredSuggestions[selectedSuggestion]
+        });
+      } else if (index.keyCode === 38) {
+        if (selectedSuggestion === 0) {
+          return;
+        }
+        this.setState({ selectedSuggestion: selectedSuggestion - 1 });
+      } else if (index.keyCode === 40) {
+        if (selectedSuggestion - 1 === filteredSuggestions.length) {
+          return;
+        }
+        this.setState({ selectedSuggestion: selectedSuggestion + 1 });
+      }
+    };
+
+    if (searchInput && displaySuggestions) {
+      if (suggestions.length > 0) {
+        return (
+          <ul className="suggestions-list">
+            {suggestions.map((suggestion, index) => {
+              const isSelected = selectedSuggestion === index;
+              const classname = `suggestion ${isSelected ? "selected" : ""}`;
+
+              return (
+                <li
+                  tabIndex={0}
+                  onKeyDown={onKeyDown}
+                  key={index}
+                  className={classname}
+                  onClick={() => onSelectSuggestion(index)}
+                >
+                  {suggestion}
+                </li>
+
+              );
+            })}
+          </ul>
+        );
+      } else {
+        return <div>No suggestions available...</div>;
+      }
+    }
+    return <></>;
+  };
+
+
+  const [filteredSuggestions, setFilteredSuggestions] = React.useState([]);
+  const [selectedSuggestion, setSelectedSuggestion] = React.useState(0);
+  const [displaySuggestions, setDisplaySuggestions] = React.useState(false);
+
+
+  const suggestions = [
+    "Los Angeles, CA",
+    "Austin, TX",
+    "New York City, NY",
+    "Des Moines, IA",
+    "Seattle, WA",
+    "Phoenix, AZ",
+    "Boulder, CO"
+  ];
+
+  const onChange = event => {
+    const value = event.target.value;
+    setSearchInput(value);
+
+    const filteredSuggestions = suggestions.filter(suggestion =>
+      suggestion.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setFilteredSuggestions(filteredSuggestions);
+    setDisplaySuggestions(true);
+
+  };
+
+  const onSelectSuggestion = index => {
+    setSelectedSuggestion(index);
+    setSearchInput(filteredSuggestions[index]);
+    setFilteredSuggestions([]);
+    setDisplaySuggestions(false);
+  };
+
 
 
 
@@ -248,12 +344,19 @@ const Search = () => {
               <Form.Control
 
                 size="lg"
-                name='searchInput'
+                className="user-input form-control-large"
+                type="text"
+                onChange={onChange}
                 value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                type='text'
-                placeholder='Example: New York, NY'
+                placeholder='Input City Here'
+              />
+              <SuggestionsList
 
+                searchInput={searchInput}
+                selectedSuggestion={selectedSuggestion}
+                onSelectSuggestion={onSelectSuggestion}
+                displaySuggestions={displaySuggestions}
+                suggestions={filteredSuggestions}
               />
 
 
@@ -264,7 +367,7 @@ const Search = () => {
         </Container>
 
       </Jumbotron>
-      <AutoSearch />
+
 
       <Container className='p-5'>
         {searchedCities.map(city => {
