@@ -241,7 +241,7 @@ const Search = () => {
 
           <Container className='p-5'>
             <div>
-              <Bar
+             {<Bar
                 data={{
                   labels: ['Healthcare', 'Taxation', 'Education', 'Housing', 'Living', 'Safety', 'Environment', 'Economy'],
                   datasets: [
@@ -280,7 +280,7 @@ const Search = () => {
                     }
                   }
                 }}
-              />
+              /> }
             </div>
             {
               Auth.loggedIn() &&
@@ -308,8 +308,8 @@ const Search = () => {
 export default Search;
 
 
-/*
-<div className="city-container" >
+
+{/* <div className="city-container" >
           <div >
             <h2>
               {city.matching_full_name} 
@@ -348,5 +348,4 @@ export default Search;
           <div className="image-cropper">
             <img alt="city" className="city-pic" src={city.image}></img>
           </div>
-          </div>
-*/
+          </div> */}

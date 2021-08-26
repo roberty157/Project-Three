@@ -121,7 +121,7 @@ const Profile = () => {
                                                             </Button></h3>
 
                                                         </Row>
-                                                        <Bar className="mb-3"
+                                                        {<Bar className="mb-3"
                                                             data={{
                                                                 labels: ['Healthcare', 'Taxation', 'Education', 'Housing', 'Living', 'Safety', 'Environment', 'Economy'],
                                                                 datasets: [
@@ -160,7 +160,7 @@ const Profile = () => {
                                                                     }
                                                                 }
                                                             }}
-                                                        />
+                                                        />}
 
                                                     </Tab.Pane>)
                                             })}

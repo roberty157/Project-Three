@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
 import Auth from '../utils/auth';
+import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 
 const AppNavbar = () => {
     // set modal display state
@@ -15,8 +18,8 @@ const AppNavbar = () => {
             <Navbar className='navi p-4' bg='dark' variant='dark' expand='lg'>
                 <Container fluid>
                     <Navbar.Brand as={Link} to='/'>
-                        <h2>
-                            Trading Places </h2>
+                        <FontAwesomeIcon icon={faExchangeAlt} size="2x" />
+                        <span className="mx-5 h2">Trading Places </span>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls='navbar' />
                     <Navbar.Collapse id='navbar'>
