@@ -10,6 +10,10 @@ import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2'
 
 import { Container, Button, Grid,/*Image*/ } from 'semantic-ui-react';
+import AutoSearch from '../components/AutoSearch';
+// import Typeahead from '../components/Autocomplete';
+
+
 
 
 const Search = () => {
@@ -54,6 +58,8 @@ const Search = () => {
     //   }
     // }
   );
+
+
 
 
   // create method to search for city and set state on form submit
@@ -231,6 +237,7 @@ const Search = () => {
 
       <Jumbotron fluid className='text-light jumboGrad '>
 
+
         <Container style={{ width: '70rem' }} className='p-5 jumbo'>
 
           <Form className='p-5' onSubmit={handleFormSubmit}>
@@ -239,13 +246,17 @@ const Search = () => {
             <Form.Row>
               <Form.Label>City, State </Form.Label>
               <Form.Control
+
                 size="lg"
                 name='searchInput'
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 type='text'
                 placeholder='Example: New York, NY'
+
               />
+
+
               <Button primary className="mt-10" type='submit'>
                 Search
               </Button>
@@ -253,6 +264,7 @@ const Search = () => {
         </Container>
 
       </Jumbotron>
+      <AutoSearch />
 
       <Container className='p-5'>
         {searchedCities.map(city => {
