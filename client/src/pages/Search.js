@@ -383,7 +383,6 @@ const Search = () => {
                     ? 'this city is currently your home city'
                     : 'Set this city as home'
                   }
-
                 </Button>
 
               }

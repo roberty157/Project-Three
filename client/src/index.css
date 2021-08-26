@@ -185,6 +185,9 @@ table.table-striped > tbody > tr:nth-of-type(even):hover {
   margin-left: 1rem;
 }
 
+footer {
+  text-align: center;
+}
 .autoComplete {
   padding: 50px 20px;
 }
