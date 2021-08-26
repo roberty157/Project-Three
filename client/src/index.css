@@ -287,13 +287,13 @@ ul.suggestions-list{
   width: calc(100% - 6rem);
 }
 
-.nav.nav-pills {
+.scores .nav.nav-pills {
     border-radius: .28571429rem;
     line-height: 1.2;
     background-color: #43cea2;
     margin: 1px 3px;
 }
 
-.nav.nav-pills .nav-link {
+.scores .nav.nav-pills .nav-link {
       color: #fff;
 }
