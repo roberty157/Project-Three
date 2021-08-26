@@ -1,23 +1,23 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCity, faDollarSign, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faChartBar, faCity, faSearch } from "@fortawesome/free-solid-svg-icons";
 import BannerCard from "./BannerCard";
 const BannerIntro = () => {
   let bannerCards = [
     {
       headerIcon: <FontAwesomeIcon icon={faSearch} />,
       title: "Search",
-      text: "US City"
+      text: "Quality of Life Scores for US Cities"
     },
     {
-      headerIcon: <FontAwesomeIcon icon={faDollarSign} />,
+      headerIcon: <FontAwesomeIcon icon={faChartBar} />,
       title: "Analyze",
-      text: "Quality of Life Ratings"
+      text: "Healthcare, Taxation, Education, Housing Cost of Living, Safety, Environmental Quality, & Economy"
 
     },
     {
       headerIcon: <FontAwesomeIcon icon={faCity} />,
       title: "Compare",
-      text: "Sign Up to Compare Cities"
+      text: "Scores: Home City vs. Future Home City"
 
     }
   ];
