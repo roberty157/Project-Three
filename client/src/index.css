@@ -61,6 +61,12 @@ code {
   background-color: transparent;
   color: white;
 }
+.navbar .nav-link {
+  text-align: left;
+  font-size: 20px;
+  padding: 1em !important;
+  transition: 0.5s;
+}
 
 .navi,
 .jumboGrad {
@@ -72,11 +78,11 @@ code {
   display: block;
 }
 
-.navi:hover {
-  background-position: top center; /* change the direction of the change here */
-  color: #fff;
-  text-decoration: none;
+.navbar .nav-link:hover {
+  background-position: right center;
   box-shadow: 0 0 10px #eee;
+
+  font-weight: bold;
 }
 
 .image-cropper {
@@ -170,15 +176,6 @@ table.table-striped > tbody > tr:nth-of-type(even):hover {
   text-align: center;
 }
 
-.navbar .nav-link {
-  text-align: left;
-  font-size: 20px;
-  padding-left: 1em !important;
-}
-.nav-link {
-  font-size: 18px;
-}
-
 .CityChartName {
   flex-direction: column;
   padding: 1rem;
@@ -191,3 +188,65 @@ table.table-striped > tbody > tr:nth-of-type(even):hover {
 footer {
   text-align: center;
 }
+.autoComplete {
+  padding: 50px 20px;
+}
+
+.dropdown-menu {
+  max-height: 75px !important;
+}
+
+.user-input {
+  padding: 5px 3px;
+  width: 100%;
+}
+.suggestions-list {
+  list-style: none;
+  padding: 0;
+  max-height: 160px;
+  overflow-y: auto;
+  font-size: 18px;
+}
+.suggestion {
+  background-color: rgba(20, 49, 82, 0.452);
+  padding: 10px;
+  color: rgb(185, 184, 184);
+  cursor: pointer;
+}
+.suggestion:hover {
+  background-color: rgba(238, 238, 238, 0.1);
+  color: rgb(224, 224, 224);
+}
+.selected {
+  background-color: rgba(238, 238, 238, 0.1);
+  color: rgb(238, 223, 223);
+  border: solid rgba(255, 255, 255, 0.397) 2px;
+  box-shadow: 0 0 10px #eee;
+}
+
+/* .btn-search {
+  background-image: linear-gradient(
+    to right,
+    #1a2980 0%,
+    #26d0ce 51%,
+    #1a2980 100%
+  ) !important;
+}
+.btn-search {
+  margin: 10px !important;
+  padding: 15px 45px !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  transition: 0.5s !important;
+  background-size: 200% auto !important;
+  color: white !important;
+  box-shadow: 0 0 20px #eee !important;
+  border-radius: 10px !important;
+  display: block !important;
+}
+
+.btn-search:hover {
+  background-position: right center !important; /* change the direction of the change here */
+/* color: #fff !important;
+  text-decoration: none !important;
+} */

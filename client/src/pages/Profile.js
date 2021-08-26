@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Container, Button, Col, Row, Card, ListGroup, Nav, Image, Tab, Fade } from 'react-bootstrap';
+import { Jumbotron, Container, Button, Col, Row, /*Card,*/ ListGroup, Nav, /*Image,*/ Tab, Fade } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { REMOVE_CITY } from '../utils/mutations';
@@ -8,7 +8,9 @@ import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2'
 import CityTable from '../components/Table';
 import 'semantic-ui-css/semantic.min.css';
-
+import { Card, Icon, Image } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
+import { numbersWithCommas } from '../utils/helpers'
 
 import city from "../assets/images/city.jpg";
 
@@ -58,40 +60,54 @@ const Profile = () => {
 
     return (
         <>
-            <Jumbotron fluid >
-                {/* Stack the columns on mobile by making one full-width and the other half-width */}
-                <Row sm={1} md={2}>
-                    <Col sm={12} md={5} className="mt-3">
-                        <Card border="info royal" >
-                            <Card.Header><h2>{`Welcome ${userData.username}1`}</h2></Card.Header>
-                            <Card.Body className="m-3">
-                                <Card.Text className="mb-2" >{`Homecity: ${userData.homeCity}`}</Card.Text >
-                                <Card.Text className="mb-2">{`Email: ${userData.email}`}</Card.Text >
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the bulk
-                                    of the card's content.
-                                </Card.Text>
-                                <Card.Link href="#">Card Link</Card.Link>
-                                <Card.Link href="#">Another Link</Card.Link>
-                                {/* <Card.Image src="holder.js/100px180" height="250" width="250" /> */}
-                                <ListGroup variant="flush" className="m-3 ">
-                                    <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                                    <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                                    <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-                                </ListGroup>
-                            </Card.Body>
+
+            <Jumbotron fluid className="m-3">
+                <Row>
+
+                    <Col className="mb-2 " xs={5}>
+                        <Card fluid>
+                            <Card.Content>
+                                <Card.Header><h1>{data.me.username}</h1></Card.Header>
+                                <Card.Meta>{data.me.email}</Card.Meta>
+                                <Card.Description>
+                                    {data.me.homeCity &&
+                                        <h3>{data.me.username} is currently living in {data.me.homeCity.name.split(',')[0]}</h3>}
+
+                                </Card.Description>
+
+                            </Card.Content>
+                            <Card.Content extra>
+                                <a>
+                                    <Icon disabled name='building' size='large' />
+                                    {data.me.savedCities.length} saved cities
+                                </a>
+                            </Card.Content>
+                            {
+                                data.me.homeCity &&
+                                <Card.Content extra>
+                                    <a>
+                                        <Icon name='home' size='large' />
+                                        {data.me.homeCity.name}
+                                    </a>
+                                </Card.Content>
+                            }
+
                         </Card>
-                        <Card className="overlay  text-white" height="250" width="250">
-                            <Card.Img src={city} alt="Card image" height="250" width="250" />
-                            <Card.ImgOverlay className="p-5">
-                                <Card.Title>Card title</Card.Title>
-                                <Card.Text>
-                                    This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This content is a little bit longer.
-                                </Card.Text>
-                                <Card.Text>Last updated 3 mins ago</Card.Text>
-                            </Card.ImgOverlay>
-                        </Card>
+                        {
+                            data.me.homeCity
+                                ? <Card fluid>
+                                    <Image src={data.me.homeCity.image} wrapped ui={false} />
+                                    <Card.Content>
+                                        <Card.Header>{data.me.homeCity.name.split(',')[0]}</Card.Header>
+                                        <Card.Meta>{data.me.homeCity.name}</Card.Meta>
+                                        <Card.Description>
+                                            population: {numbersWithCommas(data.me.homeCity.population)}
+                                        </Card.Description>
+                                    </Card.Content>
+
+                                </Card>
+                                : <Link to="/"><Button variant="danger" ><h1>find your home city</h1></Button></Link>
+                        }
 
                     </Col>
                     <Col sm={12} md={7} className="mt-3">

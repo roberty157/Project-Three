@@ -27,7 +27,7 @@ const typeDefs = gql`
   }
   type City{
      _id: ID
-    cityId: String
+    cityId: Int
     name: String
     healthcare: Float
     taxation: Float
@@ -56,7 +56,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    saveHomeCity(input:cityInput):User
+    saveHomeCity(homeCity:cityInput):User
     saveCity(city:cityInput):User
     removeCity(cityId:ID!):User
   }

@@ -8,6 +8,11 @@ export const QUERY_ME = gql`
       username
       email
       cityCount
+      homeCity{
+        name
+        image
+        population
+      }
       savedCities {
         _id
         cityId
