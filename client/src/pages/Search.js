@@ -1,35 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { searchCityData, searchBlank } from '../utils/API';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation ,useQuery} from '@apollo/client';
 import { SAVE_CITY, SAVE_HOME_CITY } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import { numbersWithCommas } from '../utils/helpers'
-import { saveCityIds, getSavedCityIds } from '../utils/localStorage';
-import { Jumbotron,/* Container, */Form, /*Button*/ } from 'react-bootstrap';
+import { Jumbotron, Form} from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2'
-import { Container, Button, Grid,/*Image*/ } from 'semantic-ui-react';
+
+import { Container, Button, Grid} from 'semantic-ui-react';
 import AutoSearch from '../components/AutoSearch';
 
-// import Typeahead from '../components/Autocomplete';
 
 
 
 
 const Search = () => {
-  const { loading, error, data } = useQuery(QUERY_ME, {});
-  // console.log('loading',loading);
-  // console.log('error',error);
-  // console.log('data',data);
+  const {loading, error, data} = useQuery(QUERY_ME,{});
+  console.log(error);
   const [searchedCities, setSearchedCities] = useState([]);
-  const [searchedChart, setSearchedChart] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
   const [savedCityIds, setSavedCityIds] = useState([]);
 
   // set up useEffect hook to save `savedCityIds` list to localStorage on component unmount
-
   useEffect(() => {
     if (!loading && data?.me?.savedCities) {
       const cityIds = data.me.savedCities.map(({ cityId }) => cityId)
@@ -44,19 +39,6 @@ const Search = () => {
   const [saveHomeCity, { saveHomeError }] = useMutation(SAVE_HOME_CITY);
 
   const [saveCity] = useMutation(SAVE_CITY
-    //   {
-    //   update(cache, {data: {saveCity: {_id, savedCities}}}){
-    //     cache.modify({
-    //       id: cache.identify(`User:${_id}`),
-    //       fields: {
-    //         savedCities(cities){
-    //           console.log("current user data --- ", cities)
-    //           return []
-    //         }
-    //       }
-    //     })
-    //   }
-    // }
   );
 
   const SuggestionsList = props => {
@@ -212,7 +194,7 @@ const Search = () => {
 
       // Update the hook and empty the search field
       setSearchedCities(cityData);
-      setSearchedChart(cityData);
+      // setSearchedChart(cityData);
       setSearchInput('');
 
 
@@ -256,7 +238,7 @@ const Search = () => {
         economy: cityToSave.economy,
         image: cityToSave.image,
         region: cityToSave.region,
-        population: parseInt(cityToSave.population.replace(/\,/g, ''), 10)
+        population: parseInt(cityToSave.population.replace(/,/g, ''), 10)
       }
       console.log(cityData);
       const response = await saveHomeCity({
@@ -304,7 +286,13 @@ const Search = () => {
         region: cityToSave.region,
 
         //change population(which has commas) into an integer
-        population: parseInt(cityToSave.population.replace(/\,/g, ''), 10)
+        population: parseInt(cityToSave.population.replace(/,/g,''),10)
+
+
+
+
+
+
       }
 
       const response = await saveCity({
