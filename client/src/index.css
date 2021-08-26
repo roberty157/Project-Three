@@ -199,29 +199,42 @@ footer {
 .user-input {
   padding: 5px 3px;
   width: 100%;
+  position: relative;
 }
+
+.p-5 {
+  position: relative;
+  padding: 0px;
+}
+
 .suggestions-list {
+  background-color: rgb(2 51 95 / 79%);
+  width: calc(100% - 6rem);
+  position: absolute;
   list-style: none;
   padding: 0;
-  max-height: 160px;
+  max-height: 150px;
   overflow-y: auto;
   font-size: 18px;
+  transition: 0.5s;
+  box-shadow: 0 0 10px rgb(37, 37, 37);
 }
 .suggestion {
-  background-color: rgba(20, 49, 82, 0.452);
-  padding: 10px;
+  padding: 15px;
   color: rgb(185, 184, 184);
   cursor: pointer;
 }
 .suggestion:hover {
-  background-color: rgba(238, 238, 238, 0.1);
+  background-color: rgb(0 190 133 / 65%);
   color: rgb(224, 224, 224);
+  font-weight: bold;
+  transition: 0.5s;
+  box-shadow: 0 0 10px #eee;
 }
 .selected {
   background-color: rgba(238, 238, 238, 0.1);
   color: rgb(238, 223, 223);
   border: solid rgba(255, 255, 255, 0.397) 2px;
-  box-shadow: 0 0 10px #eee;
 }
 
 /* .btn-search {
