@@ -6,7 +6,9 @@ import { QUERY_ME } from '../utils/queries';
 import { numbersWithCommas } from '../utils/helpers'
 import { Jumbotron, Form} from 'react-bootstrap';
 import Auth from '../utils/auth';
-import { Bar } from 'react-chartjs-2'
+import { Bar } from 'react-chartjs-2';
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { Container, Button, Grid} from 'semantic-ui-react';
 import AutoSearch from '../components/AutoSearch';
@@ -349,8 +351,8 @@ const Search = () => {
               />
 
 
-              <Button primary type='submit'>
-                Search
+              <Button light type='submit'>
+                <FontAwesomeIcon icon={faSearch} /><span>&nbsp;&nbsp;Search</span>
               </Button>
               </div>
             </Form.Row></Form>
