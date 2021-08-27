@@ -132,7 +132,7 @@ footer {
   position: relative;
   overflow: hidden;
   border-radius: 5%;
-  margin-left: 20px;
+  padding-left: 20px;
 }
 
 .city-pic {
@@ -355,7 +355,7 @@ ul.suggestions-list{
 }
 
 .my-5 .card-header  .card-title{
-   font-size: 2rem;
+  font-size: 1.6rem;
    line-height: 1;
    margin: 0;
    color: #185a9d;
