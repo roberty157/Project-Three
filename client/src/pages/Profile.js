@@ -21,12 +21,20 @@ const Profile = () => {
 
   const { loading, data } = useQuery(QUERY_ME, { fetchPolicy: 'network-only' });
   console.log(data);
+  const [removeCity] = useMutation(REMOVE_CITY);
 
   const userData = data?.me || {};
   console.log(userData);
 
+  if (!userData?.username) {
+    return (
+      <h4>
+        You need to be logged in to see this. Use the navigation links above to
+        sign up or log in!
+      </h4>
+    );
+  }
 
-  const [removeCity] = useMutation(REMOVE_CITY);
 
 
   // create function that accepts the city's mongo _id value as param and deletes the book from the database
