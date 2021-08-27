@@ -13,7 +13,7 @@ import AutoSearch from '../components/AutoSearch';
 
 // import Typeahead from '../components/Autocomplete';
 
-
+ 
 
 
 const Search = () => {
