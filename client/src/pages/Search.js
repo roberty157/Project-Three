@@ -14,7 +14,7 @@ import { Container, Button, Grid} from 'semantic-ui-react';
 import AutoSearch from '../components/AutoSearch';
 
 
-
+ 
 
 
 const Search = () => {
