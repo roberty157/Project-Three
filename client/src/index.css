@@ -41,6 +41,10 @@ footer {
   flex-wrap: wrap;
 }
 
+.align-center {
+  align-items: center;
+}
+
 .modal .modal-header, footer {
   background-color: #185a9d;
   color: #fff;
@@ -241,8 +245,13 @@ table.table-striped > tbody > tr:nth-of-type(even):hover {
 footer {
   text-align: center;
 }
+
 .autoComplete {
   padding: 50px 20px;
+}
+
+.about-me .container {
+  padding: 0;
 }
 
 .dropdown-menu {
@@ -255,9 +264,8 @@ footer {
   position: relative;
 }
 
-.p-5 {
+.home-search form{
   position: relative;
-  padding: 0px;
 }
 
 .suggestions-list {
@@ -292,6 +300,10 @@ footer {
 
 .jumbotron .ui.card>.extra, .jumbotron .ui.card .meta {
   color: rgba(0,0,0,.68); 
+}
+
+.jumbotron .ui.card>.extra i{
+  color: #43cea2; 
 }
 
 .extra.content, .text-left, .jumboGrad .text-left{
