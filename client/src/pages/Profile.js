@@ -11,7 +11,6 @@ import 'semantic-ui-css/semantic.min.css';
 import { Card, Icon, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { numbersWithCommas } from '../utils/helpers'
-
 import city from "../assets/images/city.jpg";
 
 
@@ -20,7 +19,7 @@ import city from "../assets/images/city.jpg";
 const Profile = () => {
 
 
-  const { loading, data } = useQuery(QUERY_ME);
+  const { loading, data } = useQuery(QUERY_ME, { fetchPolicy: 'network-only' });
   console.log(data);
 
   const userData = data?.me || {};
@@ -129,7 +128,7 @@ const Profile = () => {
                         return (
                           <Tab.Pane eventKey={city.cityId} transition={Fade}>
                             <Row className="CityChartName">
-                              <h3> Viewing {city.region}                                 <Button variant="outline-danger delete" size="sm" onClick={() => handleDeleteCity(city.cityId)}>
+                              <h3> Viewing {city.name}                                 <Button variant="outline-danger delete" size="sm" onClick={() => handleDeleteCity(city.cityId)}>
                                 Delete city
                               </Button></h3>
 
@@ -185,7 +184,7 @@ const Profile = () => {
                       return (
                         <Nav key={city.cityId} defaultActiveKey={city.cityId} variant="pills"  >
                           <Nav.Item >
-                            <Nav.Link className="p-2" eventKey={city.cityId}> {city.region}</Nav.Link>
+                            <Nav.Link className="p-2 pb-2" eventKey={city.cityId}> {city.name}</Nav.Link>
                           </Nav.Item>
                         </Nav>)
                     })}

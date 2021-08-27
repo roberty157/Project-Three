@@ -17,7 +17,7 @@ const BannerIntro = () => {
     {
       headerIcon: <FontAwesomeIcon icon={faCity} />,
       title: "Compare",
-      text: "See how your home city compares with your possible future home ciities."
+      text: "See how your home city compares with your possible future home cities."
 
     }
   ];

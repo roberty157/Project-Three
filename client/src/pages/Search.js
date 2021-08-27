@@ -7,7 +7,7 @@ import { numbersWithCommas } from '../utils/helpers'
 import { Jumbotron, Form } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2';
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { Container, Button, Grid } from 'semantic-ui-react';
@@ -78,7 +78,7 @@ const Search = () => {
           </ul>
         );
       } else {
-        return <div>No suggestions available...</div>;
+        return <div className="no-suggestions"> <FontAwesomeIcon icon={faExclamationTriangle} />&nbsp;&nbsp;No suggestions are available</div>;
       }
     }
     return <></>;
@@ -311,7 +311,7 @@ const Search = () => {
           style={{ width: '70rem' }} className='p-5 jumbo'>
 
           <Form className='p-5' onSubmit={handleFormSubmit}>
-            <h1 style={{ textAlign: 'center' }}>Search for your future home city</h1>
+            <h1 className="text-center font-normal">Search for your future <span className="home-city">home city</span></h1>
 
             <Form.Row >
               <Form.Label className="text-left display-block">City, State </Form.Label>

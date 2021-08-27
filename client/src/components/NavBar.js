@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import 'semantic-ui-css/semantic.min.css';
+import { Image } from 'semantic-ui-react'
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
-
 import Auth from '../utils/auth';
-import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import src from '../assets/images/logo192.png';
 
 const AppNavbar = () => {
     // set modal display state
@@ -18,8 +20,11 @@ const AppNavbar = () => {
             <Navbar className='navi p-4' bg='dark' variant='dark' expand='lg'>
                 <Container fluid>
                     <Navbar.Brand as={Link} to='/'>
-                        <FontAwesomeIcon icon={faExchangeAlt} size="2x" />
-                        <span className="mx-5 h2">Trading Places </span>
+                        <span className="mx-5 h2">
+                             <FontAwesomeIcon className="home-logo" icon={faHome} />
+                            {/* <Image className="logo-image" src={src} verticalAlign="top" size="tiny" /> */}
+                            Home City
+                        </span>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls='navbar' />
                     <Navbar.Collapse id='navbar'>
