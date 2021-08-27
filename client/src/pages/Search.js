@@ -334,7 +334,7 @@ const Search = () => {
                 />
 
 
-                <Button light type='submit'>
+                <Button light="true" type='submit'>
                   <FontAwesomeIcon icon={faSearch} /><span>&nbsp;&nbsp;Search</span>
                 </Button>
               </div>
