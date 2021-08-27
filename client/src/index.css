@@ -33,6 +33,10 @@ footer {
   display: flex;
 }
 
+.display-block {
+  display: block;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -290,7 +294,7 @@ footer {
   color: rgba(0,0,0,.68); 
 }
 
-.extra.content, .text-left{
+.extra.content, .text-left, .jumboGrad .text-left{
   text-align: left;
 }
 
@@ -323,6 +327,7 @@ ul.suggestions-list{
     margin: 0 0 20px 0 !important;
     width: 100%;
     justify-content: flex-start;
+    padding: 0;
 }
 
 .my-5 .card-header{
@@ -348,11 +353,16 @@ ul.suggestions-list{
   align-items: center;
   display: flex;
   color: #185a9d;
+  padding: 1.2rem 1.5rem;
 }
 
 /* Media queries */
 @media screen and (max-width: 768px) {
    .my-5 .card {
      flex-basis: 100%;
+   }
+
+   .jumboGrad .jumbo, .jumboGrad .jumbo .p-5{
+     padding: .5rem !important;
    }
 }
