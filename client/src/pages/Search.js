@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { Container, Button, Grid } from 'semantic-ui-react';
 import AutoSearch from '../components/AutoSearch';
+import CityNames from '../utils/Cities';
 
 
 
@@ -51,7 +52,8 @@ const Search = () => {
       onSelectSuggestion,
       displaySuggestions,
       selectedSuggestion,
-      onBlur
+      onKeyDown
+
     } = props;
 
     if (searchInput && displaySuggestions) {
@@ -69,6 +71,8 @@ const Search = () => {
                   key={index}
                   className={classname}
                   onClick={() => onSelectSuggestion(index)}
+                  onKeyDown={onKeyDown}
+
                 >
                   {suggestion}
                 </li>
@@ -90,15 +94,7 @@ const Search = () => {
   const [displaySuggestions, setDisplaySuggestions] = React.useState(false);
 
 
-  const suggestions = [
-    "Los Angeles, CA",
-    "Austin, TX",
-    "New York City, NY",
-    "Des Moines, IA",
-    "Seattle, WA",
-    "Phoenix, AZ",
-    "Boulder, CO"
-  ];
+  const suggestions = CityNames();
 
   const onChange = event => {
     const value = event.target.value;
@@ -118,6 +114,8 @@ const Search = () => {
     setSearchInput(filteredSuggestions[index]);
     setFilteredSuggestions([]);
     setDisplaySuggestions(false);
+
+
   };
 
 
@@ -327,6 +325,7 @@ const Search = () => {
                 />
                 <SuggestionsList
                   onBlur={() => (alert("blur"), setDisplaySuggestions(false))}
+
                   searchInput={searchInput}
                   selectedSuggestion={selectedSuggestion}
                   onSelectSuggestion={onSelectSuggestion}
@@ -356,17 +355,17 @@ const Search = () => {
                     City: {city.matching_full_name}
                   </h2>
 
-                   {
-                Auth.loggedIn() &&
-                <Button primary
-                  disabled={savedCityIds.includes(city.cityId + '') || savedCityIds.includes(city.cityId)}
-                  className='btn-block btn-info'
-                  id="saveCityBtn"
-                  onClick={() => handleSaveCity(city.cityId) }>
-                  {savedCityIds.includes(city.cityId + '') || savedCityIds.includes(city.cityId)
-                    ? 'City has been saved'
-                    : 'Save this City'}
-                </Button>
+                  {
+                    Auth.loggedIn() &&
+                    <Button primary
+                      disabled={savedCityIds.includes(city.cityId + '') || savedCityIds.includes(city.cityId)}
+                      className='btn-block btn-info'
+                      id="saveCityBtn"
+                      onClick={() => handleSaveCity(city.cityId)}>
+                      {savedCityIds.includes(city.cityId + '') || savedCityIds.includes(city.cityId)
+                        ? 'City has been saved'
+                        : 'Save this City'}
+                    </Button>
 
 
                   }
