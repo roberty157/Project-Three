@@ -251,7 +251,7 @@ const Search = () => {
         throw new Error('something went wrong!');
       }
       const btn = document.getElementById('saveHomeCityBtn')
-      btn.innerHTML = 'this city is currently your home city';
+      btn.innerHTML = 'City is your Home City';
       btn.setAttribute('disabled', true);
     } catch (err) {
       console.error(err);
@@ -371,6 +371,32 @@ const Search = () => {
                   <h2>
                     City: {city.matching_full_name}
                   </h2>
+                   {
+                Auth.loggedIn() &&
+                <Button primary
+                  disabled={savedCityIds.includes(city.cityId + '')}
+                  className='btn-block btn-info'
+                  id="saveCityBtn"
+                  onClick={() => handleSaveCity(city.cityId)}>
+                  {savedCityIds.includes(city.cityId + '')
+                    ? 'City has been saved'
+                    : 'Save this City'}
+                </Button>
+
+              }
+
+              {
+                (Auth.loggedIn() && !loading && error === undefined) &&
+                <Button disabled={homeCityEqualsCurrent(data.me.homeCity, city)}
+                  id="saveHomeCityBtn"
+                  primary onClick={() => handleSaveHomeCity(city.cityId)}>
+                  {homeCityEqualsCurrent(data.me.homeCity, city)
+                    ? 'City is your Home City'
+                    : 'Set as Home City'
+                  }
+                </Button>
+
+              }
                   <h3>
                     <span className="bold">Population: </span><span>{city.population}</span>
                   </h3>
@@ -412,7 +438,7 @@ const Search = () => {
             </Grid>
 
 
-            <Container className='p-5'>
+            <Container>
               <div>
                 <Bar
                   data={{
@@ -455,33 +481,7 @@ const Search = () => {
                   }}
                 />
               </div>
-              {
-                Auth.loggedIn() &&
-                <Button primary
-                  disabled={savedCityIds.includes(city.cityId + '')}
-                  className='btn-block btn-info'
-                  id="saveCityBtn"
-                  onClick={() => handleSaveCity(city.cityId)}>
-                  {savedCityIds.includes(city.cityId + '')
-                    ? 'This city has already been saved!'
-                    : 'Save this City!'}
-                </Button>
-
-              }
-
-              {
-                (Auth.loggedIn() && !loading && error === undefined) &&
-                <Button disabled={homeCityEqualsCurrent(data.me.homeCity, city)}
-                  id="saveHomeCityBtn"
-                  primary onClick={() => handleSaveHomeCity(city.cityId)}>
-                  {homeCityEqualsCurrent(data.me.homeCity, city)
-                    ? 'this city is currently your home city'
-                    : 'Set this city as home'
-                  }
-                </Button>
-
-              }
-
+            
 
             </Container>
           </div>

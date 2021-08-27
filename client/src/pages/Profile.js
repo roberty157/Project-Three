@@ -107,7 +107,7 @@ const Profile = () => {
                                     </Card.Content>
 
                                 </Card>
-                                : <Link to="/"><Button variant="danger" ><h1>find your home city</h1></Button></Link>
+                                : <Link to="/"><Button variant="danger">Search for your home city</Button></Link>
                         }
                           
                         </Container>
