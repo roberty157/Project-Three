@@ -7,7 +7,7 @@ import { numbersWithCommas } from '../utils/helpers'
 import { Jumbotron, Form} from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2';
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { Container, Button, Grid} from 'semantic-ui-react';
@@ -96,7 +96,7 @@ const Search = () => {
           </ul>
         );
       } else {
-        return <div>No suggestions available...</div>;
+        return <div className="no-suggestions"> <FontAwesomeIcon icon={faExclamationTriangle} />&nbsp;&nbsp;No suggestions are available</div>;
       }
     }
     return <></>;

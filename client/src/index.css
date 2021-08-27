@@ -369,6 +369,11 @@ ul.suggestions-list{
   padding: 1.2rem 1.5rem;
 }
 
+.no-suggestions {
+  position: absolute;
+  top: calc(100% + 10px);
+}
+
 /* Media queries */
 @media screen and (max-width: 768px) {
    .my-5 .card {
