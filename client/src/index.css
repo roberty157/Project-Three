@@ -29,7 +29,8 @@ footer {
   font-weight: bold;
 }
 
-.city-container, .display-flex {
+.city-container,
+.display-flex {
   display: flex;
 }
 
@@ -45,7 +46,8 @@ footer {
   align-items: center;
 }
 
-.modal .modal-header, footer {
+.modal .modal-header,
+footer {
   background-color: #185a9d;
   color: #fff;
 }
@@ -101,7 +103,7 @@ footer {
   font-size: 20px;
   padding: 1em !important;
   transition: 0.5s;
-  border-radius: .28571429rem;
+  border-radius: 0.28571429rem;
   border: 1px solid transparent;
 }
 
@@ -119,7 +121,8 @@ footer {
   display: block;
 }
 
-.navbar .nav-link:hover, .navbar-dark .navbar-nav .nav-link:hover {
+.navbar .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:hover {
   background-position: right center;
   box-shadow: 0 0 10px #eee;
   border-color: #fff;
@@ -171,8 +174,8 @@ table:hover {
 }
 
 .close span {
-    background: transparent;
-    color: white;
+  background: transparent;
+  color: white;
 }
 
 .alert .close {
@@ -186,8 +189,8 @@ table:hover {
 }
 
 .modal .form-control {
-    padding: 10px 15px;
-    font-size: 1.1rem;
+  padding: 10px 15px;
+  font-size: 1.1rem;
 }
 
 .container .ui.label,
@@ -213,13 +216,14 @@ table.table-striped > tbody > tr:nth-of-type(odd),
 table.table-striped > tbody > tr:nth-of-type(even):hover {
   --bs-table-accent-bg: #0d6efd14;
 }
-.scores, .ui.fluid.card {
+.scores,
+.ui.fluid.card {
   box-shadow: 0px 1px 7px 7px rgba(61, 109, 99, 0.2);
   transition: 0.3s;
   padding: 1rem;
   text-align: center;
   margin-bottom: 1.5rem;
-  border-radius: .28571429rem;
+  border-radius: 0.28571429rem;
   line-height: 1.2;
 }
 
@@ -231,7 +235,7 @@ table.table-striped > tbody > tr:nth-of-type(even):hover {
   padding: 1.5rem;
   margin-bottom: 1rem;
   text-align: center;
-  border-radius: .28571429rem;
+  border-radius: 0.28571429rem;
 }
 
 .CityChartName {
@@ -264,7 +268,7 @@ footer {
   position: relative;
 }
 
-.home-search form{
+.home-search form {
   position: relative;
 }
 
@@ -298,15 +302,59 @@ footer {
   border: solid rgba(255, 255, 255, 0.397) 2px;
 }
 
-.jumbotron .ui.card>.extra, .jumbotron .ui.card .meta {
-  color: rgba(0,0,0,.68); 
+.savedChart {
+  color: black !important;
+  font-size: 20px;
+  padding: 10px !important;
+  line-height: 2rem;
+}
+.nav-item .active {
+  background-color: rgb(0, 165, 143) !important;
+  color: White !important;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px 5px 10px 5px !important;
+  transition: 0.1s ease-in;
 }
 
-.jumbotron .ui.card>.extra i{
-  color: #43cea2; 
+/* .btn-search {
+  background-image: linear-gradient(
+    to right,
+    #1a2980 0%,
+    #26d0ce 51%,
+    #1a2980 100%
+  ) !important;
+}
+.btn-search {
+  margin: 10px !important;
+  padding: 15px 45px !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  transition: 0.5s !important;
+  background-size: 200% auto !important;
+  color: white !important;
+  box-shadow: 0 0 20px #eee !important;
+  border-radius: 10px !important;
+  display: block !important;
 }
 
-.extra.content, .text-left, .jumboGrad .text-left{
+.btn-search:hover {
+  background-position: right center !important; /* change the direction of the change here */
+/* color: #fff !important;
+  text-decoration: none !important;
+} */
+.jumbotron .ui.card > .extra,
+.jumbotron .ui.card .meta {
+  color: rgba(0, 0, 0, 0.68);
+}
+
+.jumbotron .ui.card > .extra i {
+  color: #43cea2;
+}
+
+.extra.content,
+.text-left,
+.jumboGrad .text-left {
   text-align: left;
 }
 
@@ -314,36 +362,36 @@ footer {
   position: relative;
 }
 
-ul.suggestions-list{
+ul.suggestions-list {
   position: absolute;
   width: calc(100% - 6rem);
   top: 100%;
 }
 
 .scores .nav.nav-pills {
-    border-radius: .28571429rem;
-    line-height: 1.2;
-    background-color: #43cea2;
-    margin: 1px 3px;
+  border-radius: 0.28571429rem;
+  line-height: 1.2;
+  background-color: #43cea2;
+  margin: 1px 3px;
 }
 
 .scores .nav.nav-pills .nav-link {
-      color: #fff;
+  color: #fff;
 }
 
-.ui.container:empty{
+.ui.container:empty {
   display: none;
 }
 
 .my-5 .card {
-    flex-basis: 30%;
-    margin: 0 0 20px 0 !important;
-    width: 100%;
-    justify-content: flex-start;
-    padding: 0;
+  flex-basis: 30%;
+  margin: 0 0 20px 0 !important;
+  width: 100%;
+  justify-content: flex-start;
+  padding: 0;
 }
 
-.my-5 .card-header{
+.my-5 .card-header {
   display: flex;
   align-items: center;
 }
@@ -355,11 +403,11 @@ ul.suggestions-list{
   color: #43cea2;
 }
 
-.my-5 .card-header  .card-title{
+.my-5 .card-header .card-title {
   font-size: 1.6rem;
-   line-height: 1;
-   margin: 0;
-   color: #185a9d;
+  line-height: 1;
+  margin: 0;
+  color: #185a9d;
 }
 
 .my-5 .card-body {
@@ -385,11 +433,12 @@ ul.suggestions-list{
 
 /* Media queries */
 @media screen and (max-width: 768px) {
-   .my-5 .card {
-     flex-basis: 100%;
-   }
+  .my-5 .card {
+    flex-basis: 100%;
+  }
 
-   .jumboGrad .jumbo, .jumboGrad .jumbo .p-5{
-     padding: .5rem !important;
-   }
+  .jumboGrad .jumbo,
+  .jumboGrad .jumbo .p-5 {
+    padding: 0.5rem !important;
+  }
 }
