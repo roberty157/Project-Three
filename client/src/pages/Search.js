@@ -20,6 +20,7 @@ import AutoSearch from '../components/AutoSearch';
 const Search = () => {
   const { loading, error, data } = useQuery(QUERY_ME, {});
   console.log(error);
+  console.log(data);
   const [searchedCities, setSearchedCities] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
@@ -30,7 +31,7 @@ const Search = () => {
   useEffect(() => {
     if (!loading && data?.me?.savedCities) {
       const cityIds = data.me.savedCities.map(({ cityId }) => cityId)
-      console.log("saved city ids from db --- ", cityIds)
+      //console.log("saved city ids from db --- ", cityIds)
       setSavedCityIds(cityIds)
     }
   }, [loading]);
@@ -134,7 +135,7 @@ const Search = () => {
     try {
       // perform API call to teleport
       const response = await searchCityData(searchInput);
-      console.log(response);
+      //console.log(response);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
@@ -354,17 +355,19 @@ const Search = () => {
                   <h2>
                     City: {city.matching_full_name}
                   </h2>
-                  {
-                    Auth.loggedIn() &&
-                    <Button primary
-                      disabled={savedCityIds.includes(city.cityId + '')}
-                      className='btn-block btn-info'
-                      id="saveCityBtn"
-                      onClick={() => handleSaveCity(city.cityId)}>
-                      {savedCityIds.includes(city.cityId + '')
-                        ? 'City has been saved'
-                        : 'Save this City'}
-                    </Button>
+
+                   {
+                Auth.loggedIn() &&
+                <Button primary
+                  disabled={savedCityIds.includes(city.cityId + '') || savedCityIds.includes(city.cityId)}
+                  className='btn-block btn-info'
+                  id="saveCityBtn"
+                  onClick={() => handleSaveCity(city.cityId) }>
+                  {savedCityIds.includes(city.cityId + '') || savedCityIds.includes(city.cityId)
+                    ? 'City has been saved'
+                    : 'Save this City'}
+                </Button>
+
 
                   }
 
