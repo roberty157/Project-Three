@@ -17,8 +17,10 @@
   [Install Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
   ## Usage
-  [Deployed Application](insert link)
-  To begin using the application
+  [Deployed Application](https://home-city-final.herokuapp.com/)
+  To begin using the application, use the search field on the landing page. If you would like to save cities or compare two cities, create an account by clicking on the Sign Up link. Authenticated users may Save a city or Save a city as their home city to display on their Profile page. Once logged in, click on the See Your Cities link to access additional features such as your Home City profile, City Comparison tool and easy reloading of saved Cities. 
+
+   ![Desktop](client/public/images/home-city.png)
 
   ## License
   Licensed under [MIT License](https://spdx.org/licenses/MIT.html).
@@ -30,4 +32,4 @@
   Currently no tests exists for the application. If you would like to contribute and help us by writing tests, see the [Contributing](#contributing) section.
 
   ## Questions
-  For more information about me and my other projects, visit my [GitHub profile](insert link here). Reach me to report issues or with questions at [insert email](mailto:insertemailaddress@this.com).
+  For more information about me and my other projects, visit my [GitHub profile](http://). Reach me to report issues or with questions at [insert email](mailto:insertemailaddress@this.com).

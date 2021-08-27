@@ -278,38 +278,39 @@ footer {
   position: relative;
 }
 
-.home-search form {
+.home-search .form-row {
   position: relative;
+  z-index: 1;
 }
 
 .suggestions-list {
-  background-color: rgb(2 51 95 / 79%);
+  background-color: rgb(2 51 95);
   width: calc(100% - 6rem);
   position: absolute;
   list-style: none;
   padding: 0;
-  max-height: 150px;
   overflow-y: auto;
   font-size: 18px;
   transition: 0.5s;
   box-shadow: 0 0 10px rgb(37, 37, 37);
+  overflow: auto;
+  width: 100%;
+  top: calc(100% + 5px);
+  max-height: calc(100vh - 400px);
 }
+
 .suggestion {
   padding: 15px;
   color: rgb(185, 184, 184);
   cursor: pointer;
 }
+
 .suggestion:hover {
-  background-color: rgb(0 190 133 / 65%);
+  background-color: rgb(0 190 133);
   color: rgb(224, 224, 224);
   font-weight: bold;
   transition: 0.5s;
   box-shadow: 0 0 10px #eee;
-}
-.selected {
-  background-color: rgba(238, 238, 238, 0.1);
-  color: rgb(238, 223, 223);
-  border: solid rgba(255, 255, 255, 0.397) 2px;
 }
 
 .savedChart {
@@ -339,16 +340,6 @@ footer {
 .text-left,
 .jumboGrad .text-left {
   text-align: left;
-}
-
-.autoComplete form {
-  position: relative;
-}
-
-ul.suggestions-list {
-  position: absolute;
-  width: calc(100% - 6rem);
-  top: 100%;
 }
 
 .scores .nav.nav-pills {
@@ -424,5 +415,9 @@ ul.suggestions-list {
   .jumboGrad .jumbo,
   .jumboGrad .jumbo .p-5 {
     padding: 0.5rem !important;
+  }
+
+  .suggestions-list {
+    max-height: calc(100vh - 300px);
   }
 }
