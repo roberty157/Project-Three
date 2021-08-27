@@ -317,6 +317,7 @@ footer {
 ul.suggestions-list{
   position: absolute;
   width: calc(100% - 6rem);
+  top: 100%;
 }
 
 .scores .nav.nav-pills {
