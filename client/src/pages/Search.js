@@ -327,7 +327,7 @@ const Search = () => {
         <Container style={{ width: '70rem' }} className='p-5 jumbo'>
 
           <Form className='p-5' onSubmit={handleFormSubmit}>
-            <h1 style={{ textAlign: 'center' }}>Search for your future home city</h1>
+            <h1 style={{ textAlign: 'center' }}>Search for your future <span className="home-city">home city</span></h1>
 
             <Form.Row >
               <Form.Label className="text-left display-block">City, State </Form.Label>

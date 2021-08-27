@@ -11,7 +11,6 @@ import 'semantic-ui-css/semantic.min.css';
 import { Card, Icon, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { numbersWithCommas } from '../utils/helpers'
-
 import city from "../assets/images/city.jpg";
 
 
