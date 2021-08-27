@@ -20,7 +20,7 @@ import city from "../assets/images/city.jpg";
 const Profile = () => {
 
 
-    const { loading, data } = useQuery(QUERY_ME);
+    const { loading, data } = useQuery(QUERY_ME, {fetchPolicy: 'network-only'});
     console.log(data);
 
     const userData = data?.me || {};
