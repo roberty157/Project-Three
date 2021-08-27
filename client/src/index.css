@@ -365,6 +365,7 @@ footer {
 ul.suggestions-list {
   position: absolute;
   width: calc(100% - 6rem);
+  top: 100%;
 }
 
 .scores .nav.nav-pills {
@@ -414,6 +415,20 @@ ul.suggestions-list {
   display: flex;
   color: #185a9d;
   padding: 1.2rem 1.5rem;
+}
+
+.no-suggestions {
+  position: absolute;
+  top: calc(100% + 10px);
+}
+
+.home-city {
+  text-shadow: 0px 0px 1px yellow;
+}
+
+.navbar-brand .ui.tiny.logo-image {
+  max-width: 30px;
+  margin-right: 10px;
 }
 
 /* Media queries */

@@ -11,7 +11,6 @@ import 'semantic-ui-css/semantic.min.css';
 import { Card, Icon, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { numbersWithCommas } from '../utils/helpers'
-
 import city from "../assets/images/city.jpg";
 
 
@@ -20,22 +19,42 @@ import city from "../assets/images/city.jpg";
 const Profile = () => {
 
 
-  const { loading, data } = useQuery(QUERY_ME);
-  console.log(data);
+    const { loading, data } = useQuery(QUERY_ME, {fetchPolicy: 'network-only'});
+    console.log(data);
 
-  const userData = data?.me || {};
-  console.log(userData);
-
-
-  const [removeCity] = useMutation(REMOVE_CITY);
+    const userData = data?.me || {};
+    console.log(userData);
 
 
-  // create function that accepts the city's mongo _id value as param and deletes the book from the database
-  const handleDeleteCity = async (cityId) => {
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    const [removeCity] = useMutation(REMOVE_CITY);
 
-    if (!token) {
-      return false;
+
+    // create function that accepts the city's mongo _id value as param and deletes the book from the database
+    const handleDeleteCity = async (cityId) => {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+        if (!token) {
+            return false;
+        }
+
+        // remove city
+        try {
+            const response = await removeCity({
+                variables: { cityId },
+            });
+
+            if (!response.data) {
+                throw new Error('something went wrong!');
+            }
+            // upon success, remove city's id from localStorage
+            removeCityId(cityId);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+    // if data isn't here yet, say so
+    if (loading) {
+        return <h2>LOADING...</h2>;
     }
 
     // remove city
