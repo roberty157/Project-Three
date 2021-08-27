@@ -136,9 +136,10 @@ const Profile = () => {
                         return (
                           <Tab.Pane eventKey={city.cityId} transition={Fade}>
                             <Row className="CityChartName">
-                              <h3> Viewing {city.name}                                 <Button variant="outline-danger delete" size="sm" onClick={() => handleDeleteCity(city.cityId)}>
-                                Delete city
-                              </Button></h3>
+                              <h3> Viewing {city.name}
+                                <Button variant="outline-danger delete" size="sm" onClick={() => handleDeleteCity(city.cityId)}>
+                                  Delete city
+                                </Button></h3>
 
                             </Row>
                             {<Bar className="mb-3"
@@ -168,15 +169,15 @@ const Profile = () => {
                                     borderWidth: 1
                                   }]
                               }}
-                              height={100}
-                              width={250}
+                              height={60}
+                              width={200}
                               options={{
                                 responsive: true,
                                 maintainAspectRatio: true,
                                 scales: {
                                   y: {
                                     suggestedMin: 0,
-                                    suggestedMax: 10
+                                    suggestedMax: 5
                                   }
                                 }
                               }}

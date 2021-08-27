@@ -159,6 +159,10 @@ table:hover {
   cursor: default;
 }
 
+td {
+  text-align: center !important;
+}
+
 .sr-only {
   visibility: hidden;
 }
@@ -195,10 +199,16 @@ table:hover {
 
 .container .ui.label,
 table.table thead th:nth-child(n + 2) {
-  background-color: #0d6efd;
-  color: #fff;
+  border: 2px solid;
+  border-color: #29899f;
+  background-color: white;
 }
 
+th {
+  color: white;
+  background-color: #48979c !important;
+  border: 0px !important;
+}
 table.table {
   font-size: 1.1rem;
 }
@@ -214,7 +224,7 @@ table.table tr td:nth-child(n + 2) {
 
 table.table-striped > tbody > tr:nth-of-type(odd),
 table.table-striped > tbody > tr:nth-of-type(even):hover {
-  --bs-table-accent-bg: #0d6efd14;
+  --bs-table-accent-bg: #b2e9d538;
 }
 .scores,
 .ui.fluid.card {
@@ -399,7 +409,8 @@ ul.suggestions-list {
   font-weight: normal;
 }
 
-.navbar-brand .ui.tiny.logo-image, .home-logo {
+.navbar-brand .ui.tiny.logo-image,
+.home-logo {
   max-width: 30px;
   margin-right: 10px;
 }
