@@ -327,8 +327,9 @@ const Search = () => {
           <Form className='p-5' onSubmit={handleFormSubmit}>
             <h1 style={{ textAlign: 'center' }}>Search for your future home city</h1>
 
-            <Form.Row>
-              <Form.Label>City, State </Form.Label>
+            <Form.Row >
+              <Form.Label className="text-left display-block">City, State </Form.Label>
+              <div className="input-group">
               <Form.Control
 
                 size="lg"
@@ -336,7 +337,7 @@ const Search = () => {
                 type="text"
                 onChange={onChange}
                 value={searchInput}
-                placeholder='Input City Here'
+                placeholder='Enter city name'
               />
               <SuggestionsList
 
@@ -348,9 +349,10 @@ const Search = () => {
               />
 
 
-              <Button primary className="mt-10" type='submit'>
+              <Button primary type='submit'>
                 Search
               </Button>
+              </div>
             </Form.Row></Form>
         </Container>
 
