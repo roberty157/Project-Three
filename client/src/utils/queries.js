@@ -9,9 +9,19 @@ export const QUERY_ME = gql`
       email
       cityCount
       homeCity{
+        cityId
         name
         image
+        healthcare
+        taxation
+        education
+        housing
+        costOfLiving
+        safety
+        environmentalQuality
+        economy
         population
+        region
       }
       savedCities {
         _id
