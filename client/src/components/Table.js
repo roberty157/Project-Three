@@ -25,11 +25,11 @@ const CityTable = () => {
 
         <Container>
           
-             <p>
+             <h3>
                 {userData.savedCities?.length > 1
                 ? `Select 2 cities to compare. You have ${userData.savedCities.length} ${userData.savedCities.length === 1 ? 'city' : 'cities'} saved.`
                 : 'You need at least 2 saved cities to compare. Search for more cities'}
-            </p>
+            </h3>
 
             <Dropdown className="mb-10" placeholder='Saved City' onChange={handleChange} fluid multiple selection options={
                 userData.savedCities?.map((city) => {  

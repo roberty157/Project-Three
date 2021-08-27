@@ -64,7 +64,7 @@ const Profile = () => {
             <Jumbotron fluid className="m-3">
                 <Row>
 
-                    <Col className="mb-2 mt-3" sm={12} md={5}>
+                    <Col className="mb-2 mt-3 about-me" sm={12} md={5}>
                     <Container>
                         <Card fluid>
                             <Card.Content className="text-left">
@@ -78,17 +78,17 @@ const Profile = () => {
 
                             </Card.Content>
                             <Card.Content extra>
-                                <div>
+                                <div className="display-flex align-center ">
                                     <Icon disabled name='building' size='large' />
-                                    {data.me.savedCities.length} saved cities
+                                    <span>{data.me.savedCities.length} saved cities</span>
                                 </div>
                             </Card.Content>
                             {
                                 data.me.homeCity &&
                                 <Card.Content extra>
-                                    <div className="display-flex">
+                                    <div className="display-flex align-center ">
                                         <Icon disabled name='home' size='large' />
-                                        {data.me.homeCity.name}
+                                        <span>{data.me.homeCity.name}</span>
                                     </div>
                                 </Card.Content>
                             }
@@ -102,7 +102,7 @@ const Profile = () => {
                                         <Card.Header>{data.me.homeCity.name.split(',')[0]}</Card.Header>
                                         <Card.Meta>{data.me.homeCity.name}</Card.Meta>
                                         <Card.Description>
-                                            population: {numbersWithCommas(data.me.homeCity.population)}
+                                            Population: {numbersWithCommas(data.me.homeCity.population)}
                                         </Card.Description>
                                     </Card.Content>
 
@@ -115,7 +115,7 @@ const Profile = () => {
                     </Col>
                     <Col sm={12} md={7} className="mt-3">
                         <Container className="scores">
-                                <h3> City Compare</h3>
+                                <h2> City Compare</h2>
                                 <CityTable />
                             </Container>
                         <Container className="data"> <h2> Your {userData.cityCount} Saved Cities!</h2> </Container>

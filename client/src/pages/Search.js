@@ -321,7 +321,7 @@ const Search = () => {
   return (
     <>
 
-      <Jumbotron fluid className='text-light jumboGrad '>
+      <Jumbotron fluid className='text-light jumboGrad home-search'>
 
 
         <Container style={{ width: '70rem' }} className='p-5 jumbo'>
