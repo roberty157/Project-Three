@@ -6,6 +6,8 @@ import { Image } from 'semantic-ui-react'
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 import Auth from '../utils/auth';
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import src from '../assets/images/logo192.png';
 
@@ -18,7 +20,11 @@ const AppNavbar = () => {
             <Navbar className='navi p-4' bg='dark' variant='dark' expand='lg'>
                 <Container fluid>
                     <Navbar.Brand as={Link} to='/'>
-                        <span className="mx-5 h2"><Image className="logo-image" src={src} verticalAlign="top" size="tiny" />Home City</span>
+                        <span className="mx-5 h2">
+                             <FontAwesomeIcon className="home-logo" icon={faHome} />
+                            {/* <Image className="logo-image" src={src} verticalAlign="top" size="tiny" /> */}
+                            Home City
+                        </span>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls='navbar' />
                     <Navbar.Collapse id='navbar'>

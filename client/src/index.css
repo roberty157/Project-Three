@@ -317,32 +317,6 @@ footer {
   transition: 0.1s ease-in;
 }
 
-/* .btn-search {
-  background-image: linear-gradient(
-    to right,
-    #1a2980 0%,
-    #26d0ce 51%,
-    #1a2980 100%
-  ) !important;
-}
-.btn-search {
-  margin: 10px !important;
-  padding: 15px 45px !important;
-  text-align: center !important;
-  text-transform: uppercase !important;
-  transition: 0.5s !important;
-  background-size: 200% auto !important;
-  color: white !important;
-  box-shadow: 0 0 20px #eee !important;
-  border-radius: 10px !important;
-  display: block !important;
-}
-
-.btn-search:hover {
-  background-position: right center !important; /* change the direction of the change here */
-/* color: #fff !important;
-  text-decoration: none !important;
-} */
 .jumbotron .ui.card > .extra,
 .jumbotron .ui.card .meta {
   color: rgba(0, 0, 0, 0.68);
@@ -422,11 +396,11 @@ ul.suggestions-list {
   top: calc(100% + 10px);
 }
 
-.home-city {
-  text-shadow: 0px 0px 1px yellow;
+.font-normal {
+  font-weight: normal;
 }
 
-.navbar-brand .ui.tiny.logo-image {
+.navbar-brand .ui.tiny.logo-image, .home-logo {
   max-width: 30px;
   margin-right: 10px;
 }
