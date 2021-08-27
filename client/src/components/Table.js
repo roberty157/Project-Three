@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Table, Col, Row, Button } from 'react-bootstrap';
+import { Container, Table } from 'react-bootstrap';
 import { Dropdown } from 'semantic-ui-react';
 import { useState} from 'react';
 import { useQuery } from '@apollo/client';
@@ -25,11 +25,11 @@ const CityTable = () => {
 
         <Container>
           
-             <p>
+             <h3>
                 {userData.savedCities?.length > 1
                 ? `Select 2 cities to compare. You have ${userData.savedCities.length} ${userData.savedCities.length === 1 ? 'city' : 'cities'} saved.`
                 : 'You need at least 2 saved cities to compare. Search for more cities'}
-            </p>
+            </h3>
 
             <Dropdown className="mb-10" placeholder='Saved City' onChange={handleChange} fluid multiple selection options={
                 userData.savedCities?.map((city) => {  
@@ -131,7 +131,7 @@ const CityTable = () => {
                     city2.safety = Math.round(city2[0].safety);
                     city2.environmentalQuality = Math.round(city2[0].environmentalQuality);
                     city2.economy = Math.round(city2[0].economy);
-                    if (index == 1) {
+                    if (index === 1) {
                         return (
                         <Table key={city1[0]._id} striped bordered hover>
                             <thead>

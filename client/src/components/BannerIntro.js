@@ -6,18 +6,18 @@ const BannerIntro = () => {
     {
       headerIcon: <FontAwesomeIcon icon={faSearch} />,
       title: "Search",
-      text: "Quality of Life Scores for US Cities"
+      text: "Search for U.S. cities to find population statistics and quality of life scores."
     },
     {
       headerIcon: <FontAwesomeIcon icon={faChartBar} />,
       title: "Analyze",
-      text: "Healthcare, Taxation, Education, Housing Cost of Living, Safety, Environmental Quality, & Economy"
+      text: "Get healthcare, taxation, education, housing, cost of living, safety, environmental quality & economy scores."
 
     },
     {
       headerIcon: <FontAwesomeIcon icon={faCity} />,
       title: "Compare",
-      text: "Scores: Home City vs. Future Home City"
+      text: "See how your home city compares with your possible future home ciities."
 
     }
   ];

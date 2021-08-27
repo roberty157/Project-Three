@@ -1,35 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { searchCityData, searchBlank } from '../utils/API';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation ,useQuery} from '@apollo/client';
 import { SAVE_CITY, SAVE_HOME_CITY } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import { numbersWithCommas } from '../utils/helpers'
-import { saveCityIds, getSavedCityIds } from '../utils/localStorage';
-import { Jumbotron,/* Container, */Form, /*Button*/ } from 'react-bootstrap';
+import { Jumbotron, Form} from 'react-bootstrap';
 import Auth from '../utils/auth';
-import { Bar } from 'react-chartjs-2'
-import { Container, Button, Grid,/*Image*/ } from 'semantic-ui-react';
+import { Bar } from 'react-chartjs-2';
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { Container, Button, Grid} from 'semantic-ui-react';
 import AutoSearch from '../components/AutoSearch';
 
-// import Typeahead from '../components/Autocomplete';
 
  
 
 
 const Search = () => {
-  const { loading, error, data } = useQuery(QUERY_ME, {});
-  // console.log('loading',loading);
-  // console.log('error',error);
-  // console.log('data',data);
+  const {loading, error, data} = useQuery(QUERY_ME,{});
+  console.log(error);
   const [searchedCities, setSearchedCities] = useState([]);
-  const [searchedChart, setSearchedChart] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
   const [savedCityIds, setSavedCityIds] = useState([]);
 
   // set up useEffect hook to save `savedCityIds` list to localStorage on component unmount
-
   useEffect(() => {
     if (!loading && data?.me?.savedCities) {
       const cityIds = data.me.savedCities.map(({ cityId }) => cityId)
@@ -44,19 +41,6 @@ const Search = () => {
   const [saveHomeCity, { saveHomeError }] = useMutation(SAVE_HOME_CITY);
 
   const [saveCity] = useMutation(SAVE_CITY
-    //   {
-    //   update(cache, {data: {saveCity: {_id, savedCities}}}){
-    //     cache.modify({
-    //       id: cache.identify(`User:${_id}`),
-    //       fields: {
-    //         savedCities(cities){
-    //           console.log("current user data --- ", cities)
-    //           return []
-    //         }
-    //       }
-    //     })
-    //   }
-    // }
   );
 
   const SuggestionsList = props => {
@@ -212,7 +196,7 @@ const Search = () => {
 
       // Update the hook and empty the search field
       setSearchedCities(cityData);
-      setSearchedChart(cityData);
+      // setSearchedChart(cityData);
       setSearchInput('');
 
 
@@ -256,7 +240,7 @@ const Search = () => {
         economy: cityToSave.economy,
         image: cityToSave.image,
         region: cityToSave.region,
-        population: parseInt(cityToSave.population.replace(/\,/g, ''), 10)
+        population: parseInt(cityToSave.population.replace(/,/g, ''), 10)
       }
       console.log(cityData);
       const response = await saveHomeCity({
@@ -267,7 +251,7 @@ const Search = () => {
         throw new Error('something went wrong!');
       }
       const btn = document.getElementById('saveHomeCityBtn')
-      btn.innerHTML = 'this city is currently your home city';
+      btn.innerHTML = 'City is your Home City';
       btn.setAttribute('disabled', true);
     } catch (err) {
       console.error(err);
@@ -304,7 +288,13 @@ const Search = () => {
         region: cityToSave.region,
 
         //change population(which has commas) into an integer
-        population: parseInt(cityToSave.population.replace(/\,/g, ''), 10)
+        population: parseInt(cityToSave.population.replace(/,/g,''),10)
+
+
+
+
+
+
       }
 
       const response = await saveCity({
@@ -331,7 +321,7 @@ const Search = () => {
   return (
     <>
 
-      <Jumbotron fluid className='text-light jumboGrad '>
+      <Jumbotron fluid className='text-light jumboGrad home-search'>
 
 
         <Container style={{ width: '70rem' }} className='p-5 jumbo'>
@@ -339,8 +329,9 @@ const Search = () => {
           <Form className='p-5' onSubmit={handleFormSubmit}>
             <h1 style={{ textAlign: 'center' }}>Search for your future home city</h1>
 
-            <Form.Row>
-              <Form.Label>City, State </Form.Label>
+            <Form.Row >
+              <Form.Label className="text-left display-block">City, State </Form.Label>
+              <div className="input-group">
               <Form.Control
 
                 size="lg"
@@ -348,7 +339,7 @@ const Search = () => {
                 type="text"
                 onChange={onChange}
                 value={searchInput}
-                placeholder='Input City Here'
+                placeholder='Enter city name'
               />
               <SuggestionsList
 
@@ -360,9 +351,10 @@ const Search = () => {
               />
 
 
-              <Button primary className="mt-10" type='submit'>
-                Search
+              <Button light type='submit'>
+                <FontAwesomeIcon icon={faSearch} /><span>&nbsp;&nbsp;Search</span>
               </Button>
+              </div>
             </Form.Row></Form>
         </Container>
 
@@ -379,6 +371,32 @@ const Search = () => {
                   <h2>
                     City: {city.matching_full_name}
                   </h2>
+                   {
+                Auth.loggedIn() &&
+                <Button primary
+                  disabled={savedCityIds.includes(city.cityId + '')}
+                  className='btn-block btn-info'
+                  id="saveCityBtn"
+                  onClick={() => handleSaveCity(city.cityId)}>
+                  {savedCityIds.includes(city.cityId + '')
+                    ? 'City has been saved'
+                    : 'Save this City'}
+                </Button>
+
+              }
+
+              {
+                (Auth.loggedIn() && !loading && error === undefined) &&
+                <Button disabled={homeCityEqualsCurrent(data.me.homeCity, city)}
+                  id="saveHomeCityBtn"
+                  primary onClick={() => handleSaveHomeCity(city.cityId)}>
+                  {homeCityEqualsCurrent(data.me.homeCity, city)
+                    ? 'City is your Home City'
+                    : 'Set as Home City'
+                  }
+                </Button>
+
+              }
                   <h3>
                     <span className="bold">Population: </span><span>{city.population}</span>
                   </h3>
@@ -420,7 +438,7 @@ const Search = () => {
             </Grid>
 
 
-            <Container className='p-5'>
+            <Container>
               <div>
                 <Bar
                   data={{
@@ -463,33 +481,7 @@ const Search = () => {
                   }}
                 />
               </div>
-              {
-                Auth.loggedIn() &&
-                <Button primary
-                  disabled={savedCityIds.includes(city.cityId + '')}
-                  className='btn-block btn-info'
-                  id="saveCityBtn"
-                  onClick={() => handleSaveCity(city.cityId)}>
-                  {savedCityIds.includes(city.cityId + '')
-                    ? 'This city has already been saved!'
-                    : 'Save this City!'}
-                </Button>
-
-              }
-
-              {
-                (Auth.loggedIn() && !loading && error === undefined) &&
-                <Button disabled={homeCityEqualsCurrent(data.me.homeCity, city)}
-                  id="saveHomeCityBtn"
-                  primary onClick={() => handleSaveHomeCity(city.cityId)}>
-                  {homeCityEqualsCurrent(data.me.homeCity, city)
-                    ? 'this city is currently your home city'
-                    : 'Set this city as home'
-                  }
-                </Button>
-
-              }
-
+            
 
             </Container>
           </div>

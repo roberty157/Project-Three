@@ -2,7 +2,7 @@ import Card from "react-bootstrap/Card"
 
 const bannerCard = ({ headerIcon, title, text}) => {
     return (
-        <Card bg="primary" text="white" style={{ width: '18rem', margin: '10px', textAlign: "center" }}>
+        <Card bg="light" text="dark" style={{ width: '18rem', margin: '10px', textAlign: "center" }}>
             <Card.Header>
                 {headerIcon}
                 <Card.Title>{title}</Card.Title>
