@@ -8,7 +8,7 @@ import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2'
 import CityTable from '../components/Table';
 import 'semantic-ui-css/semantic.min.css';
-import { Card, Icon, Image, Statistic } from 'semantic-ui-react'
+import { Card, Icon, Image, Statistic, Message } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { numbersWithCommas } from '../utils/helpers'
 import city from "../assets/images/city.jpg";
@@ -26,10 +26,13 @@ const Profile = () => {
 
   if (!userData?.username) {
     return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
+      <div className="p-5">
+          <Message negative>
+          <Message.Header>Additional privileges needed in order to view this page</Message.Header>
+              <p>You must to be logged in to view this page. Use navigation links above to
+              sign up or log in.</p>
+        </Message>
+      </div>
     );
   }
 
