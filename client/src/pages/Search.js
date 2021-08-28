@@ -9,9 +9,7 @@ import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2';
 import { faSearch, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 import { Container, Button, Grid, Message, Statistic } from 'semantic-ui-react';
-import AutoSearch from '../components/AutoSearch';
 import CityNames from '../utils/Cities';
 
 
@@ -432,7 +430,7 @@ const Search = () => {
             </Grid>
 
 
-            <Container>
+            <Container className="mt-4">
               <div>
                 <Bar
                   data={{

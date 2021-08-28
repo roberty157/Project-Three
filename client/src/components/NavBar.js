@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import 'semantic-ui-css/semantic.min.css';
-import { Image } from 'semantic-ui-react'
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 import Auth from '../utils/auth';
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-import src from '../assets/images/logo192.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const AppNavbar = () => {
     // set modal display state
@@ -22,7 +19,6 @@ const AppNavbar = () => {
                     <Navbar.Brand as={Link} to='/'>
                         <span className="mx-5 h2">
                              <FontAwesomeIcon className="home-logo" icon={faHome} />
-                            {/* <Image className="logo-image" src={src} verticalAlign="top" size="tiny" /> */}
                             Home City
                         </span>
                     </Navbar.Brand>

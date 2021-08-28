@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Container, Button, Col, Row, ListGroup, Nav, Tab, Fade } from 'react-bootstrap';
+import { Jumbotron, Container, Button, Col, Row, Nav, Tab, Fade } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { REMOVE_CITY } from '../utils/mutations';
@@ -12,8 +12,6 @@ import { Card, Icon, Image, Statistic } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { numbersWithCommas } from '../utils/helpers'
 import city from "../assets/images/city.jpg";
-
-
 
 
 const Profile = () => {
