@@ -394,13 +394,7 @@ const Search = () => {
 
                   }
 
-            
-                    
-                   
-                  <h3>
-                    <span className="bold">Population: </span><span>{city.population}</span>
 
-                  </h3>
                   {
                     (Auth.loggedIn() && !loading && error === undefined) &&
                     <Button disabled={homeCityEqualsCurrent(data.me.homeCity, city)}
