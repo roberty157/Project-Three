@@ -9,9 +9,7 @@ import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2';
 import { faSearch, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 import { Container, Button, Grid, Message, Statistic } from 'semantic-ui-react';
-import AutoSearch from '../components/AutoSearch';
 import CityNames from '../utils/Cities';
 
 
@@ -82,7 +80,7 @@ const Search = () => {
           </ul>
         );
       } else {
-        return <div className="no-suggestions"> <FontAwesomeIcon icon={faExclamationTriangle} />&nbsp;&nbsp;No suggestions are available</div>;
+        return <div className="no-suggestions"> <FontAwesomeIcon icon={faExclamationTriangle} />&nbsp;&nbsp;No suggestions available</div>;
       }
     }
     return <></>;
@@ -149,6 +147,7 @@ const Search = () => {
 
       // store the category data into an array
       const uaScores = cityData[0]._embedded["city:item"]._embedded["city:urban_area"]._embedded["ua:scores"].categories;
+
       cityData[0].housing = Math.round(uaScores[0].score_out_of_10);
       cityData[0].costOfLiving = Math.round(uaScores[1].score_out_of_10);
       cityData[0].safety = Math.round(uaScores[7].score_out_of_10);
@@ -432,7 +431,7 @@ const Search = () => {
             </Grid>
 
 
-            <Container>
+            <Container className="mt-4">
               <div>
                 <Bar
                   data={{

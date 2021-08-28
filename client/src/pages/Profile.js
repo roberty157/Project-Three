@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Container, Button, Col, Row, ListGroup, Nav, Tab, Fade } from 'react-bootstrap';
+import { Jumbotron, Container, Button, Col, Row, Nav, Tab, Fade } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { REMOVE_CITY } from '../utils/mutations';
@@ -8,12 +8,10 @@ import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2'
 import CityTable from '../components/Table';
 import 'semantic-ui-css/semantic.min.css';
-import { Card, Icon, Image, Statistic } from 'semantic-ui-react'
+import { Card, Icon, Image, Statistic, Message } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { numbersWithCommas } from '../utils/helpers'
 import city from "../assets/images/city.jpg";
-
-
 
 
 const Profile = () => {
@@ -28,10 +26,13 @@ const Profile = () => {
 
   if (!userData?.username) {
     return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
+      <div className="p-5">
+          <Message negative>
+          <Message.Header>Additional privileges needed in order to view this page</Message.Header>
+              <p>You must to be logged in to view this page. Use navigation links above to
+              sign up or log in.</p>
+        </Message>
+      </div>
     );
   }
 
@@ -93,7 +94,7 @@ const Profile = () => {
                 {
                   data.me.homeCity &&
                   <Card.Content extra>
-                    <div className="display-flex align-center ">
+                    <div className="display-flex align-center mb-4">
                       <Icon disabled name='home' size='large' />
                       <span>{data.me.homeCity.name}</span>
                     </div>
@@ -103,18 +104,18 @@ const Profile = () => {
               </Card>
               {
                 data.me.homeCity
-                  ? <Card fluid>
+                  ? <Card fluid className="mb-5">
                     <Image src={data.me.homeCity.image} wrapped ui={false} />
                     <Card.Content>
                       <Card.Header>{data.me.homeCity.name.split(',')[0]}</Card.Header>
-                      <Card.Meta>{data.me.homeCity.name}</Card.Meta>
-                      <Card.Description className="mb-4">
+                      <Card.Meta className="mb-4">{data.me.homeCity.name}</Card.Meta>
+                      <Card.Description >
                       <Statistic>
                         <Statistic.Label>Population</Statistic.Label>
                         <Statistic.Value>{numbersWithCommas(data.me.homeCity.population)}</Statistic.Value>
                      </Statistic>                   
                       </Card.Description>
-                         {<Bar className="mb-3"
+                         {<Bar
                               data={{
                                 labels: ['Healthcare', 'Taxation', 'Education', 'Housing', 'Living', 'Safety', 'Environment', 'Economy'],
                                 datasets: [
