@@ -94,7 +94,7 @@ const Profile = () => {
                 {
                   data.me.homeCity &&
                   <Card.Content extra>
-                    <div className="display-flex align-center ">
+                    <div className="display-flex align-center mb-4">
                       <Icon disabled name='home' size='large' />
                       <span>{data.me.homeCity.name}</span>
                     </div>
@@ -104,18 +104,18 @@ const Profile = () => {
               </Card>
               {
                 data.me.homeCity
-                  ? <Card fluid>
+                  ? <Card fluid className="mb-5">
                     <Image src={data.me.homeCity.image} wrapped ui={false} />
                     <Card.Content>
                       <Card.Header>{data.me.homeCity.name.split(',')[0]}</Card.Header>
-                      <Card.Meta>{data.me.homeCity.name}</Card.Meta>
-                      <Card.Description className="mb-4">
+                      <Card.Meta className="mb-4">{data.me.homeCity.name}</Card.Meta>
+                      <Card.Description >
                       <Statistic>
                         <Statistic.Label>Population</Statistic.Label>
                         <Statistic.Value>{numbersWithCommas(data.me.homeCity.population)}</Statistic.Value>
                      </Statistic>                   
                       </Card.Description>
-                         {<Bar className="mb-3"
+                         {<Bar
                               data={{
                                 labels: ['Healthcare', 'Taxation', 'Education', 'Housing', 'Living', 'Safety', 'Environment', 'Economy'],
                                 datasets: [
