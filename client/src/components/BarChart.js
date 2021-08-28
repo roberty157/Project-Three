@@ -3,7 +3,6 @@
 // import { Container } from 'react-bootstrap'
 // import { useQuery, useMutation } from '@apollo/client';
 // import { QUERY_ME } from '../utils/queries';
-// import Search from '../pages/Search';
 
 // const BarChart = () => {
 //     const { loading, data } = useQuery(QUERY_ME);
