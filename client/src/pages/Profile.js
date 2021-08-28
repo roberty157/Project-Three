@@ -8,7 +8,7 @@ import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2'
 import CityTable from '../components/Table';
 import 'semantic-ui-css/semantic.min.css';
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Icon, Image, Statistic } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { numbersWithCommas } from '../utils/helpers'
 import city from "../assets/images/city.jpg";
@@ -109,7 +109,10 @@ const Profile = () => {
                       <Card.Header>{data.me.homeCity.name.split(',')[0]}</Card.Header>
                       <Card.Meta>{data.me.homeCity.name}</Card.Meta>
                       <Card.Description>
-                        Population: {numbersWithCommas(data.me.homeCity.population)}
+                      <Statistic>
+                        <Statistic.Label>Population</Statistic.Label>
+                        <Statistic.Value>{numbersWithCommas(data.me.homeCity.population)}</Statistic.Value>
+                     </Statistic>                   
                       </Card.Description>
                     </Card.Content>
 
@@ -171,7 +174,13 @@ const Profile = () => {
                               }}
                               height={60}
                               width={200}
-                              options={{
+                              options={
+                                {
+                                  plugins: {
+                                    legend: {
+                                      display: false
+                                    }
+                                },
                                 responsive: true,
                                 maintainAspectRatio: true,
                                 scales: {
