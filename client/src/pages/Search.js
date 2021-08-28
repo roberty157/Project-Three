@@ -400,7 +400,7 @@ const Search = () => {
                   <h3>
                     <span className="bold">Population: </span><span>{city.population}</span>
 
-
+                  </h3>
                   {
                     (Auth.loggedIn() && !loading && error === undefined) &&
                     <Button disabled={homeCityEqualsCurrent(data.me.homeCity, city)}
@@ -416,7 +416,7 @@ const Search = () => {
                   <Statistic>
                         <Statistic.Label>Population</Statistic.Label>
                         <Statistic.Value>{city.population}</Statistic.Value>
-                     </Statistic>  
+                  </Statistic>  
 
                   <div>
                     <span className="bold">Region: </span><span>{city.region}</span>
