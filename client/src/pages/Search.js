@@ -10,7 +10,7 @@ import { Bar } from 'react-chartjs-2';
 import { faSearch, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { Container, Button, Grid } from 'semantic-ui-react';
+import { Container, Button, Grid, Message } from 'semantic-ui-react';
 import AutoSearch from '../components/AutoSearch';
 import CityNames from '../utils/Cities';
 
@@ -354,6 +354,14 @@ const Search = () => {
                   <h2>
                     City: {city.matching_full_name}
                   </h2>
+                  {Auth.loggedIn() ? (<div></div>) :
+                    (
+                      <Message
+                          info
+                          content="Sign up or login using the link in the header for the ability to create a profile page and save cities to compare."
+                        />
+                      )
+                  }
 
                   {
                     Auth.loggedIn() &&
