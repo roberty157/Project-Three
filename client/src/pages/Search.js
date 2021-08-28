@@ -10,17 +10,19 @@ import { Bar } from 'react-chartjs-2';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { Container, Button, Grid} from 'semantic-ui-react';
+import { Container, Button, Grid, Message} from 'semantic-ui-react';
 import AutoSearch from '../components/AutoSearch';
-
+//import SaveCityButton from '../components/SearchPage/SaveCityButton';
 
 
 
 
 const Search = () => {
+  const [validSearch, validateSearch] = useState(true);
   const {loading, error, data} = useQuery(QUERY_ME,{});
-  console.log(error);
-  console.log(data);
+  //console.log(error);
+  //console.log(data);
+
   const [searchedCities, setSearchedCities] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
@@ -154,7 +156,7 @@ const Search = () => {
     try {
       // perform API call to teleport
       const response = await searchCityData(searchInput);
-      //console.log(response);
+      
 
       if (!response.ok) {
         throw new Error('something went wrong!');
@@ -163,42 +165,51 @@ const Search = () => {
       // get returned data store to variable to pass into the useState hook
       const cityList = await response.json();
       const cityData = cityList._embedded['city:search-results'];
-
+      console.log(cityData);
       // storing the population data as it also lives in an embedded directory
       const pop = cityData[0]._embedded["city:item"].population;
       cityData[0]['population'] = numbersWithCommas(pop);
 
-      // store the category data into an array
-      const uaScores = cityData[0]._embedded["city:item"]._embedded["city:urban_area"]._embedded["ua:scores"].categories;
-      cityData[0].housing = Math.round(uaScores[0].score_out_of_10);
-      cityData[0].costOfLiving = Math.round(uaScores[1].score_out_of_10);
-      cityData[0].safety = Math.round(uaScores[7].score_out_of_10);
-      cityData[0].healthcare = Math.round(uaScores[8].score_out_of_10);
-      cityData[0].education = Math.round(uaScores[9].score_out_of_10);
-      cityData[0].environmentalQuality = Math.round(uaScores[10].score_out_of_10);
-      cityData[0].economy = Math.round(uaScores[11].score_out_of_10);
-      cityData[0].taxation = Math.round(uaScores[12].score_out_of_10);
-      cityData[0].cityId = cityData[0]._embedded["city:item"].geoname_id;
-      // store the link for the image in a variable 
-      const regionLink = cityData[0]._embedded["city:item"]._embedded["city:urban_area"]._links["ua:images"].href;
-      // API call to retrieve the image link
-      const getImageResponse = await searchBlank(regionLink);
-      if (!getImageResponse.ok) {
-        throw new Error('something went wrong!');
+      if(cityData[0]._embedded["city:item"]._embedded===undefined){
+        validateSearch(false);
+        setSearchInput('');
+      }else{
+        // store the category data into an array
+        const uaScores = cityData[0]._embedded["city:item"]._embedded["city:urban_area"]._embedded["ua:scores"].categories;
+        cityData[0].housing = Math.round(uaScores[0].score_out_of_10);
+        cityData[0].costOfLiving = Math.round(uaScores[1].score_out_of_10);
+        cityData[0].safety = Math.round(uaScores[7].score_out_of_10);
+        cityData[0].healthcare = Math.round(uaScores[8].score_out_of_10);
+        cityData[0].education = Math.round(uaScores[9].score_out_of_10);
+        cityData[0].environmentalQuality = Math.round(uaScores[10].score_out_of_10);
+        cityData[0].economy = Math.round(uaScores[11].score_out_of_10);
+        cityData[0].taxation = Math.round(uaScores[12].score_out_of_10);
+        cityData[0].cityId = cityData[0]._embedded["city:item"].geoname_id;
+        // store the link for the image in a variable 
+        const regionLink = cityData[0]._embedded["city:item"]._embedded["city:urban_area"]._links["ua:images"].href;
+        // API call to retrieve the image link
+        const getImageResponse = await searchBlank(regionLink);
+        if (!getImageResponse.ok) {
+          throw new Error('something went wrong!');
+        }
+        const regionImage = await getImageResponse.json();
+        // get the image link and store the string value in the cityData object 
+        const imageLink = regionImage.photos[0].image.web;
+        cityData[0]['image'] = imageLink;
+
+
+        const regionName = cityData[0]._embedded["city:item"]._embedded["city:urban_area"].full_name;
+        cityData[0]['region'] = regionName;
+
+        validateSearch(true);
+        // Update the hook and empty the search field
+        setSearchedCities(cityData);
+        // setSearchedChart(cityData);
+        setSearchInput('');
+
+        
       }
-      const regionImage = await getImageResponse.json();
-      // get the image link and store the string value in the cityData object 
-      const imageLink = regionImage.photos[0].image.web;
-      cityData[0]['image'] = imageLink;
-
-
-      const regionName = cityData[0]._embedded["city:item"]._embedded["city:urban_area"].full_name;
-      cityData[0]['region'] = regionName;
-
-      // Update the hook and empty the search field
-      setSearchedCities(cityData);
-      // setSearchedChart(cityData);
-      setSearchInput('');
+      
 
 
     } catch (err) {
@@ -291,11 +302,6 @@ const Search = () => {
         //change population(which has commas) into an integer
         population: parseInt(cityToSave.population.replace(/,/g,''),10)
 
-
-
-
-
-
       }
 
       const response = await saveCity({
@@ -363,8 +369,12 @@ const Search = () => {
 
 
       <Container className='p-5'>
-        {searchedCities.map(city => {
-          console.log(city);
+
+        {validSearch ? (searchedCities.map(city => {
+          //console.log(city);
+          
+          //disabled save city button if logged in and search result is already saved
+          
           return <div key={city.matching_full_name}>
             <Grid stackable columns={2}>
               <Grid.Column>
@@ -372,32 +382,39 @@ const Search = () => {
                   <h2>
                     City: {city.matching_full_name}
                   </h2>
-                   {
-                Auth.loggedIn() &&
-                <Button primary
-                  disabled={savedCityIds.includes(city.cityId + '') || savedCityIds.includes(city.cityId)}
-                  className='btn-block btn-info'
-                  id="saveCityBtn"
-                  onClick={() => handleSaveCity(city.cityId) }>
-                  {savedCityIds.includes(city.cityId + '') || savedCityIds.includes(city.cityId)
-                    ? 'City has been saved'
-                    : 'Save this City'}
-                </Button>
+                  {!Auth.loggedIn() &&
+                    <Message negative>
+                    <Message.Header>Login/Sign up to save city</Message.Header>
+                    </Message>
+                    }
+                    {
+                    Auth.loggedIn() &&
+                    <Button primary
+                      disabled={savedCityIds.includes(city.cityId + '') || savedCityIds.includes(city.cityId)}
+                      className='btn-block btn-info'
+                      id="saveCityBtn"
+                      onClick={() => handleSaveCity(city.cityId)}>
+                      {savedCityIds.includes(city.cityId + '') || savedCityIds.includes(city.cityId)
+                        ? 'City has been saved'
+                        : 'Save this City'}
+                    </Button>
 
-              }
 
-              {
-                (Auth.loggedIn() && !loading && error === undefined) &&
-                <Button disabled={homeCityEqualsCurrent(data.me.homeCity, city)}
-                  id="saveHomeCityBtn"
-                  primary onClick={() => handleSaveHomeCity(city.cityId)}>
-                  {homeCityEqualsCurrent(data.me.homeCity, city)
-                    ? 'City is your Home City'
-                    : 'Set as Home City'
                   }
-                </Button>
+                  {
+                    (Auth.loggedIn() && !loading && error === undefined) &&
+                    <Button disabled={homeCityEqualsCurrent(data.me.homeCity, city)}
+                      id="saveHomeCityBtn"
+                      primary onClick={() => handleSaveHomeCity(city.cityId)}>
+                      {homeCityEqualsCurrent(data.me.homeCity, city)
+                        ? 'City is your Home City'
+                        : 'Set as Home City'
+                      }
+                    </Button>
 
-              }
+                  }
+                    
+                   
                   <h3>
                     <span className="bold">Population: </span><span>{city.population}</span>
                   </h3>
@@ -486,7 +503,12 @@ const Search = () => {
 
             </Container>
           </div>
-        })}
+        })):(
+          <Message negative>
+            <Message.Header>No results found</Message.Header>
+            <p>try a different city</p>
+          </Message>
+        )}
 
       </Container>
 
