@@ -12,14 +12,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AutoSearch from '../components/AutoSearch';
 import { Container, Button, Grid, Message, Statistic } from 'semantic-ui-react';
 import CityNames from '../utils/Cities';
-
+import BannerIntro from "../components/BannerIntro";
 
 
 
 
 
 const Search = () => {
-
+  const[searching, setSearching] = useState(false);
   const [validSearch, validateSearch] = useState(true);
   const { loading, error, data } = useQuery(QUERY_ME, {});
   console.log(error);
@@ -183,7 +183,8 @@ const Search = () => {
         const regionName = cityData[0]._embedded["city:item"]._embedded["city:urban_area"].full_name;
         cityData[0]['region'] = regionName;
 
-        validateSearch(true);
+        validateSearch(true); 
+        setSearching(true);
         // Update the hook and empty the search field
         setSearchedCities(cityData);
         // setSearchedChart(cityData);
@@ -512,7 +513,7 @@ const Search = () => {
 
       </Container>
 
-
+      {!searching && <BannerIntro />}
     </>
   );
 };
