@@ -10,7 +10,7 @@ import { Bar } from 'react-chartjs-2';
 import { faSearch, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { Container, Button, Grid, Message } from 'semantic-ui-react';
+import { Container, Button, Grid, Message, Statistic } from 'semantic-ui-react';
 import AutoSearch from '../components/AutoSearch';
 import CityNames from '../utils/Cities';
 
@@ -390,9 +390,10 @@ const Search = () => {
                     </Button>
 
                   }
-                  <h3>
-                    <span className="bold">Population: </span><span>{city.population}</span>
-                  </h3>
+                  <Statistic>
+                        <Statistic.Label>Population</Statistic.Label>
+                        <Statistic.Value>{city.population}</Statistic.Value>
+                     </Statistic>  
                   <div>
                     <span className="bold">Region: </span><span>{city.region}</span>
                   </div>
@@ -439,6 +440,7 @@ const Search = () => {
                     datasets: [
                       {
                         label: 'Score',
+                        
                         data: [`${city.healthcare}`, `${city.taxation}`, `${city.education}`, `${city.housing}`, `${city.costOfLiving}`, `${city.safety}`, `${city.environmentalQuality}`, `${city.economy}`],
 
                         backgroundColor: [
@@ -464,6 +466,11 @@ const Search = () => {
                   height={400}
                   width={500}
                   options={{
+                    plugins: {
+                      legend: {
+                        display: false
+                      }
+                    },
                     maintainAspectRatio: false,
                     scales: {
                       y: {
