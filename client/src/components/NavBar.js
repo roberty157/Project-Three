@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import 'semantic-ui-css/semantic.min.css';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
-
 import Auth from '../utils/auth';
-import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const AppNavbar = () => {
     // set modal display state
@@ -18,8 +17,10 @@ const AppNavbar = () => {
             <Navbar className='navi p-4' bg='dark' variant='dark' expand='lg'>
                 <Container fluid>
                     <Navbar.Brand as={Link} to='/'>
-                        <FontAwesomeIcon icon={faExchangeAlt} size="2x" />
-                        <span className="mx-5 h2">Trading Places </span>
+                        <span className="mx-5 h2">
+                             <FontAwesomeIcon className="home-logo" icon={faHome} />
+                            Home City
+                        </span>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls='navbar' />
                     <Navbar.Collapse id='navbar'>
@@ -31,7 +32,7 @@ const AppNavbar = () => {
                             {Auth.loggedIn() ? (
                                 <>
                                     <Nav.Link as={Link} to='/profile'>
-                                        See Your Cities
+                                        Profile
                                     </Nav.Link>
                                     <Nav.Link onClick={Auth.logout} as={Link} to='/' >Logout</Nav.Link>
                                 </>

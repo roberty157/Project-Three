@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { searchCityData, searchBlank } from '../utils/API';
-import { useMutation ,useQuery} from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { SAVE_CITY, SAVE_HOME_CITY } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import { numbersWithCommas } from '../utils/helpers'
-import { Jumbotron, Form} from 'react-bootstrap';
+import { Jumbotron, Form } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { Bar } from 'react-chartjs-2';
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-import { Container, Button, Grid, Message} from 'semantic-ui-react';
 import AutoSearch from '../components/AutoSearch';
-//import SaveCityButton from '../components/SearchPage/SaveCityButton';
+import { Container, Button, Grid, Message, Statistic } from 'semantic-ui-react';
+import CityNames from '../utils/Cities';
+
+
 
 
 
 
 const Search = () => {
+
   const [validSearch, validateSearch] = useState(true);
-  const {loading, error, data} = useQuery(QUERY_ME,{});
-  //console.log(error);
-  //console.log(data);
+  const { loading, error, data } = useQuery(QUERY_ME, {});
+  console.log(error);
+  console.log(data);
 
   const [searchedCities, setSearchedCities] = useState([]);
   // create state for holding our search field data
@@ -52,32 +54,15 @@ const Search = () => {
       searchInput,
       onSelectSuggestion,
       displaySuggestions,
-      selectedSuggestion
+      selectedSuggestion,
+      onKeyDown
+
     } = props;
-    const onKeyDown = index => {
-      const { selectedSuggestion, filteredSuggestions } = this.state;
-      if (index.keyCode === 13) {
-        this.setState({
-          selectedSuggestion: 0,
-          displaySuggestions: false,
-          searchInput: filteredSuggestions[selectedSuggestion]
-        });
-      } else if (index.keyCode === 38) {
-        if (selectedSuggestion === 0) {
-          return;
-        }
-        this.setState({ selectedSuggestion: selectedSuggestion - 1 });
-      } else if (index.keyCode === 40) {
-        if (selectedSuggestion - 1 === filteredSuggestions.length) {
-          return;
-        }
-        this.setState({ selectedSuggestion: selectedSuggestion + 1 });
-      }
-    };
 
     if (searchInput && displaySuggestions) {
       if (suggestions.length > 0) {
         return (
+
           <ul className="suggestions-list">
             {suggestions.map((suggestion, index) => {
               const isSelected = selectedSuggestion === index;
@@ -86,10 +71,11 @@ const Search = () => {
               return (
                 <li
                   tabIndex={0}
-                  onKeyDown={onKeyDown}
                   key={index}
                   className={classname}
                   onClick={() => onSelectSuggestion(index)}
+                  onKeyDown={onKeyDown}
+
                 >
                   {suggestion}
                 </li>
@@ -99,7 +85,7 @@ const Search = () => {
           </ul>
         );
       } else {
-        return <div>No suggestions available...</div>;
+        return <div className="no-suggestions"> <FontAwesomeIcon icon={faExclamationTriangle} />&nbsp;&nbsp;No suggestions available</div>;
       }
     }
     return <></>;
@@ -111,15 +97,7 @@ const Search = () => {
   const [displaySuggestions, setDisplaySuggestions] = React.useState(false);
 
 
-  const suggestions = [
-    "Los Angeles, CA",
-    "Austin, TX",
-    "New York City, NY",
-    "Des Moines, IA",
-    "Seattle, WA",
-    "Phoenix, AZ",
-    "Boulder, CO"
-  ];
+  const suggestions = CityNames();
 
   const onChange = event => {
     const value = event.target.value;
@@ -139,6 +117,8 @@ const Search = () => {
     setSearchInput(filteredSuggestions[index]);
     setFilteredSuggestions([]);
     setDisplaySuggestions(false);
+
+
   };
 
 
@@ -170,6 +150,7 @@ const Search = () => {
       const pop = cityData[0]._embedded["city:item"].population;
       cityData[0]['population'] = numbersWithCommas(pop);
 
+
       if(cityData[0]._embedded["city:item"]._embedded===undefined){
         validateSearch(false);
         setSearchInput('');
@@ -196,6 +177,7 @@ const Search = () => {
         // get the image link and store the string value in the cityData object 
         const imageLink = regionImage.photos[0].image.web;
         cityData[0]['image'] = imageLink;
+
 
 
         const regionName = cityData[0]._embedded["city:item"]._embedded["city:urban_area"].full_name;
@@ -300,7 +282,7 @@ const Search = () => {
         region: cityToSave.region,
 
         //change population(which has commas) into an integer
-        population: parseInt(cityToSave.population.replace(/,/g,''),10)
+        population: parseInt(cityToSave.population.replace(/,/g, ''), 10)
 
       }
 
@@ -331,36 +313,39 @@ const Search = () => {
       <Jumbotron fluid className='text-light jumboGrad home-search'>
 
 
-        <Container style={{ width: '70rem' }} className='p-5 jumbo'>
+        <Container
+          // onClick={() => setDisplaySuggestions(false)}
+          style={{ width: '70rem' }} className='p-5 jumbo'>
 
           <Form className='p-5' onSubmit={handleFormSubmit}>
-            <h1 style={{ textAlign: 'center' }}>Search for your future home city</h1>
+            <h1 className="text-center font-normal">Search for your future <span className="home-city">home city</span></h1>
 
             <Form.Row >
               <Form.Label className="text-left display-block">City, State </Form.Label>
               <div className="input-group">
-              <Form.Control
+                <Form.Control
 
-                size="lg"
-                className="user-input form-control-large"
-                type="text"
-                onChange={onChange}
-                value={searchInput}
-                placeholder='Enter city name'
-              />
-              <SuggestionsList
+                  size="lg"
+                  className="user-input form-control-large"
+                  type="text"
+                  onChange={onChange}
+                  value={searchInput}
+                  placeholder='Enter city name'
+                />
+                <SuggestionsList
+                  onBlur={() => (alert("blur"), setDisplaySuggestions(false))}
 
-                searchInput={searchInput}
-                selectedSuggestion={selectedSuggestion}
-                onSelectSuggestion={onSelectSuggestion}
-                displaySuggestions={displaySuggestions}
-                suggestions={filteredSuggestions}
-              />
+                  searchInput={searchInput}
+                  selectedSuggestion={selectedSuggestion}
+                  onSelectSuggestion={onSelectSuggestion}
+                  displaySuggestions={displaySuggestions}
+                  suggestions={filteredSuggestions}
+                />
 
 
-              <Button light type='submit'>
-                <FontAwesomeIcon icon={faSearch} /><span>&nbsp;&nbsp;Search</span>
-              </Button>
+                <Button light="true" type='submit'>
+                  <FontAwesomeIcon icon={faSearch} /><span>&nbsp;&nbsp;Search</span>
+                </Button>
               </div>
             </Form.Row></Form>
         </Container>
@@ -382,12 +367,19 @@ const Search = () => {
                   <h2>
                     City: {city.matching_full_name}
                   </h2>
-                  {!Auth.loggedIn() &&
-                    <Message negative>
-                    <Message.Header>Login/Sign up to save city</Message.Header>
-                    </Message>
-                    }
-                    {
+
+
+                  {Auth.loggedIn() ? (<div></div>) :
+                    (
+                      <Message
+                          info
+                          content="Sign up or login using the link in the header for the ability to create a profile page and save cities to compare."
+                        />
+                      )
+                  }
+
+                  {
+
                     Auth.loggedIn() &&
                     <Button primary
                       disabled={savedCityIds.includes(city.cityId + '') || savedCityIds.includes(city.cityId)}
@@ -401,6 +393,14 @@ const Search = () => {
 
 
                   }
+
+            
+                    
+                   
+                  <h3>
+                    <span className="bold">Population: </span><span>{city.population}</span>
+
+
                   {
                     (Auth.loggedIn() && !loading && error === undefined) &&
                     <Button disabled={homeCityEqualsCurrent(data.me.homeCity, city)}
@@ -413,11 +413,11 @@ const Search = () => {
                     </Button>
 
                   }
-                    
-                   
-                  <h3>
-                    <span className="bold">Population: </span><span>{city.population}</span>
-                  </h3>
+                  <Statistic>
+                        <Statistic.Label>Population</Statistic.Label>
+                        <Statistic.Value>{city.population}</Statistic.Value>
+                     </Statistic>  
+
                   <div>
                     <span className="bold">Region: </span><span>{city.region}</span>
                   </div>
@@ -456,7 +456,7 @@ const Search = () => {
             </Grid>
 
 
-            <Container>
+            <Container className="mt-4">
               <div>
                 <Bar
                   data={{
@@ -464,6 +464,7 @@ const Search = () => {
                     datasets: [
                       {
                         label: 'Score',
+                        
                         data: [`${city.healthcare}`, `${city.taxation}`, `${city.education}`, `${city.housing}`, `${city.costOfLiving}`, `${city.safety}`, `${city.environmentalQuality}`, `${city.economy}`],
 
                         backgroundColor: [
@@ -489,6 +490,11 @@ const Search = () => {
                   height={400}
                   width={500}
                   options={{
+                    plugins: {
+                      legend: {
+                        display: false
+                      }
+                    },
                     maintainAspectRatio: false,
                     scales: {
                       y: {
@@ -499,7 +505,7 @@ const Search = () => {
                   }}
                 />
               </div>
-            
+
 
             </Container>
           </div>

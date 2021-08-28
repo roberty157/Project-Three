@@ -17,12 +17,13 @@ const BannerIntro = () => {
     {
       headerIcon: <FontAwesomeIcon icon={faCity} />,
       title: "Compare",
-      text: "See how your home city compares with your possible future home ciities."
+      text: "See how your home city compares with your possible future home cities."
 
     }
   ];
+
     return (
-        <div className="row my-5 justify-content-between p-5">
+        <div id="education-cards" className="row my-5 justify-content-between p-5">
           {bannerCards.map((bannerCard, i) => <BannerCard key={i} {...bannerCard} />)}
         </div>
     )
