@@ -32,4 +32,4 @@
   Currently no tests exists for the application. If you would like to contribute and help us by writing tests, see the [Contributing](#contributing) section.
 
   ## Questions
-  For more information about me and my other projects, visit my [GitHub profile](http://). Reach me to report issues or with questions at [insert email](mailto:insertemailaddress@this.com).
+  For more information about me and my other projects, visit my [GitHub profile](https://github.com/roberty157). Reach me to report issues or with questions at [insert email](mailto:insertemailaddress@this.com).
