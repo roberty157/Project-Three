@@ -378,6 +378,10 @@ footer {
   display: none;
 }
 
+.ui.message{
+  font-size: 1rem;
+}
+
 .my-5 .card {
   flex-basis: 30%;
   margin: 0 0 20px 0 !important;
