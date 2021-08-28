@@ -5,7 +5,7 @@ const Home = () => {
     return (
         <>
             <Search />
-            <BannerIntro />
+            {/*<BannerIntro />*/}
         </>
     )
 }
