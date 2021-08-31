@@ -1,8 +1,8 @@
-# Trading Places
+# Home City
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
   ## Description
-  Trading Places is a application that allows the user to search for cities within the US to provide statistics that may be important criteria when deciding on a potential relocation. Signing up for an account gives the additional functionality of setting a Home City, saving Cities and using a City Comparison tool. The application is built with MongoDB, Express.js, React, Node.js, Apollo GraphQL, React-Bootstrap, Semantic UI React, Heroku and the Teleport API.
+  Home City is a application that allows the user to search for cities within the US to provide statistics that may be important criteria when deciding on a potential relocation. Signing up for an account gives the additional functionality of setting a Home City, saving Cities and using a City Comparison tool. The application is built with MongoDB, Express.js, React, Node.js, Apollo GraphQL, React-Bootstrap, Semantic UI React, Heroku and the Teleport API.
 
   ## Table of Contents
   * [Installation](#installation)
